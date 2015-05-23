@@ -1,5 +1,10 @@
 # Fichier de configuration codeIgniter
-application\config\database.php
+*/config/development
+*/logs/log-*.php
+!*/logs/index.html
+*/cache/*
+!*/cache/index.html
+!*/cache/.htaccess
 
 # Windows image file caches
 Thumbs.db
