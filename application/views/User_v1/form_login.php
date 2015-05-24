@@ -46,10 +46,29 @@
                         </div>
                         <br />
                         <div class="hcenter">
-                        <button type="submit" class="btn btn-primary">Valider</button>
+                            <button type="submit" class="btn btn-primary">Valider</button>
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="col-lg-12">
+            <!-- slider -->
+            <div class="carousel_sponsor_vertical container" data-slick='{"slidesToShow": 3, "slidesToScroll": 1, "autoplay": true}'>
+                <?php        
+                if (isset($images)) {
+                    foreach ($images as $image)
+                    {
+                        echo '<div class="col-lg-4">';
+                        echo '<div class="vcenter_slider">';
+                        echo '<img src="'.base_url().$image.'" class="imgItem"/>';
+                        echo '</div>';
+                        echo '</div>';
+                    }
+                }
+                ?>
             </div>
         </div>
     </div>

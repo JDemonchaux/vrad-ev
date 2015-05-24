@@ -9,6 +9,7 @@ class Connexion extends CI_Controller {
 		parent::__construct();
 
 		load_library("User");
+		load_library("ImageResizer", "ToolBox");
 	}
 
 	public function index() {
@@ -22,6 +23,11 @@ class Connexion extends CI_Controller {
 			'form_inscriptionMembre_uri' => construct_full_url("Inscription", "membre"),
 			'form_inscriptionJury_uri' => construct_full_url("Inscription", "jury")
 			);
+
+		// r�cup�ration des sponsors dans les assets
+		$imageResizer = new imageResizer();
+		$data['images'] = $imageResizer->getSponsors(); 
+		
 		load_view("form_login",$data);
 	}
 
