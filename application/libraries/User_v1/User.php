@@ -27,6 +27,8 @@ class User {
         $this->email = $email;
         $this->password = $password;
         $this->rights = array();
+        //Par défaut, on n'active pas le compte de l'utilisateur (fait via partie d'admin);
+        $this->accountValid = FALSE;
     }
 
     public function getRight($controller, $action) {

@@ -93,7 +93,7 @@ $("#ajouterEcole").on('click', function () {
 
     function reloadSchool() {
         $.ajax({
-            url: "https://localhost/vrad-ev/utilisateur/AJAX_reloadSchool",
+            url: "https://vrad-ev.com/User_v1/Inscription/AJAX_reloadSchool",
             success: function (html) {
 
             }

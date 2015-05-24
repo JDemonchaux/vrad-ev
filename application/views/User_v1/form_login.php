@@ -16,8 +16,13 @@
                     <p class="block-noir"></p>
                     <br />
                     <p class="hcenter">
-                        <a href="<?php echo $form_inscription_uri; ?>">
-                            <button class="btn btn-primary">S'inscrire</button>
+                        <a href="<?php echo $form_inscriptionMembre_uri; ?>">
+                            <button class="btn btn-primary">S'inscrire en participant</button>
+                        </a>
+                    </p>
+                    <p class="hcenter">
+                        <a href="<?php echo $form_inscriptionJury_uri; ?>">
+                            <button class="btn btn-primary">S'inscrire en Jury</button>
                         </a>
                     </p>
                 </div>

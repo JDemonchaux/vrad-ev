@@ -14,14 +14,15 @@ class Connexion extends CI_Controller {
 	}
 
 	public function index() {
-
+		$this->login();
 	}
 
 	public function login() {
 
 		$data = array(
 			'form_connexion_uri' => construct_full_url("Connexion", "verif_login"),
-			'form_inscription_uri' => ""
+			'form_inscriptionMembre_uri' => construct_full_url("Inscription", "membre"),
+			'form_inscriptionJury_uri' => construct_full_url("Inscription", "jury")
 			);
 		load_view("form_login",$data);
 	}
@@ -29,46 +30,20 @@ class Connexion extends CI_Controller {
 	public function verif_login() {
 
 		$mon_user = new User($this->input->post('email'),
-							 $this->input->post('password')
-							 );
+			$this->input->post('password')
+			);
 
 		try {
-            $mon_user->login();
-        }
-        catch (Exception $ex) {
-            //avant
-            //go_and_show_message($ex->getMessage(), "User", "Connexion", "login");
+			$mon_user->login();
 
-        	// ou sinon
-        	//j'envoie le message en session Flash
-            set_user_message($ex->getMessage());
-            //et parceque je le veux je redirige
-            redirect(construct_full_url($controller, $action, $module));
-        }
+		} catch (Exception $ex) {
+			set_user_message($ex->getMessage());
+			redirect(construct_full_url("Connexion", "login", "User"));
+		}
 
-        //avant : dans tous les cas on passe à la suite
-		//go_and_show_message("Connexion réussie!", "User", "Connexion", "suite_succes_login", "success", TRUE);
-
-		// ou sinon : on continue
-		set_user_message("Connexion réussie!", "success", TRUE);
-
-		//mise a jour des méta données
-		$this->metadata = new Meta("Connexion","","");
-
-		$tunnel=new Tunnel('essay',false,false);
-		$tunnel->addStep("Etape 1","pn1","action1","Controller1","Module_Dev");
-		$tunnel->addStep("Etape 2","pn2","action2","Controller1","Module_Dev");
-		$tunnel->addStep("Etape 3","pn3","action1","Controller2","Module_Dev");
-		$tunnel->addStep("Etape 4","pn4","action1","Controller2","Module_Dev");
-		$tunnel->addStep("Etape 5","pn5","login","Connexion","User");
-		$tunnel->setCurentStep(2);
-
-		$data = array("tunnel"=>$tunnel);
-		load_view("login_ok",$data);
+       // TO DO : chargé la home, quand elle sera faite
+       // load_view("form_login",$data);
 
 	}
 
-	public function suite_succes_login(){
-		load_view("login_ok");
-	}
 }

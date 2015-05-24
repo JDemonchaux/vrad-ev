@@ -89,7 +89,7 @@ if (!function_exists('load_library'))
   *
   * @return void
   */
-if (!function_exists('load_view'))
+if (!function_exists('load_templated_view'))
 {
   function load_templated_view($filename, $data = '', $template, $templat_data, $module="") 
   {
@@ -143,13 +143,13 @@ if (!function_exists('load_view'))
         //la vue est toujours stockée dans un dossier comporant la version du module
         //utilisation directe des fonctions de versios déjà chargées par le hook pre_system
     $module_full_name = get_module_versioned_name($CI->config->item('versions'),$module);
-    
+
         //passer les params au template
     $CI->template->set('metadata',$CI->metadata);
     foreach ($CI->layout_data as $key => $value) {
       $CI->template->set($key,$value);
     }
-    
+
         //puis appel à la méthode chargeant la vue dans un template
     $CI->template->load($default_template, $module_full_name."/".$filename, $data);
   }
@@ -172,7 +172,7 @@ if (!function_exists('load_simple_view'))
 {
   function load_simple_view($filename, $data = '', $module="")  
   {
-    
+
         //accès à tous les outils du controller
     $CI = get_instance(); 
         //par defaut, on utilise le module courrant

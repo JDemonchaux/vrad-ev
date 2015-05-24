@@ -17,6 +17,7 @@ class Member extends user
         parent::__construct($id, $prenom, $nom, $email, $password);
         $this->groupe = $groupe;
         $this->classe = $classe;
+    
     }
     
     public function getGroupe() {
