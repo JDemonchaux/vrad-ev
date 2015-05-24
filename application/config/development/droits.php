@@ -76,6 +76,23 @@ $config['droits']["Projet"]['Plannification'] = array(	"gantt" 	=> 1, 	//A
 														// "" 		=> 4 	//C
 													);				
 
+												//definition droits COS
+$config['droits']["Notation"]['Jury'] = array(	"harmonisation" 		=> 1, 	//A
+												"harmonisation_action"	=> 1,	//A
+												"noterGroupe"			=> 2,	//B
+												"noterGroupe_action"	=> 2 	//B
+												// "" 		=> 4 	//C
+													);	
 
+												//definition droits COS
+$config['droits']["Notation"]['Ressources'] = array(	"listeItem" 	=> 1, 	//A
+														"importerItem"	=>2
+												// "" 		=> 4 	//C
+													);	
 
+												//definition droits COS
+$config['droits']["Notation"]['Resultats'] = array(	"home" 		=> 1, 	//A
+													"podium" 	=> 2, 	//B
+													"scores" 	=> 4, 	//C
+													);	
 
