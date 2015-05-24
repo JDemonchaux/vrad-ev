@@ -28,20 +28,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   */
 if (!function_exists('load_model'))
 {
-    function load_model($filename, $module="") 
-    {
+  function load_model($filename, $module="") 
+  {
         //accès à tous les outils du controller
-        $CI = get_instance(); 
+    $CI = get_instance(); 
         //par defaut, on utilise le module courrant
-        if($module===""){
-            $module = $CI->module; 
-        }
+    if($module===""){
+      $module = $CI->module; 
+    }
         //le modèle est toujours stocké dans un dossier comporant la version du module
         //utilisation directe des fonctions de versios déjà chargées par le hook pre_system
-        $module_full_name = get_module_versioned_name($CI->config->item('versions'),$module);
+    $module_full_name = get_module_versioned_name($CI->config->item('versions'),$module);
         //puis appel standard à la méthode load du controller
-        $CI->load->model($module_full_name."/".$filename);
-    }
+    $CI->load->model($module_full_name."/".$filename);
+  }
 }
 
 /**
@@ -56,21 +56,21 @@ if (!function_exists('load_model'))
   */
 if (!function_exists('load_library'))
 {
-    function load_library($filename, $module="") 
-    {
+  function load_library($filename, $module="") 
+  {
         //accès à tous les outils du controller
-        $CI = get_instance(); 
+    $CI = get_instance(); 
         //par defaut, on utilise le module courrant
-        if($module===""){
-            $module = $CI->module; 
-        }
+    if($module===""){
+      $module = $CI->module; 
+    }
         //les librairies sont toujours stockées dans un dossier comporant la version du module
         //utilisation directe des fonctions de versios déjà chargées par le hook pre_system
-        $module_full_name = get_module_versioned_name($CI->config->item('versions'),$module);
+    $module_full_name = get_module_versioned_name($CI->config->item('versions'),$module);
         //puis appel standard à la méthode load du controller
         //var_dump($module_full_name."/".$filename);
-        $CI->load->library($module_full_name."/".$filename);
-    }
+    $CI->load->library($module_full_name."/".$filename);
+  }
 }
 
 
@@ -91,28 +91,28 @@ if (!function_exists('load_library'))
   */
 if (!function_exists('load_view'))
 {
-    function load_templated_view($filename, $data = '', $template, $templat_data, $module="") 
-    {
+  function load_templated_view($filename, $data = '', $template, $templat_data, $module="") 
+  {
         //accès à tous les outils du controller
-        $CI = get_instance(); 
+    $CI = get_instance(); 
         //par defaut, on utilise le module courrant
-        if($module===""){
-            $module = $CI->module; 
-        }
+    if($module===""){
+      $module = $CI->module; 
+    }
         //la vue est toujours stockée dans un dossier comporant la version du module
         //utilisation directe des fonctions de versios déjà chargées par le hook pre_system
-        $module_full_name = get_module_versioned_name($CI->config->item('versions'),$module);
+    $module_full_name = get_module_versioned_name($CI->config->item('versions'),$module);
 
         //passer les params au template
-        $CI->template->set('metadata',$CI->metadata);
-        foreach ($templat_data as $key => $value) {
-          $CI->template->set($key,$value);
-        }
+    $CI->template->set('metadata',$CI->metadata);
+    foreach ($templat_data as $key => $value) {
+      $CI->template->set($key,$value);
+    }
 
         //puis appel à la méthode chargeant la vue dans un template
-        $CI->template->load($template, $module_full_name."/".$filename, $data);
+    $CI->template->load($template, $module_full_name."/".$filename, $data);
 
-    }
+  }
 }
 
 /**
@@ -130,29 +130,29 @@ if (!function_exists('load_view'))
   */
 if (!function_exists('load_view'))
 {
-    function load_view($filename, $data = '', $module="")  
-    {
+  function load_view($filename, $data = '', $module="")  
+  {
         //accès à tous les outils du controller
-        $CI = get_instance(); 
+    $CI = get_instance(); 
         //par defaut, on utilise le module courrant
-        if($module===""){
-            $module = $CI->module; 
-        }
+    if($module===""){
+      $module = $CI->module; 
+    }
         //definition du template par defaut
-        $default_template = $CI->config->item("default_template");
+    $default_template = $CI->config->item("default_template");
         //la vue est toujours stockée dans un dossier comporant la version du module
         //utilisation directe des fonctions de versios déjà chargées par le hook pre_system
-        $module_full_name = get_module_versioned_name($CI->config->item('versions'),$module);
-        
+    $module_full_name = get_module_versioned_name($CI->config->item('versions'),$module);
+    
         //passer les params au template
-        $CI->template->set('metadata',$CI->metadata);
-        foreach ($CI->layout_data as $key => $value) {
-          $CI->template->set($key,$value);
-        }
-        
-        //puis appel à la méthode chargeant la vue dans un template
-        $CI->template->load($default_template, $module_full_name."/".$filename, $data);
+    $CI->template->set('metadata',$CI->metadata);
+    foreach ($CI->layout_data as $key => $value) {
+      $CI->template->set($key,$value);
     }
+    
+        //puis appel à la méthode chargeant la vue dans un template
+    $CI->template->load($default_template, $module_full_name."/".$filename, $data);
+  }
 }
 
 /**
@@ -170,20 +170,20 @@ if (!function_exists('load_view'))
   */
 if (!function_exists('load_simple_view'))
 {
-    function load_simple_view($filename, $data = '', $module="")  
-    {
-        
+  function load_simple_view($filename, $data = '', $module="")  
+  {
+    
         //accès à tous les outils du controller
-        $CI = get_instance(); 
+    $CI = get_instance(); 
         //par defaut, on utilise le module courrant
-        if($module===""){
-            $module = $CI->module; 
-        }
+    if($module===""){
+      $module = $CI->module; 
+    }
         //la vue est toujours stockée dans un dossier comporant la version du module
         //utilisation directe des fonctions de versios déjà chargées par le hook pre_system
-        $module_full_name = get_module_versioned_name($CI->config->item('versions'),$module);
+    $module_full_name = get_module_versioned_name($CI->config->item('versions'),$module);
         //puis appel standard à la méthode load du controller
-        $CI->load->view($module_full_name."/".$filename, $data);
-    }
+    $CI->load->view($module_full_name."/".$filename, $data);
+  }
 }
 ?>

@@ -33,7 +33,7 @@ if ( ! function_exists('construct_uri_string'))
         $module_full_name = get_module_route_name($CI->config->item('versions'),$module);
 		$url_segments = array($module_full_name,$controller,$action);
 
-		return implode(DIRECTORY_SEPARATOR,$url_segments);
+		return implode("/",$url_segments);
 	}
 }
 
