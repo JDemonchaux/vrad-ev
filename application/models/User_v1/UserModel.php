@@ -45,6 +45,26 @@ class UserModel extends CI_Model
 
     }
 
+    public function createJury(Jury $jury) {
+        $insert = array(
+            "usr_role" => "jury",
+            "usr_name" => $jury->getNom(),
+            "usr_firstname" => $jury->getPrenom(),
+            "usr_email" => $jury->getMail(),
+            "usr_pwd" => $jury->getPassword(),
+            "usr_account_valid" => $jury->getAccountValid(),
+            "fk_grp" => NULL,
+            "fk_grd" => NULL,
+            "fk_schl" => $jury->getEcole()->getId()
+            );
+        $success = false;
+        if ($this->db->insert("TM_USER_USR", $insert)) {
+            $success = true;
+        }
+
+        return $success;
+    }
+
     public function validerLogin($login, $password) {
         $this->db->select('*');
         $this->db->where('usr_email', $login);

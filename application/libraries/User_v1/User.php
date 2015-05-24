@@ -20,7 +20,7 @@ class User {
     private $accountValid;
     private $rights;
 
-    public function __construct($email = '', $password = '', $prenom = '', $nom = '', $id = '') {
+    public function __construct($id = '', $prenom = '', $nom = '', $email = '', $password = '') {
         $this->id = $id;
         $this->prenom = $prenom;
         $this->nom = $nom;
