@@ -9,8 +9,6 @@ class Connexion extends CI_Controller {
 		parent::__construct();
 
 		load_library("User");
-		load_model("userModel");
-		load_library('Tunnel','ToolBox');
 	}
 
 	public function index() {
