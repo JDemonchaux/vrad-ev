@@ -40,12 +40,21 @@ function construct_routes($config_versions){
 	
 		//la permière info de versions n'est pas un module en soit
 		if($module!="show_in_URL"){
-			//pour le reste
-			$module_route_name = get_module_route_name($config_versions, $module);
+			     //pour le reste
+      $module_route_name = get_module_route_name($config_versions, $module);
       if (isset($version['DefaultRoute'])){
-			   $module_default_action = $module_route_name."/".$version['DefaultRoute'];
+         foreach ($version["DefaultRoute"] as $controller => $info){
+            if($controller == "module"){
+                $route_name = $module_route_name;
+            }else{
+              $route_name = $module_route_name."/".$controller;
+            }
+          $default_action = $route_name."/".$info;
          //association de la route du module à sa route controller/action par default
-         $route[$module_route_name ] = $module_default_action;
+         $route[$route_name] = $default_action;
+
+         }
+
       }
 			
 		}

@@ -45,7 +45,7 @@ class Connexion extends CI_Controller {
 			redirect(construct_full_url("Connexion", "login", "User"));
 		}
 
-       // TO DO : chargé la home, quand elle sera faite
+       // TODO : chargé la home, quand elle sera faite
        // load_view("form_login",$data);
 
 	}

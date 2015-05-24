@@ -109,7 +109,7 @@ $autoload['helper'] = array('url', 'loader','asset','error');
 |
 */
 
-$autoload['config'] = array('application_common','application_environement','versions');
+$autoload['config'] = array('application_common','application_environement','versions','droits');
 
 
 /*

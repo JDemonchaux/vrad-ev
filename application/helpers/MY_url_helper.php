@@ -49,7 +49,7 @@ if ( ! function_exists('construct_full_url'))
 	function construct_full_url($controller, $action, $module="")
 	{
 		$CI =& get_instance();
-		$url_end = construct_uri_string($controller, $action, $module="");
+		$url_end = construct_uri_string($controller, $action, $module);
 		return $CI->config->site_url($url_end);
 	}
 }

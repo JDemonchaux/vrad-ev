@@ -50,8 +50,25 @@ class User {
             throw new Exception("Identifiants incorrects!", 1);
         }
         else {
-            //TODO charger user complet avec ses droits et mettre en session
+            $this->id = $res->pk_usr;
+            $this->prenom = $res->prenom;
+            $this->nom = $res->nom;
+            $this->accountValid = $res->usr_account_valid;
+
+            if($this->accountValid==0){
+                throw new Exception("Votre compte n'a pas encore été activé", 1);
+            }
+
+            //récup des droits
+            $this->rights = $CI->userModel->getDroits($res->role);
+            //Mise en session
+            $CI->session->set_userdata("curent_user",$this);
+
         }
+    }
+
+    public function logoff(){
+        $CI->session->unset_userdata("curent_user");
     }
 
     public function getId() {
@@ -101,6 +118,10 @@ class User {
 
     public function setAccountValid($bool) {
         $this->accountValid = $bool;
+    }
+
+    public function getRights(){
+        return $this->rights;
     }
 
 }

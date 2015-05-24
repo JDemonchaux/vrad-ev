@@ -29,6 +29,14 @@ $hook['post_controller_constructor'][] = array(
                                 'filepath' => 'hooks',
                                 'params'   => array()
                                 );
+$hook['post_controller_constructor'][] = array(
+                                'class'    => '',
+                                'function' => 'verif_droits',
+                                'filename' => 'controller_surcharge.php',
+                                'filepath' => 'hooks',
+                                'params'   => array()
+                                );
+
 
 // permet de lancer la méthode de verification des droits sur chaque page, avant l'exectution de celle-ci
 /*

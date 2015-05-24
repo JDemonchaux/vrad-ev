@@ -61,6 +61,8 @@ $droit_COR = array(	"creer" 			=> 1,	//C
 // $config['droits']["Module"]['Controller']
 // extentions droits COR et definition droits COS
 
+//TOUT ce qui n'est pas Défini ICI fonction selon des droits "PUBLIC" --> controller accessibles sans être connectés
+
 $config['droits']["Projet"]['Tache'] = array_merge(	$droit_COR, 
 													//extention droits COR
 													array(	"voir_detail_autre"	=>	128, //W
@@ -95,4 +97,9 @@ $config['droits']["Notation"]['Resultats'] = array(	"home" 		=> 1, 	//A
 													"podium" 	=> 2, 	//B
 													"scores" 	=> 4, 	//C
 													);	
+
+
+
+
+
 
