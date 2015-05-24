@@ -75,8 +75,8 @@ function verif_droits(){
     }
     else{
 			//on redirige sur la home avec message d'erreur
-    	set_user_message("403 : vous n'avez pas le droit d'accerder à cette page",1);
-    	redirect(construct_full_url("Inscription", "index", "User"));
+    	set_user_message("403 : vous n'avez pas le droit d'accerder à cette page");
+    	redirect(construct_full_url("Connexion", "login", "User"));
     }
 
 

@@ -154,14 +154,14 @@ class Inscription extends CI_Controller {
         $groupe = $this->GroupModel->createGroupe($groupe);
     }
     
-    public function AJAX_creerEcole($reload = FALSE) {
+    public function AJAX_creerEcole() {
         $libelleEcole = $this->input->post("nomEcole");
         $ville = $this->input->post("ville");
         $school = new School("", $libelleEcole, $ville);        
         $ecole = $this->SchoolModel->createSchool($school);
-        if ($reload) {
+        
             $this->AJAX_reloadSchool();
-        }
+        
     }
     
     public function AJAX_checkMail() {
