@@ -54,9 +54,11 @@ $config['versions']["Projet"]['DefaultRoute']["module"] = "Planification"."/"."g
 $config['versions']["Projet"]['DefaultRoute']['Tache'] = "lister";
 $config['versions']["Projet"]['DefaultRoute']['Planification'] = "gantt";			
 
-
 $config['versions']["Notation"]['v']= '1-1';
 $config['versions']["Notation"]['DefaultRoute']["module"] = "Jury"."/"."harmonisation";
+$config['versions']["Notation"]['DefaultRoute']["Jury"] = "harmonisation";
+$config['versions']["Notation"]['DefaultRoute']["Ressources"] = "listeItem";
+$config['versions']["Notation"]['DefaultRoute']["Resultat"] = "home";
 
 
 //Exemples
