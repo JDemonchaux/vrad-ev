@@ -7,7 +7,7 @@
     echo css_url('bootstrap-theme.min'); 
     echo css_url('design');
     echo css_url('slick');
-    echo css_url('slick.theme');
+    echo css_url('slick-theme');
     echo css_url('toastr.min');
     ?>
 
