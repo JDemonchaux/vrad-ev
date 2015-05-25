@@ -20,7 +20,7 @@ class User {
     private $accountValid;
     private $rights;
 
-    public function __construct($id = '', $prenom = '', $nom = '', $email = '', $password = '') {
+    public function __construct($email = '', $password = '', $id = '', $prenom = '', $nom = '') {
         $this->id = $id;
         $this->prenom = $prenom;
         $this->nom = $nom;
@@ -43,24 +43,24 @@ class User {
 
     public function login(){
         load_model("userModel");
+
         $CI = get_instance(); 
         $res = $CI->userModel->validerLogin($this->email, $this->password);
-
         if (empty($res)) {
             throw new Exception("Identifiants incorrects!", 1);
         }
         else {
             $this->id = $res->pk_usr;
-            $this->prenom = $res->prenom;
-            $this->nom = $res->nom;
+            $this->prenom = $res->usr_name;
+            $this->nom = $res->usr_firstname;
             $this->accountValid = $res->usr_account_valid;
-
             if($this->accountValid==0){
                 throw new Exception("Votre compte n'a pas encore été activé", 1);
             }
 
             //récup des droits
-            $this->rights = $CI->userModel->getDroits($res->role);
+            $this->rights = $CI->userModel->getDroits($res->usr_role);
+
             //Mise en session
             $CI->session->set_userdata("curent_user",$this);
 
@@ -69,6 +69,23 @@ class User {
 
     public function logoff(){
         $CI->session->unset_userdata("curent_user");
+    }
+
+    public function demander_acces($module,$controller,$action_droit){
+        if( ! isset($this->rights[$module][$controller]) ){
+            //module/controller non definit pour l'utilisateur = pas de droit
+            $acces = FALSE;
+        }
+        else{
+            //BitBashing : &logic entre la valeur de action demandé et les droit utilisateur pour ce controller
+            if( $this->rights[$module][$controller] & $action_droit ){
+                $acces = TRUE;
+            }
+            else{
+                $acces = FALSE;
+            }
+        }
+        return $acces;
     }
 
     public function getId() {

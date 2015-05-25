@@ -47,34 +47,23 @@ function verif_droits(){
     	$acces = TRUE;
     }
     else{
-    		if( ! $CI->session->has_userdata("user") ){
+    		//il y a-t-il un utilisateur en session?
+            if( ! $CI->session->has_userdata("curent_user") ){
     			$acces = FALSE;
     			$user_droits = array();
     		}else{
-    			$user_droits = $CI->session->get_userdata("user")->getRights();
+                $session = $CI->session->get_userdata();
+                $user = $session['curent_user'];
+                //as-t-il les droits?
+                $acces  = $user->demander_acces($module,$controller,$les_droits[$module][$controller][$action]);
     		}
-
-    	if( ! isset($user_droits[$module][$controller][$action]) ){
-    		//module/controller non definit pour l'utilisateur = pas de droit
-    		$acces = FALSE;
-    	}
-    	else{
-			//BitBashing : &logic entre l'action demandé et le droit utilisateur correspondant
-    		if( $les_droits[$module][$controller][$action] & $user_droits[$module][$controller][$action] ){
-    			$acces = TRUE;
-    		}
-    		else{
-    			$acces = FALSE;
-    		}
-    	}
-
     }
 
     if($acces){
 			//Ne rien faire, tout va bien
     }
     else{
-			//on redirige sur la home avec message d'erreur
+        //on redirige sur la home avec message d'erreur
     	set_user_message("403 : vous n'avez pas le droit d'accerder à cette page");
     	redirect(construct_full_url("Connexion", "login", "User"));
     }

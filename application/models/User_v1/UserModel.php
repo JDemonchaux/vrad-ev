@@ -71,18 +71,18 @@ class UserModel extends CI_Model
         $this->db->where('usr_pwd', $password);
         $query = $this->db->get('tm_user_usr');
 
-        return $query->result();
+        return $query->result()[0];
     }
 
     public function getDroits($role) {
         $this->db->select('*');
         $this->db->where('fk_usr_role', $role);
         $query = $this->db->get('tj_rights_rgt');
-
         $res = $query->result();
+
         $rights = array();
         foreach ($res as $key => $value) {
-            $rights[$value->rgt_module][$value->rgt_controller] = bindec($value->rg_allow);
+            $rights[$value->rgt_module][$value->rgt_controller] = bindec($value->rgt_allow);
         }
         return $rights;
     }
