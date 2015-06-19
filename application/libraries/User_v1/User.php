@@ -47,8 +47,7 @@ class User {
         $CI = get_instance();
         $res = $CI->userModel->validerLogin($this->email, md5($this->password));
         if (empty($res)) {
-            //throw new Exception("Identifiants incorrects!", 1);
-            throw new Exception(md5($this->password), 1);
+            throw new Exception("Identifiants incorrects!", 1);
         }
         else {
             $this->id = $res->pk_usr;

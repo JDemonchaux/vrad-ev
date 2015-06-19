@@ -39,7 +39,7 @@ class Connexion extends CI_Controller {
 
 		try {
 			$mon_user->login();
-			redirect(construct_full_url("Ressouces", "listeItem", "Notation"));
+			redirect(construct_full_url("Resultats", "home", "Notation"));
 
 		} catch (Exception $ex) {
 			set_user_message($ex->getMessage());
