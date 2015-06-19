@@ -44,10 +44,11 @@ class User {
     public function login(){
         load_model("userModel");
 
-        $CI = get_instance(); 
-        $res = $CI->userModel->validerLogin($this->email, $this->password);
+        $CI = get_instance();
+        $res = $CI->userModel->validerLogin($this->email, md5($this->password));
         if (empty($res)) {
-            throw new Exception("Identifiants incorrects!", 1);
+            //throw new Exception("Identifiants incorrects!", 1);
+            throw new Exception(md5($this->password), 1);
         }
         else {
             $this->id = $res->pk_usr;
@@ -62,13 +63,14 @@ class User {
             $this->rights = $CI->userModel->getDroits($res->usr_role);
 
             //Mise en session
-            $CI->session->set_userdata("curent_user",$this);
+            $CI->session->set_userdata("current_user", $this);
 
         }
     }
 
     public function logoff(){
-        $CI->session->unset_userdata("curent_user");
+        $CI = get_instance();
+        $CI->session->unset_userdata("current_user");
     }
 
     public function demander_acces($module,$controller,$action_droit){

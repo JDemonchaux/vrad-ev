@@ -13,7 +13,7 @@ class UserModel extends CI_Model
 
 
     /*
-     *  Fonction qui vérifie si l'email déjà présent en base de données
+     * Fonction qui vérifie si l'email déjà présent en base de données
      * @param: String email;
      * @return nombre de ligne : 0 pas d'email : 1 email;
      */ 
