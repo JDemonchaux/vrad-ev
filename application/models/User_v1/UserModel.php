@@ -79,10 +79,9 @@ class UserModel extends CI_Model
         $this->db->where('fk_usr_role', $role);
         $query = $this->db->get('tj_rights_rgt');
         $res = $query->result();
-
         $rights = array();
         foreach ($res as $key => $value) {
-            $rights[$value->rgt_module][$value->rgt_controller] = bindec($value->rgt_allow);
+            $rights[$value->rgt_model][$value->rgt_controller] = bindec($value->rgt_allow);
         }
         return $rights;
     }

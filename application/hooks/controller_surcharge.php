@@ -50,14 +50,15 @@ function verif_droits()
         $acces = TRUE;
     } else {
         //il y a-t-il un utilisateur en session?
-        if (!$CI->session->has_userdata("curent_user")) {
+        if (!$CI->session->has_userdata("current_user")) {
             $acces = FALSE;
             $user_droits = array();
         } else {
             $session = $CI->session->get_userdata();
-            $user = $session['curent_user'];
+            $user = $session['current_user'];
             //as-t-il les droits?
             $acces = $user->demander_acces($module, $controller, $les_droits[$module][$controller][$action]);
+
         }
     }
 
@@ -65,7 +66,7 @@ function verif_droits()
         //Ne rien faire, tout va bien
     } else {
         //on redirige sur la home avec message d'erreur
-        set_user_message("403 : vous n'avez pas le droit d'accerder à cette page");
+        set_user_message("403 : vous n'avez pas le droit d'acc&egrave;der à cette page");
         redirect(construct_full_url("Connexion", "login", "User"));
     }
 

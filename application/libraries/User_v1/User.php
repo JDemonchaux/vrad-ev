@@ -59,6 +59,7 @@ class User {
             }
 
             //récup des droits
+
             $this->rights = $CI->userModel->getDroits($res->usr_role);
 
             //Mise en session
@@ -80,6 +81,7 @@ class User {
         else{
             //BitBashing : &logic entre la valeur de action demandé et les droit utilisateur pour ce controller
             if( $this->rights[$module][$controller] & $action_droit ){
+
                 $acces = TRUE;
             }
             else{

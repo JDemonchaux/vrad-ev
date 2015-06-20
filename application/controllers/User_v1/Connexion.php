@@ -26,8 +26,7 @@ class Connexion extends CI_Controller {
 
 		// r�cup�ration des sponsors dans les assets
 		$imageResizer = new imageResizer();
-		$data['images'] = $imageResizer->getSponsors(); 
-		
+		$data['images'] = $imageResizer->getSponsors();
 		load_view("form_login",$data);
 	}
 
@@ -39,6 +38,7 @@ class Connexion extends CI_Controller {
 
 		try {
 			$mon_user->login();
+
 			redirect(construct_full_url("Resultats", "home", "Notation"));
 
 		} catch (Exception $ex) {
