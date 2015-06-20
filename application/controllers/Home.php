@@ -8,7 +8,7 @@ class Home extends CI_Controller
     public function index()
     {
         $CI = get_instance();
-        if ($CI->session->userdata("current_user") !== FALSE) {
+        if ($CI->session->userdata("current_user") !== NULL) {
             redirect(construct_full_url("Resultats", "home", "Notation"));
         } else {
             redirect(construct_full_url("Connexion", "", "User"));

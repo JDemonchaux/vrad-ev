@@ -2,9 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <?php 
+    <?php
     echo css_url('bootstrap.min');
-    echo css_url('bootstrap-theme.min'); 
+    echo css_url('bootstrap-theme.min');
     echo css_url('design');
     echo css_url('slick');
     echo css_url('slick-theme');
@@ -16,12 +16,15 @@
 
 </head>
 <body>
-    <?php echo show_notification() ?>
-    <?php echo $contents; ?>
+<?php if (is_connected()) {
+    include("menu.php");
+} ?>
+<?php echo show_notification() ?>
+<?php echo $contents; ?>
 </body>
 
 <!-- INSERT JS HERE -->
-<?php 
+<?php
 echo js_url('jquery');
 echo js_url('bootstrap.min');
 echo js_url('validator');

@@ -51,4 +51,10 @@ class Connexion extends CI_Controller {
 
 	}
 
+	public function logout()
+	{
+		$this->session->userdata("current_user")->logoff();
+		redirect(base_url());
+	}
+
 }

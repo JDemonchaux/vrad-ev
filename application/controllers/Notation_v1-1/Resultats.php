@@ -1,67 +1,75 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Resultats extends CI_Controller {
+class Resultats extends CI_Controller
+{
 
-      public $module = "Notation";
+    public $module = "Notation";
+    public $classement;
 
-      public function __construct(){
-            parent::__construct();
-            
-            load_library("Classement");
-            load_model("GroupModel","User");
-      }
+    public function __construct()
+    {
+        parent::__construct();
 
-      public function index()
-      {
-            $this->home();
-      }
+        load_library("Classement");
+        load_library("School", "User");
+        load_model("GroupModel", "User");
+        load_library("ImageResizer", "ToolBox");
+    }
 
-      public function home()
-      {
-            $les_groupes = $this->GroupModel->readAllGroup();
-            $this->classement = new Classement($les_groupes);
-            $this->classement->calcul(Classement::$AVANCEMENT_ON);
-            $this->classement->orderByAvancement();
+    public function index()
+    {
+        $this->home();
+    }
 
-            
-            $data = array(
-                  'les_groupes' => $this->classement->getLesGroupes(),
-                  'heure' => null //TODO
-                  );
+    public function home()
+    {
+        $imageResizer = new imageResizer();
 
-            load_view("home",$data);
+        $les_groupes = $this->GroupModel->readAllGroupSchool();
+        $this->classement = new Classement($les_groupes);
+        $this->classement->calcul(Classement::$AVANCEMENT_ON);
+        $this->classement->orderByAvancement();
 
-      }
 
-      public function podium()
-      {
-            $les_groupes = $this->GroupModel->readAllGroup();
-            $this->classement = new Classement($les_groupes);
-            $this->classement->calcul(Classement::$AVANCEMENT_ON,Classement::$SCORE_ON);
-            $this->classement->orderByScores();
-            
-            $data = array(
-                  'les_groupes' => $this->classement->getLesGroupes(),
-                  );
+        $data = array(
+            'images' => $data['images'] = $imageResizer->getSponsors(),
+            'les_groupes' => $this->classement->getLesGroupes(),
+            'heure' => null //TODO
+        );
 
-            load_view("podium",$data);
+        load_view("home", $data);
 
-      }
+    }
 
-      public function scores()
-      {
-            $les_groupes = $this->GroupModel->readAllGroup();
-            $this->classement = new Classement($les_groupes);
-            $this->classement->calcul(Classement::$AVANCEMENT_OFF,Classement::$SCORE_ON,Classement::$DETAIL_OFF,Classement::$DETAIL_ON);
-            $this->classement->orderByScores();
-            
-            $data = array(
-                  'les_groupes' => $this->classement->getLesGroupes(),
-                  );
+    public function podium()
+    {
+        $les_groupes = $this->GroupModel->readAllGroup();
+        $this->classement = new Classement($les_groupes);
+        $this->classement->calcul(Classement::$AVANCEMENT_ON, Classement::$SCORE_ON);
+        $this->classement->orderByScores();
 
-            load_view("scores",$data);
+        $data = array(
+            'les_groupes' => $this->classement->getLesGroupes(),
+        );
 
-      }
+        load_view("podium", $data);
+
+    }
+
+    public function scores()
+    {
+        $les_groupes = $this->GroupModel->readAllGroup();
+        $this->classement = new Classement($les_groupes);
+        $this->classement->calcul(Classement::$AVANCEMENT_OFF, Classement::$SCORE_ON, Classement::$DETAIL_OFF, Classement::$DETAIL_ON);
+        $this->classement->orderByScores();
+
+        $data = array(
+            'les_groupes' => $this->classement->getLesGroupes(),
+        );
+
+        load_view("scores", $data);
+
+    }
 
 }
 
