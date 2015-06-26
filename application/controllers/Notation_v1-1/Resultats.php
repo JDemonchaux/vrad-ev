@@ -30,11 +30,14 @@ class Resultats extends CI_Controller
         $this->classement->calcul(Classement::$AVANCEMENT_ON);
         $this->classement->orderByAvancement();
 
+        // Determination de l'heure en cours
+        $dt = new DateTime("now", new DateTimeZone('Europe/Paris'));
+        $heure = $dt->format('H') . "h" . $dt->format('i');
 
         $data = array(
             'images' => $data['images'] = $imageResizer->getSponsors(),
             'les_groupes' => $this->classement->getLesGroupes(),
-            'heure' => null //TODO
+            'heure' => $heure
         );
 
         load_view("home", $data);

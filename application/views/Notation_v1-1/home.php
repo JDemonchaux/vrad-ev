@@ -2,17 +2,32 @@
     <div class="row-fluid">
         <h1 class="hcenter">
             R&eacute;sultat d'Avancement - il
-            est <?php $dt = new DateTime("now", new DateTimeZone('Europe/Paris')); echo $dt->format('H') . "h" . $dt->format('i');?>
+            est <?php echo $heure; ?>
         </h1>
     </div>
     <br/>
 
     <div class="container-fluid container">
-
-
-        <?php
-        var_dump($les_groupes);
-        ?>
+        <?php foreach ($les_groupes as $groupe) { ?>
+            <div class="row vertical-center">
+                <div class="col-sm-2">
+                    <img src="<?php echo base_url(); ?>assets/img/empty.jpg" class="img-responsive"/>
+                </div>
+                <div class="col-sm-2">
+                    <?php echo $groupe->getLibelle(); ?>
+                </div>
+                <div class="col-sm-4">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $groupe->getAvancement() ;?>" aria-valuemin="0"
+                             aria-valuemax="100" style="width: <?php echo $groupe->getAvancement(); ?>%;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <?php echo $groupe->getAvancement(); ?> %
+                </div>
+            </div>
+        <?php } ?>
     </div>
 </div>
 <div class="col-sm-3">

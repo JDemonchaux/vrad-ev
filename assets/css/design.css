@@ -48,3 +48,11 @@
 /*   Champ d'erreur formulaire    */
 .help-block, .with-errors {
 }
+
+
+
+/*  HELPERS */
+.vertical-center {
+    display: flex;
+    align-items: center;
+}
