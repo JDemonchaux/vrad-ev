@@ -59,8 +59,8 @@ class Inscription extends CI_Controller
             // R�cuperer la classe  directement depuis le select
             $groupeWithEcole = $this->GroupModel->readOneGroupSchool($data['groupe']);
             $classe = $this->GradeModel->readOneGrade($data['classe']);
-            $participant = new Member('', $data['prenom'], $data['nom'], $data['email'], md5($data['password']), $groupeWithEcole, $classe);
 
+            $participant = new Member('', $data['prenom'], $data['nom'], $data['email'], $data['password'], $groupeWithEcole, $classe);
 
             if ($this->UserModel->createParticipant($participant)) {
                 set_user_message("Inscription réussie!", "success");
@@ -99,7 +99,7 @@ class Inscription extends CI_Controller
             // On récupére la classe directement depuis le select
             $classe = $this->GradeModel->readOneGrade($data['classe']);
 
-            $jury = new Jury('', $data['prenom'], $data['nom'], $data['email'], md5($data['password']), $classe, $data['specialite']);
+            $jury = new Jury('', $data['prenom'], $data['nom'], $data['email'], $data['password'], $classe, $data['specialite']);
             if ($this->UserModel->createJury($jury)) {
                 set_user_message("Inscription réussie!", "success");
                 redirect(construct_full_url("Connexion", "Login"));
@@ -124,7 +124,7 @@ class Inscription extends CI_Controller
         $this->form_validation->set_rules("prenom", "prenom", "trim|required");
         // R�gle qui v�rifie si l'email est unique en BDD (on doit mettre les champs BDD)
         $this->form_validation->set_rules("email", "email", "trim|required|valid_email|is_unique[tm_user_usr.usr_email]");
-        $this->form_validation->set_rules("password", "password", "trim|required|min_length[8]|md5");
+        $this->form_validation->set_rules("password", "password", "trim|required|min_length[8]");
 
         $this->form_validation->set_error_delimiters('<span class="help-block with-errors">', '</span>');
 

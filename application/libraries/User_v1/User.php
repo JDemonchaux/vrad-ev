@@ -10,7 +10,8 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User {
+class User
+{
 
     private $id;
     private $prenom;
@@ -20,18 +21,20 @@ class User {
     private $accountValid;
     private $rights;
 
-    public function __construct($email = '', $password = '', $id = '', $prenom = '', $nom = '') {
+    public function __construct($email = '', $password = '', $id = '', $prenom = '', $nom = '')
+    {
         $this->id = $id;
         $this->prenom = $prenom;
         $this->nom = $nom;
         $this->email = $email;
-        $this->password = $password;
+        $this->password = md5($password);
         $this->rights = array();
         //Par défaut, on n'active pas le compte de l'utilisateur (fait via partie d'admin);
         $this->accountValid = FALSE;
     }
 
-    public function getRight($controller, $action) {
+    public function getRight($controller, $action)
+    {
         $allowAccess = false;
         if (array_key_exists($controller, $this->rights)) {
             if (array_key_exists($action, $this->rights[$controller])) {
@@ -41,20 +44,20 @@ class User {
         return $allowAccess;
     }
 
-    public function login(){
+    public function login()
+    {
         load_model("userModel");
 
         $CI = get_instance();
-        $res = $CI->userModel->validerLogin($this->email, md5($this->password));
+        $res = $CI->userModel->validerLogin($this->email, $this->password);
         if (empty($res)) {
-            throw new Exception("Identifiants incorrects!", 1);
-        }
-        else {
+            throw new Exception($this->password, 1);
+        } else {
             $this->id = $res->pk_usr;
             $this->prenom = $res->usr_name;
             $this->nom = $res->usr_firstname;
             $this->accountValid = $res->usr_account_valid;
-            if($this->accountValid==0){
+            if ($this->accountValid == 0) {
                 throw new Exception("Votre compte n'a pas encore été activé", 1);
             }
 
@@ -68,79 +71,92 @@ class User {
         }
     }
 
-    public function logoff(){
+    public function logoff()
+    {
         $CI = get_instance();
         $CI->session->unset_userdata("current_user");
     }
 
-    public function demander_acces($module,$controller,$action_droit){
-        if( ! isset($this->rights[$module][$controller]) ){
+    public function demander_acces($module, $controller, $action_droit)
+    {
+        if (!isset($this->rights[$module][$controller])) {
             //module/controller non definit pour l'utilisateur = pas de droit
             $acces = FALSE;
-        }
-        else{
+        } else {
             //BitBashing : &logic entre la valeur de action demandé et les droit utilisateur pour ce controller
-            if( $this->rights[$module][$controller] & $action_droit ){
+            if ($this->rights[$module][$controller] & $action_droit) {
 
                 $acces = TRUE;
-            }
-            else{
+            } else {
                 $acces = FALSE;
             }
         }
         return $acces;
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
-    public function getPrenom() {
+    public function getPrenom()
+    {
         return $this->prenom;
     }
 
-    public function setPrenom($prenom) {
+    public function setPrenom($prenom)
+    {
         $this->prenom = $prenom;
     }
 
-    public function getNom() {
+    public function getNom()
+    {
         return $this->nom;
     }
 
-    public function setNom($nom) {
+    public function setNom($nom)
+    {
         $this->nom = $nom;
     }
 
-    public function getMail() {
+    public function getMail()
+    {
         return $this->email;
     }
 
-    public function setMail($email) {
+    public function setMail($email)
+    {
         $this->email = $email;
     }
 
-    public function getPassword() {
+    public function getPassword()
+    {
         return $this->password;
     }
 
-    public function setPassword($password) {
+    public function setPassword($password)
+    {
         $password = md5($password);
         $this->password = $password;
     }
 
-    public function getAccountValid() {
+    public function getAccountValid()
+    {
         return $this->accountValid;
     }
 
-    public function setAccountValid($bool) {
+    public function setAccountValid($bool)
+    {
         $this->accountValid = $bool;
     }
 
-    public function getRights(){
+    public function getRights()
+    {
         return $this->rights;
     }
 

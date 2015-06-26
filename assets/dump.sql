@@ -283,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `tm_user_usr` (
   `usr_name` varchar(25) NOT NULL,
   `usr_firstname` varchar(25) NOT NULL,
   `usr_email` varchar(50) NOT NULL,
-  `usr_pwd` char(32) NOT NULL,
+  `usr_pwd` varchar(32) NOT NULL,
   `usr_account_valid` tinyint(1) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 

@@ -43,11 +43,11 @@
 
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" class="form-control"/>
+                            <input type="email" id="email" name="email" class="form-control" type="email" required/>
                         </div>
                         <div class="form-group">
                             <label for="password">Mot de passe</label>
-                            <input type="password" id="password" name="password" class="form-control"/>
+                            <input type="password" id="password" name="password" class="form-control" required/>
                         </div>
                         <br/>
 
