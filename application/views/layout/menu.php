@@ -3,19 +3,40 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Mon projet</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Mon projet <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="<?php echo construct_full_url("Planification", "gantt", "Projet"); ?>">Planification</a>
+                        </li>
+                        <li><a href="#!">Ma ToDo Liste</a></li>
+                    </ul>
+                </li>
                 <li><a href="#!">Ressources</a></li>
                 <li><a href="#!">R&eacute;sultats</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <?php
-                // Récupèration de l'heure
+                // Rï¿½cupï¿½ration de l'heure
                 $dt = new DateTime("now", new DateTimeZone('Europe/Paris'));
                 echo "<p class='navbar-text'>Il est : " . $dt->format('H') . "h" . $dt->format('i');
                 ?>
-                <li><a href="#"><i class="glyphicon glyphicon-user"></i></a></li>
-                <li><a href="<?php echo base_url() . "User_v1/Connexion/logout"; ?>"><i
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                        aria-haspopup="true" aria-expanded="false">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><?php
+                            $ci = get_instance();
+                            $user = $ci->session->current_user;
+                            echo $user->getNom();
+
+                            ?>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="<?php echo construct_full_url("Connexion", "logout", "User") ?>"><i
                             class="glyphicon glyphicon-off"></i></a></li>
             </ul>
         </div>

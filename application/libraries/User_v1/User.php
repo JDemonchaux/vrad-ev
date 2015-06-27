@@ -13,13 +13,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class User
 {
 
-    private $id;
-    private $prenom;
-    private $nom;
-    private $email;
-    private $password;
-    private $accountValid;
-    private $rights;
+    protected $id;
+    protected $prenom;
+    protected $nom;
+    protected $email;
+    protected $password;
+    protected $accountValid;
+    protected $rights;
 
     public function __construct($email = '', $password = '', $id = '', $prenom = '', $nom = '')
     {
