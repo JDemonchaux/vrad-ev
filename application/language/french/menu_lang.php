@@ -1,0 +1,1 @@
+$lang['menu_membre'] = "S'inscrire comme participant";

@@ -4,10 +4,10 @@
 <br />
 <div class="container">
     <div class="col-lg-8">
-        <form class="col-lg-12" action="<?php echo $form_participant_uri; ?>" method="post" id="formulaireInscriptionParticipant" data-toogle="validator" role="form">
+        <form class="col-lg-12" action="<?php echo $form_participant_uri->getURL(); ?>" method="post" id="formulaireInscriptionParticipant" data-toogle="validator" role="form">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="hcenter">S'inscrire comme participant</h3>
+                    <h3 class="hcenter"><?php echo $form_participant_uri->getActionName(); ?></h3>
                 </div>
                 <br />
                 <div class="panel-body">

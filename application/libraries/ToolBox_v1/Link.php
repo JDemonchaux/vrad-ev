@@ -51,15 +51,15 @@ class Link {
     protected $link ="";
 
     public function __construct($action="",$controller="",$module_name=""){
-		$CI =& get_instance();
+		$this->CI =& get_instance();
 		//par defaut, on utilise le module courrant
         if($module_name===""){
-            $this->module_name = $CI->module; 
+            $this->module_name = $this->CI->module; 
         }else{
         	$this->module_name = $module_name; 
         }
 
-        $this->module_version = $CI->config->item('versions')[$this->module_name];
+        $this->module_version = $this->CI->config->item('versions')[$this->module_name];
 
         //les modules ne sont pas toujours sufixé par leur version selon l'environement d'exectution
         $this->module_route_name = get_module_route_name($CI->config->item('versions'),$module_name);
@@ -72,7 +72,7 @@ class Link {
 
         $this->link = implode("/",$this->url_segments);
 
-        $this->url = $CI->config->site_url($this->link);
+        $this->url = $this->CI->config->site_url($this->link);
 
     }
 
@@ -98,6 +98,10 @@ class Link {
 
     public function getAction(){
     	return $this->action;
+    }
+
+    public function getActionName(){
+        return $this->CI->lang->line("menu_".$this->action);
     }
 
     public function getURL(){

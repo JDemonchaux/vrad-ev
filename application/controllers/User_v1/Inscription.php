@@ -32,9 +32,9 @@ class Inscription extends CI_Controller
     {
         // Construit les url passées au formulaire. Permet de gérer leur création dynamiquement ici.
         $data = array(
-            'form_participant_uri' => construct_full_url("Inscription", "validerMembre"),
-            'form_groupe_uri' => construct_full_url("Inscription", "AJAX_creerGroupe"),
-            'form_school_uri' => construct_full_url("Inscription", "AJAX_creerEcole")
+            'form_participant_uri' => new Link("Inscription", "validerMembre"),
+            'form_groupe_uri' => new Link("Inscription", "AJAX_creerGroupe"),
+            'form_school_uri' => new Link("Inscription", "AJAX_creerEcole")
         );
 
         // r�cup�ration des sponsors dans les assets
@@ -64,11 +64,11 @@ class Inscription extends CI_Controller
 
             if ($this->UserModel->createParticipant($participant)) {
                 set_user_message("Inscription réussie!", "success");
-                redirect(construct_full_url("Connexion", "Login"));
             } else {
                 set_user_message("Erreur lors de l'inscription, veuillez reessayer");
-                redirect(construct_full_url("Connexion", "Login"));
             }
+            $link = new Link("Connexion", "Login");
+            redirect($link->getURL())
         } else {
             $this->membre();
         }
@@ -78,8 +78,8 @@ class Inscription extends CI_Controller
     public function jury()
     {
         $data = array(
-            'form_jury_uri' => construct_full_url("Inscription", "validerJury"),
-            'form_school_uri' => construct_full_url("Inscription", "AJAX_creerEcole")
+            'form_jury_uri' => new Link("Inscription", "validerJury"),
+            'form_school_uri' => new Link("Inscription", "AJAX_creerEcole")
         );
 
         // r�cup�ration des sponsors dans les assets
@@ -102,11 +102,11 @@ class Inscription extends CI_Controller
             $jury = new Jury('', $data['prenom'], $data['nom'], $data['email'], $data['password'], $classe, $data['specialite']);
             if ($this->UserModel->createJury($jury)) {
                 set_user_message("Inscription réussie!", "success");
-                redirect(construct_full_url("Connexion", "Login"));
             } else {
                 set_user_message("Erreur lors de l'inscription, veuillez reessayer");
-                redirect(construct_full_url("Connexion", "Login"));
             }
+            $link = new Link("Connexion", "Login");
+            redirect($link->getURL())
         } else {
             $this->jury();
         }

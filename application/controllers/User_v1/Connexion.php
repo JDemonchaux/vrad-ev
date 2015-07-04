@@ -22,11 +22,15 @@ class Connexion extends CI_Controller
     public function login()
     {
 
-        $data = array(
-            'form_connexion_uri' => construct_full_url("Connexion", "verif_login"),
-            'form_inscriptionMembre_uri' => construct_full_url("Inscription", "membre"),
-            'form_inscriptionJury_uri' => construct_full_url("Inscription", "jury")
-        );
+		$connexion_uri = new Link ("Connexion", "verif_login");
+		$inscriptionMembre_uri = new Link ("Inscription", "membre");
+		$inscriptionJury_uri = new Link ("Inscription", "jury");
+
+		$data = array(
+			'form_connexion_uri' => $connexion_uri->getURL(),
+			'form_inscriptionMembre_uri' => $inscriptionMembre_uri->getURL(),
+			'form_inscriptionJury_uri' => $inscriptionJury_uri->getURL()
+			);
 
         // r�cup�ration des sponsors dans les assets
         $imageResizer = new imageResizer();
@@ -43,16 +47,14 @@ class Connexion extends CI_Controller
         try {
             $mon_user->login();
 
-            redirect(construct_full_url("Resultats", "home", "Notation"));
+			$link = new Link ("Resultats", "home", "Notation");
+			redirect($link->getURL());
 
-        } catch (Exception $ex) {
-            set_user_message($ex->getMessage());
-
-            redirect(construct_full_url("Connexion", "login", "User"));
-        }
-
-        // TODO : chargé la home, quand elle sera faite
-        // load_view("form_login",$data);
+		} catch (Exception $ex) {
+			set_user_message($ex->getMessage());
+			$link = new Link ("Connexion", "login", "User");
+			redirect($link->getURL());
+		}
 
     }
 

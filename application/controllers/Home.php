@@ -9,9 +9,11 @@ class Home extends CI_Controller
     {
         $CI = get_instance();
         if ($CI->session->userdata("current_user") !== NULL) {
-            redirect(construct_full_url("Resultats", "home", "Notation"));
+            $link = new Link ("Resultats", "home", "Notation");
+            redirect($link->getURL());
         } else {
-            redirect(construct_full_url("Connexion", "", "User"));
+            $link = new Link ("Connexion", "", "User");
+            redirect($link->getURL());
         }
     }
 }
