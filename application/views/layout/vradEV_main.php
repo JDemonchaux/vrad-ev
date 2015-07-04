@@ -16,9 +16,7 @@
 
 </head>
 <body>
-<?php if (is_connected()) {
-    include("menu.php");
-} ?>
+<?php echo $menu; ?>
 <?php echo show_notification() ?>
 <?php echo $contents; ?>
 </body>

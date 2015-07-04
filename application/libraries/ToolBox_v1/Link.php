@@ -55,19 +55,19 @@ class Link {
             //appel depuis l'autoload au contructeur vide --> on passe
         }else{
 
-            $this->CI =& get_instance();
+            $CI =& get_instance();
     		//par defaut, on utilise le module courrant
             if($module_name===""){
-                $this->module_name = $this->CI->module; 
+                $this->module_name = $CI->module; 
             }else{
             	$this->module_name = $module_name; 
             }
 
-            $this->module_version = $this->CI->config->item('versions')[$this->module_name]['v'];
+            $this->module_version = $CI->config->item('versions')[$this->module_name]['v'];
 
             //les modules ne sont pas toujours sufixé par leur version selon l'environement d'exectution
-            $this->module_route_name = get_module_route_name($this->CI->config->item('versions'),$this->module_name);
-            $this->module_full_name = get_module_versioned_name($this->CI->config->item('versions'),$this->module_name);
+            $this->module_route_name = get_module_route_name($CI->config->item('versions'),$this->module_name);
+            $this->module_full_name = get_module_versioned_name($CI->config->item('versions'),$this->module_name);
 
             $this->controller = $controller;
             $this->action = $action;
@@ -76,7 +76,7 @@ class Link {
 
             $this->link = implode("/",$this->url_segments);
 
-            $this->url = $this->CI->config->site_url($this->link);
+            $this->url = $CI->config->site_url($this->link);
 
         }
 

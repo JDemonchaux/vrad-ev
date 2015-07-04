@@ -82,6 +82,102 @@ class User
         return $acces;
     }
 
+    public function getMenu(){
+
+
+        load_library('Rubrique','ToolBox');
+        load_library('ItemRubrique','ToolBox');
+        load_library('Link','ToolBox');
+        
+
+        //accès à tous les outils du controller
+        $CI =& get_instance(); 
+
+        
+        $module_current = $CI->module; //$CI->router->directory;
+        $controller_current = $CI->router->class;
+        $action_current = $CI->router->method;
+
+        $les_droits = $CI->config->item("droits");
+        $acces = FALSE;
+                
+        $menu = array();
+        $CI->lang->load('menu',"french");
+
+        //Module
+        while ($contolleur = current($les_droits)) 
+        {
+    
+
+            $module_name = key($les_droits);
+            $droit_current = "";
+            $name_rubrique = $CI->lang->line("menu_".$module_name);
+
+            //On initialise notre rubrique
+            $rubrique = new Rubrique($name_rubrique,array());
+            
+            //Traitement des items du menu
+            //Controler
+            while ($action = current($contolleur)) 
+            {
+                $contolleur_name = key($contolleur);
+                $name_item = $CI->lang->line($contolleur_name);
+
+                //Action
+                while ($droit = current($action)) 
+                {
+                    $action_name = key($action);
+                    $acces  = $this->demander_acces($module_name,$contolleur_name,$les_droits[$module_name][$contolleur_name][$action_name]);
+                    if($acces)
+                    {
+                        if($droit_current == $droit)
+                        {
+                            //Menu deja initialisé
+                            
+                            if($contolleur_name == $controller_current && $action_name == $action_current)
+                            {
+                                $item->setCurrent();
+                            }
+                        }
+                        else
+                        {
+                            $droit_current = $droit;
+
+                            $name_action = $CI->lang->line("menu_".$module_name."_".$contolleur_name."_".$action_name);
+
+                            //On initialise un Link
+                            $link = new Link($action_name, $contolleur_name, $module_name);
+                            
+                            //On initialise un item
+                            $item = new ItemRubrique($name_action, $link);
+                            if($contolleur_name == $controller_current && $action_name == $action_current)
+                            {
+                                $item->setCurrent();
+                            }
+                            //var_dump($item);
+                            //echo "<hr>";
+                            $rubrique->addItem($item);
+                        }
+                    }
+                    next($action);
+                }
+                next($contolleur);
+            }
+
+            if(count($rubrique->getItem()) >= 1)
+            {
+                array_push($menu,$rubrique);
+            }
+            next($les_droits);
+        }
+
+
+$data = array("menu" =>$menu);
+
+
+        return load_simple_view("menu",$data,"User");
+    }
+
     public function getId()
     {
         return $this->id;
