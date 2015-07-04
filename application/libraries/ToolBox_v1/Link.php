@@ -63,11 +63,11 @@ class Link {
             	$this->module_name = $module_name; 
             }
 
-            $this->module_version = $this->CI->config->item('versions')[$this->module_name];
+            $this->module_version = $this->CI->config->item('versions')[$this->module_name]['v'];
 
             //les modules ne sont pas toujours sufixé par leur version selon l'environement d'exectution
-            $this->module_route_name = get_module_route_name($this->CI->config->item('versions'),$module_name);
-            $this->module_full_name = get_module_versioned_name($this->CI->config->item('versions'),$module_name);
+            $this->module_route_name = get_module_route_name($this->CI->config->item('versions'),$this->module_name);
+            $this->module_full_name = get_module_versioned_name($this->CI->config->item('versions'),$this->module_name);
 
             $this->controller = $controller;
             $this->action = $action;

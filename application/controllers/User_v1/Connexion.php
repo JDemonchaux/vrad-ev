@@ -22,9 +22,9 @@ class Connexion extends CI_Controller
     public function login()
     {
 
-		$connexion_uri = new Link ("Connexion", "verif_login");
-		$inscriptionMembre_uri = new Link ("Inscription", "membre");
-		$inscriptionJury_uri = new Link ("Inscription", "jury");
+		$connexion_uri = new Link ("verif_login","Connexion" );
+		$inscriptionMembre_uri = new Link ( "membre","Inscription");
+		$inscriptionJury_uri = new Link ( "jury","Inscription");
 
 		$data = array(
 			'form_connexion_uri' => $connexion_uri->getURL(),
@@ -47,12 +47,12 @@ class Connexion extends CI_Controller
         try {
             $mon_user->login();
 
-			$link = new Link ("Resultats", "home", "Notation");
+			$link = new Link ("home", "Resultats", "Notation");
 			redirect($link->getURL());
 
 		} catch (Exception $ex) {
 			set_user_message($ex->getMessage());
-			$link = new Link ("Connexion", "login", "User");
+			$link = new Link ( "login","Connexion", "User");
 			redirect($link->getURL());
 		}
 
