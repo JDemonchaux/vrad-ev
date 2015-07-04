@@ -11,7 +11,17 @@
 class UserModel extends CI_Model
 {    
 
+    public function __construct() {
+        parent::__construct();
+            load_library("Member");
+            load_library("Jury");
+            load_library("User");
 
+            $this->CI = get_instance();
+            load_model("GradeModel");
+            load_model("GroupModel");
+            load_model("GroupModel");
+    }
     /*
      * Fonction qui vérifie si l'email déjà présent en base de données
      * @param: String email;
@@ -80,21 +90,15 @@ class UserModel extends CI_Model
             throw new Exception($password, 1);
         } else {
 
-            $CI = get_instance();
             //Polymorphisme de l'utilisateur avec la classe enfant necessaire
-            load_library("Member");
-            load_library("Jury");
-            load_library("User");
             if($res->usr_role=="membre"){
-                load_model("GradeModel");
-                $classe = $CI->GradeModel->readOneGrade($res->fk_grd);
-                load_model("GroupModel");
-                $groupe = $CI->GroupModel->readOneGroupSchool($res->fk_grp);
+
+                $classe = $this->CI->GradeModel->readOneGrade($res->fk_grd);
+                $groupe = $this->CI->GroupModel->readOneGroupSchool($res->fk_grp);
                 $enfant = new Member($res->pk_usr,$res->usr_firstname, $res->usr_name,$login,"",$res->usr_account_valid,$groupe,$classe);
 
             }elseif($res->usr_role=="jury"){
-                load_model("SchoolModel");
-                $ecole = $CI->SchoolModel->readOneSchool($res->fk_schl);
+                $ecole = $this->CI->SchoolModel->readOneSchool($res->fk_schl);
                 $specialite = "";
 
                 $enfant = new Jury($res->pk_usr,$res->usr_firstname, $res->usr_name,$login,"",$res->usr_account_valid,$ecole,$specialite);

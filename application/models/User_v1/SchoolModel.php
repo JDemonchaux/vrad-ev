@@ -10,6 +10,12 @@
  */
 class SchoolModel extends CI_Model
 {
+
+    public function __construct() {
+        parent::__construct();
+        load_library("School");
+    }
+
     public function readAllSchool() {
         $query = $this->db->select("*");
         $query = $this->db->from("tm_school_schl");

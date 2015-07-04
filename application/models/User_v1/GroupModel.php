@@ -10,6 +10,11 @@
  */
 class GroupModel extends CI_Model
 {    
+    public function __construct() {
+        parent::__construct();
+        load_library("Group");
+        load_library("School");
+    }
     
     public function readAllGroup() {
         $query = $this->db->get("TM_GROUP_GRP");
@@ -18,7 +23,6 @@ class GroupModel extends CI_Model
     }
     
     public function readOneGroup($idGroup) {
-        load_library("Group");
         $query = $this->db->where("pk_grp", $idGroup);
         $query = $this->db->get("TM_GROUP_GRP");
         $resultat = $this->fullFillGroup($query->result());
@@ -44,8 +48,6 @@ class GroupModel extends CI_Model
     }
 
     public function readOneGroupSchool($idGroupe) {
-        load_library("School");
-        load_library("Group");
         $query = $this->db->select("*");
         $query = $this->db->from("TM_GROUP_GRP");
         $query = $this->db->join("TM_SCHOOL_SCHL", "fk_schl=pk_schl");

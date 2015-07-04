@@ -10,6 +10,12 @@
  */
 class GradeModel extends CI_Model
 {
+    
+    public function __construct() {
+        parent::__construct();
+        load_library("Grade");
+    }
+
     public function readAllGrade() {
         $query = $this->db->get("ref_grade_grd");
         $resultat = $this->fullFillGrade($query->result());
@@ -18,7 +24,6 @@ class GradeModel extends CI_Model
     }
     
     public function readOneGrade($idClasse) {
-        load_library("Grade");
         $query = $this->db->where("pk_grd", $idClasse);
         $query = $this->db->get("ref_grade_grd");   
         $resultat = $this->fullFillGrade($query->result());
