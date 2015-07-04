@@ -297,7 +297,7 @@ INSERT INTO `tm_user_usr` (`pk_usr`, `fk_grd`, `fk_schl`, `fk_grp`, `usr_role`, 
 (3, NULL, 1, NULL, 'jury', 'Barbier', 'Marie', 'marie.barbier.work@gmail.com', 'marie', 1),
 (4, 6, 2, 1, 'membre', 'Renard', 'Julien', 'j.renard@glpmr.info', 'j.renard', 1),
 (5, 4, 2, 1, 'membre', 'Quentin', 'Faivre', 'q.faivre@glpmr.info', 'q.faivre', 1),
-(6, 4, 2, 1, 'membre', 'Demonchaux', 'Jérome', 'j.demonchaux@glpmr.info', 'j.demonc', 1),
+(6, 4, 2, 1, 'membre', 'Demonchaux', 'Jérome', 'j.demonchaux@glpmr.info', 'd41d8cd98f00b204e9800998ecf8427e', 1),
 (7, 4, 2, 1, 'membre', 'Bergerot', 'Marian', 'm.bergerot@glpmr.info', 'm.berger', 1),
 (8, 4, 2, 2, 'membre', 'Delpeaux', 'Cindy', 'c.delpeaux@glpmr.info', 'c.delpea', 1);
 

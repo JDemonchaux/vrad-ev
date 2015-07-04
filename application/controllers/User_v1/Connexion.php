@@ -41,8 +41,7 @@ class Connexion extends CI_Controller
     public function verif_login()
     {
 
-        $mon_user = new User('', '', '', $this->input->post('email'),
-            $this->input->post('password')
+        $mon_user = new User($this->input->post('email'), $this->input->post('password')
         );
         try {
             $mon_user->login();

@@ -13,8 +13,8 @@ class Jury extends user
     private $ecole;
     private $specialite;
     
-    public function __construct($id = '', $prenom = '', $nom = '', $email = '', $password = '', $ecole = '', $specialite = '') {
-        parent::__construct($email, $password,$id, $prenom, $nom);
+    public function __construct($id = '', $prenom = '', $nom = '', $email = '', $password = '', $accountValid = FALSE,$ecole = '', $specialite = '') {
+        parent::__construct($email, $password,$id, $prenom, $nom,$accountValid);
         $this->ecole = $ecole;
         $this->specialite = $specialite;
     }

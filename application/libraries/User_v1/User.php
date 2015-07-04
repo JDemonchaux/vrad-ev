@@ -50,7 +50,7 @@ class User
         $CI = get_instance();
         $user = $CI->userModel->validerLogin($this->email, $this->password);
         
-        if ($this->accountValid == 0) {
+        if ($user->accountValid == 0) {
             throw new Exception("Votre compte n'a pas encore été activé", 1);
         }
 
@@ -141,6 +141,10 @@ class User
     public function setAccountValid($bool)
     {
         $this->accountValid = $bool;
+    }
+    public function setRights($rights)
+    {
+         $this->rights = $rights;
     }
 
     public function getRights()

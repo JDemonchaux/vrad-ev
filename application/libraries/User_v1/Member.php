@@ -13,8 +13,8 @@ class Member extends User
     private $groupe;
     private $classe;
     
-    public function __construct($id = '', $prenom = '', $nom = '', $email = '', $password = '', Group $groupe = NULL, Grade $classe = NULL) {
-        parent::__construct($email, $password,$id, $prenom, $nom);
+    public function __construct($id = '', $prenom = '', $nom = '', $email = '', $password = '', $accountValid = FALSE, Group $groupe = NULL, Grade $classe = NULL) {
+        parent::__construct($email, $password,$id, $prenom, $nom,$accountValid);
         $this->groupe = $groupe;
         $this->classe = $classe;
     

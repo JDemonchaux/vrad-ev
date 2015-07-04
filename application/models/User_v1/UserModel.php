@@ -67,43 +67,43 @@ class UserModel extends CI_Model
 
     public function validerLogin($login, $password) {
         $this->db->select('*');
-
         $this->db->where('usr_email', $login);
         $this->db->where('usr_pwd', $password);
+      //  var_dump($this->db->get_compiled_select('tm_user_usr'));die;
         $query = $this->db->get('tm_user_usr');
+
+
 
         $res = $query->result()[0];
 
         if (empty($res)) {
-            throw new Exception($this->password, 1);
+            throw new Exception($password, 1);
         } else {
-            $this->id = $res->pk_usr;
-            $this->prenom = $res->usr_name;
-            $this->nom = $res->usr_firstname;
-            $this->accountValid = $res->usr_account_valid;
 
             $CI = get_instance();
             //Polymorphisme de l'utilisateur avec la classe enfant necessaire
+            load_library("Member");
+            load_library("Jury");
+            load_library("User");
             if($res->usr_role=="membre"){
                 load_model("GradeModel");
-                $classe = $CI->gradeModel->readOneGrade($res->fk_grd);
+                $classe = $CI->GradeModel->readOneGrade($res->fk_grd);
                 load_model("GroupModel");
-                $groupe = $CI->gradeModel->readOneGroup($res->fk_grp);
-
-                $enfant = new Member($login,"",$res->pk_usr,$res->usr_name, $res->usr_firstname,$res->usr_account_valid,$groupe,$classe);
+                $groupe = $CI->GroupModel->readOneGroupSchool($res->fk_grp);
+                $enfant = new Member($res->pk_usr,$res->usr_firstname, $res->usr_name,$login,"",$res->usr_account_valid,$groupe,$classe);
 
             }elseif($res->usr_role=="jury"){
                 load_model("SchoolModel");
                 $ecole = $CI->SchoolModel->readOneSchool($res->fk_schl);
                 $specialite = "";
 
-                $enfant = new Jury($login,"",$res->pk_usr,$res->usr_name, $res->usr_firstname,$res->usr_account_valid,$ecole,$specialite);
+                $enfant = new Jury($res->pk_usr,$res->usr_firstname, $res->usr_name,$login,"",$res->usr_account_valid,$ecole,$specialite);
             }else{
                 $enfant = new User($login,"",$res->pk_usr,$res->usr_name, $res->usr_firstname,$res->usr_account_valid);
             }
 
             //récup des droits
-            $enfant->rights = $this->getDroits($res->usr_role);
+            $enfant->setRights($this->getDroits($res->usr_role));
 
         }
 
@@ -118,7 +118,7 @@ class UserModel extends CI_Model
         $res = $query->result();
         $rights = array();
         foreach ($res as $key => $value) {
-            $rights[$value->rgt_model][$value->rgt_controller] = bindec($value->rgt_allow);
+            $rights[$value->rgt_module][$value->rgt_controller] = bindec($value->rgt_allow);
         }
         return $rights;
     }

@@ -66,7 +66,9 @@ function verif_droits()
         //Ne rien faire, tout va bien
     } else {
         //on redirige sur la home avec message d'erreur
-        set_user_message("403 : vous n'avez pas le droit d'acc&egrave;der à cette page");
+        $message = "403 : vous n'avez pas le droit d'acc&egrave;der à cette page";
+        $message .= "(".$module."/".$controller."/".$action.")";
+        set_user_message( $message);
         redirect(construct_full_url("Connexion", "login", "User"));
     }
 
