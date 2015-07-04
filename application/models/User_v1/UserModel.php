@@ -123,17 +123,5 @@ class UserModel extends CI_Model
         return $rights;
     }
 
-    public function upgradeMember($user){
-        $member = new Member();
-        $member->setUser($user);
-
-        load_model("GroupModel");
-        $CI = get_instance();
-
-        $member->setGroup($CI->groupModel->readOneGroup($user->get));
-        $member->setClasse();
-
-        return $member
-    }
 
 }

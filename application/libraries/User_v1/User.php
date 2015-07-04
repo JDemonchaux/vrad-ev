@@ -43,21 +43,20 @@ class User
         return $allowAccess;
     }
 
-    public function login()
+    public function login() 
     {
         load_model("userModel");
 
         $CI = get_instance();
         $user = $CI->userModel->validerLogin($this->email, $this->password);
         
-            if ($this->accountValid == 0) {
-                throw new Exception("Votre compte n'a pas encore été activé", 1);
-            }
-
-            //Mise en session
-            $CI->session->set_userdata("current_user", $user);
-
+        if ($this->accountValid == 0) {
+            throw new Exception("Votre compte n'a pas encore été activé", 1);
         }
+
+        //Mise en session
+        $CI->session->set_userdata("current_user", $user);
+
     }
 
     public function logoff()
