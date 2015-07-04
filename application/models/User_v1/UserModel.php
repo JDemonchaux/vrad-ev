@@ -72,7 +72,43 @@ class UserModel extends CI_Model
         $this->db->where('usr_pwd', $password);
         $query = $this->db->get('tm_user_usr');
 
-        return $query->result()[0];
+        $res = $query->result()[0];
+
+        if (empty($res)) {
+            throw new Exception($this->password, 1);
+        } else {
+            $this->id = $res->pk_usr;
+            $this->prenom = $res->usr_name;
+            $this->nom = $res->usr_firstname;
+            $this->accountValid = $res->usr_account_valid;
+
+            $CI = get_instance();
+            //Polymorphisme de l'utilisateur avec la classe enfant necessaire
+            if($res->usr_role=="membre"){
+                load_model("GradeModel");
+                $classe = $CI->gradeModel->readOneGrade($res->fk_grd);
+                load_model("GroupModel");
+                $groupe = $CI->gradeModel->readOneGroup($res->fk_grp);
+
+                $enfant = new Member($login,"",$res->pk_usr,$res->usr_name, $res->usr_firstname,$res->usr_account_valid,$groupe,$classe);
+
+            }elseif($res->usr_role=="jury"){
+                load_model("SchoolModel");
+                $ecole = $CI->SchoolModel->readOneSchool($res->fk_schl);
+                $specialite = "";
+
+                $enfant = new Jury($login,"",$res->pk_usr,$res->usr_name, $res->usr_firstname,$res->usr_account_valid,$ecole,$specialite);
+            }else{
+                $enfant = new User($login,"",$res->pk_usr,$res->usr_name, $res->usr_firstname,$res->usr_account_valid);
+            }
+
+            //récup des droits
+            $enfant->rights = $this->getDroits($res->usr_role);
+
+        }
+
+        return $enfant;
+
     }
 
     public function getDroits($role) {
@@ -85,6 +121,19 @@ class UserModel extends CI_Model
             $rights[$value->rgt_model][$value->rgt_controller] = bindec($value->rgt_allow);
         }
         return $rights;
+    }
+
+    public function upgradeMember($user){
+        $member = new Member();
+        $member->setUser($user);
+
+        load_model("GroupModel");
+        $CI = get_instance();
+
+        $member->setGroup($CI->groupModel->readOneGroup($user->get));
+        $member->setClasse();
+
+        return $member
     }
 
 }

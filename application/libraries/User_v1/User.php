@@ -21,7 +21,7 @@ class User
     protected $accountValid;
     protected $rights;
 
-    public function __construct($email = '', $password = '', $id = '', $prenom = '', $nom = '')
+    public function __construct($email = '', $password = '', $id = '', $prenom = '', $nom = '', $accountValid = FALSE)
     {
         $this->id = $id;
         $this->prenom = $prenom;
@@ -29,8 +29,7 @@ class User
         $this->email = $email;
         $this->password = md5($password);
         $this->rights = array();
-        //Par défaut, on n'active pas le compte de l'utilisateur (fait via partie d'admin);
-        $this->accountValid = FALSE;
+        $this->accountValid = $accountValid;
     }
 
     public function getRight($controller, $action)
@@ -49,24 +48,14 @@ class User
         load_model("userModel");
 
         $CI = get_instance();
-        $res = $CI->userModel->validerLogin($this->email, $this->password);
-        if (empty($res)) {
-            throw new Exception($this->password, 1);
-        } else {
-            $this->id = $res->pk_usr;
-            $this->prenom = $res->usr_name;
-            $this->nom = $res->usr_firstname;
-            $this->accountValid = $res->usr_account_valid;
+        $user = $CI->userModel->validerLogin($this->email, $this->password);
+        
             if ($this->accountValid == 0) {
                 throw new Exception("Votre compte n'a pas encore été activé", 1);
             }
 
-            //récup des droits
-
-            $this->rights = $CI->userModel->getDroits($res->usr_role);
-
             //Mise en session
-            $CI->session->set_userdata("current_user", $this);
+            $CI->session->set_userdata("current_user", $user);
 
         }
     }
@@ -158,6 +147,16 @@ class User
     public function getRights()
     {
         return $this->rights;
+    }
+
+    public function setUser($user){
+        $this->id = $user->getId();
+        $this->prenom = $user->getPrenom();
+        $this->nom = $user->getNom();
+        $this->email = $user->getEmail();
+        $this->password = ""; //par defaut on "effface" le mot de passe
+        $this->rights = $user->getRights();
+        $this->accountValid = $user->getAccountValid();
     }
 
 }
