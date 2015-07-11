@@ -68,7 +68,7 @@ class Inscription extends CI_Controller
                 set_user_message("Erreur lors de l'inscription, veuillez reessayer");
             }
             $link = new Link("Connexion", "Login");
-            redirect($link->getURL())
+            redirect($link->getURL());
         } else {
             $this->membre();
         }
@@ -106,7 +106,7 @@ class Inscription extends CI_Controller
                 set_user_message("Erreur lors de l'inscription, veuillez reessayer");
             }
             $link = new Link("Connexion", "Login");
-            redirect($link->getURL())
+            redirect($link->getURL());
         } else {
             $this->jury();
         }

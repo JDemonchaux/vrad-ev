@@ -7,7 +7,7 @@
                     <h4 class="modal-title">Cr&eacute;er un groupe de projet</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo $form_groupe_uri; ?>" method="post" id="formAjoutGroupe" data-toogle="validator">
+                    <form action="<?php echo $form_groupe_uri->getUrl(); ?>" method="post" id="formAjoutGroupe" data-toogle="validator">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-4">

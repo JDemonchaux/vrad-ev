@@ -56,7 +56,7 @@ class Link {
         }else{
 
             $CI =& get_instance();
-    		//par defaut, on utilise le module courrant
+    		//par defaut, on utilise le module courant
             if($module_name===""){
                 $this->module_name = $CI->module; 
             }else{
@@ -65,7 +65,7 @@ class Link {
 
             $this->module_version = $CI->config->item('versions')[$this->module_name]['v'];
 
-            //les modules ne sont pas toujours sufixé par leur version selon l'environement d'exectution
+            //les modules ne sont pas toujours suffixé par leur version selon l'environement d'exectution
             $this->module_route_name = get_module_route_name($CI->config->item('versions'),$this->module_name);
             $this->module_full_name = get_module_versioned_name($CI->config->item('versions'),$this->module_name);
 
@@ -107,7 +107,8 @@ class Link {
     }
 
     public function getActionName(){
-        return $this->CI->lang->line("menu_".$this->action);
+        $CI = get_instance();
+        return $CI->lang->line("menu_".$this->action);
     }
 
     public function getURL(){

@@ -69,6 +69,7 @@ function verif_droits()
         $message = "403 : vous n'avez pas le droit d'acc&egrave;der à cette page";
         $message .= "(".$module."/".$controller."/".$action.")";
         set_user_message( $message);
+
         redirect(construct_full_url("Connexion", "login", "User"));
     }
 

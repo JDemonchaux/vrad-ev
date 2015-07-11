@@ -4,7 +4,7 @@
 <br />
 <div class="container">
     <div class="col-lg-8">
-        <form class="col-lg-12" action="<?php echo $form_jury_uri; ?>" method="POST" id="formulaireInscriptionJury">  
+        <form class="col-lg-12" action="<?php echo $form_jury_uri->getUrl(); ?>" method="POST" id="formulaireInscriptionJury">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="hcenter">S'inscrire comme jury</h3>
@@ -145,7 +145,7 @@
 <!-- formulaire d'ajout d'un groupe -->
 
 <div class="col-lg-12">
-    <form action="<?php echo $form_school_uri; ?>" method="POST" id="formAjouterEcole">
+    <form action="<?php echo $form_school_uri->getUrl(); ?>" method="POST" id="formAjouterEcole">
         <div class="modal fade" id="modalAjouterEcole" tabindex="-1" role="dialog" aria-labelledby="modalAjouterGroupe" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">

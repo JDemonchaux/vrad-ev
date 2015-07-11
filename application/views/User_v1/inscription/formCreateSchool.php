@@ -1,4 +1,4 @@
-<form class="row col-lg-offset-1 formEcole" action="<?php echo $form_school_uri; ?>" method="post" id="formAjoutEcole">
+<form class="row col-lg-offset-1 formEcole" action="<?php echo $form_school_uri->getUrl(); ?>" method="post" id="formAjoutEcole">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">Ajouter une &eacute;cole</h4>
