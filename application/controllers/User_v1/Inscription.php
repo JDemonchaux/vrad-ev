@@ -32,9 +32,9 @@ class Inscription extends CI_Controller
     {
         // Construit les url passées au formulaire. Permet de gérer leur création dynamiquement ici.
         $data = array(
-            'form_participant_uri' => new Link("Inscription", "validerMembre"),
-            'form_groupe_uri' => new Link("Inscription", "AJAX_creerGroupe"),
-            'form_school_uri' => new Link("Inscription", "AJAX_creerEcole")
+            'form_participant_uri' => new Link("validerMembre", "Inscription"),
+            'form_groupe_uri' => new Link("AJAX_creerGroupe", "Inscription"),
+            'form_school_uri' => new Link("AJAX_creerEcole", "Inscription")
         );
 
         // r�cup�ration des sponsors dans les assets
@@ -67,7 +67,7 @@ class Inscription extends CI_Controller
             } else {
                 set_user_message("Erreur lors de l'inscription, veuillez reessayer");
             }
-            $link = new Link("Connexion", "Login");
+            $link = new Link("Login", "Connexion");
             redirect($link->getURL());
         } else {
             $this->membre();
@@ -78,8 +78,8 @@ class Inscription extends CI_Controller
     public function jury()
     {
         $data = array(
-            'form_jury_uri' => new Link("Inscription", "validerJury"),
-            'form_school_uri' => new Link("Inscription", "AJAX_creerEcole")
+            'form_jury_uri' => new Link("validerJury", "Inscription"),
+            'form_school_uri' => new Link("AJAX_creerEcole", "Inscription")
         );
 
         // r�cup�ration des sponsors dans les assets
@@ -97,15 +97,15 @@ class Inscription extends CI_Controller
             $data = $this->input->post(NULL, TRUE);
 
             // On récupére la classe directement depuis le select
-            $classe = $this->GradeModel->readOneGrade($data['classe']);
+            $ecole = $this->SchoolModel->readOneSchool($data['ecole']);
 
-            $jury = new Jury('', $data['prenom'], $data['nom'], $data['email'], $data['password'], $classe, $data['specialite']);
+            $jury = new Jury('', $data['prenom'], $data['nom'], $data['email'], $data['password'], $ecole, $data['specialite']);
             if ($this->UserModel->createJury($jury)) {
                 set_user_message("Inscription réussie!", "success");
             } else {
                 set_user_message("Erreur lors de l'inscription, veuillez reessayer");
             }
-            $link = new Link("Connexion", "Login");
+            $link = new Link("Login", "Connexion");
             redirect($link->getURL());
         } else {
             $this->jury();

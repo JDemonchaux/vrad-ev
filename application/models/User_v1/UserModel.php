@@ -20,7 +20,7 @@ class UserModel extends CI_Model
             $this->CI = get_instance();
             load_model("GradeModel");
             load_model("GroupModel");
-            load_model("GroupModel");
+            load_model("SchoolModel");
     }
     /*
      * Fonction qui vérifie si l'email déjà présent en base de données
@@ -87,7 +87,7 @@ class UserModel extends CI_Model
         $res = $query->result()[0];
 
         if (empty($res)) {
-            throw new Exception($password, 1);
+            throw new Exception("Login incorrect", 1);
         } else {
 
             //Polymorphisme de l'utilisateur avec la classe enfant necessaire
@@ -98,7 +98,7 @@ class UserModel extends CI_Model
                 $enfant = new Member($res->pk_usr,$res->usr_firstname, $res->usr_name,$login,"",$res->usr_account_valid,$groupe,$classe);
 
             }elseif($res->usr_role=="jury"){
-                $ecole = $this->CI->SchoolModel->readOneSchool($res->fk_schl);
+                $ecole = $this->SchoolModel->readOneSchool($res->fk_schl);
                 $specialite = "";
 
                 $enfant = new Jury($res->pk_usr,$res->usr_firstname, $res->usr_name,$login,"",$res->usr_account_valid,$ecole,$specialite);
@@ -108,7 +108,6 @@ class UserModel extends CI_Model
 
             //récup des droits
             $enfant->setRights($this->getDroits($res->usr_role));
-
         }
 
         return $enfant;
@@ -122,7 +121,7 @@ class UserModel extends CI_Model
         $res = $query->result();
         $rights = array();
         foreach ($res as $key => $value) {
-            $rights[$value->rgt_module][$value->rgt_controller] = bindec($value->rgt_allow);
+            $rights[$value->rgt_model][$value->rgt_controller] = bindec($value->rgt_allow);
         }
         return $rights;
     }

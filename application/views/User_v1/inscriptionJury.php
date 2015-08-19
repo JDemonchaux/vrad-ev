@@ -92,7 +92,7 @@
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <span class="input-group-addon" id="input-group-represente"><i class="glyphicon glyphicon-education"></i></span>
-                                    <select class="form-control" aria-describedby="input-group-represente" id="represente" name="classe">
+                                    <select class="form-control" aria-describedby="input-group-represente" id="represente" name="ecole">
                                         <option disabled="disabled"></option>
                                         <?php
                                         foreach ($lesEcoles as $school)

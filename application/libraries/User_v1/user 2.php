@@ -8,7 +8,7 @@
  * @version 1.0
  * @author Jérôme
  */
-class user {
+class user2 {
 
     private $id;
     private $prenom;

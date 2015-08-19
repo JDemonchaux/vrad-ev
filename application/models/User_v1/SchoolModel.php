@@ -24,6 +24,13 @@ class SchoolModel extends CI_Model
         return $resultat;
         
     }
+
+    public function readOneSchool($idEcole) {
+        $query = $this->db->where("pk_schl", $idEcole);
+        $query = $this->db->get("tm_school_schl");
+        $resultat = $this->fullFillSchool($query->result());
+        return $resultat[0];
+    }
     
     public function createSchool($ecole) {
         $array = array(
