@@ -1,9 +1,9 @@
 <?php
 /**
- * Fichier permetant de gérer facilement plusieurs version d'un même modules
- * Ce helper utilise ces fonctions de versions définit dans le hook utilisé en pre_system
- * pour générer les appels aux modèles, librairies et vues.
- * De plus le chargement des vues peut se faire automatiquement encapsulé
+ * Fichier permetant de gï¿½rer facilement plusieurs version d'un mï¿½me modules
+ * Ce helper utilise ces fonctions de versions dï¿½finit dans le hook utilisï¿½ en pre_system
+ * pour gï¿½nï¿½rer les appels aux modï¿½les, librairies et vues.
+ * De plus le chargement des vues peut se faire automatiquement encapsulï¿½
  * dans un template parent
  *
  * @package customCI-by-MB&JD
@@ -16,12 +16,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 /**
-  * Chargement d'un modèle avec son numero de version
-  * pour le module du controller ou enventuellemnt le module spécifé 
+  * Chargement d'un modï¿½le avec son numero de version
+  * pour le module du controller ou enventuellemnt le module spï¿½cifï¿½ 
   *
   * @author Marie.Barbier.work@gmail.com
   *
-  * @param String $filename le nom du modèle
+  * @param String $filename le nom du modï¿½le
   * @param String $module le nom du module, si chaine vide utilise le module du controller
   *
   * @return void
@@ -30,16 +30,16 @@ if (!function_exists('load_model'))
 {
   function load_model($filename, $module="") 
   {
-        //accès à tous les outils du controller
+        //accï¿½s ï¿½ tous les outils du controller
     $CI = get_instance(); 
         //par defaut, on utilise le module courrant
     if($module===""){
       $module = $CI->module; 
     }
-        //le modèle est toujours stocké dans un dossier comporant la version du module
-        //utilisation directe des fonctions de versios déjà chargées par le hook pre_system
+        //le modï¿½le est toujours stockï¿½ dans un dossier comporant la version du module
+        //utilisation directe des fonctions de versios dï¿½jï¿½ chargï¿½es par le hook pre_system
     $module_full_name = get_module_versioned_name($CI->config->item('versions'),$module);
-        //puis appel standard à la méthode load du controller
+        //puis appel standard ï¿½ la mï¿½thode load du controller
     $CI->load->model($module_full_name."/".$filename);
   }
 }
@@ -58,16 +58,16 @@ if (!function_exists('load_library'))
 {
   function load_library($filename, $module="") 
   {
-        //accès à tous les outils du controller
+        //accï¿½s ï¿½ tous les outils du controller
     $CI = get_instance(); 
         //par defaut, on utilise le module courrant
     if($module===""){
       $module = $CI->module; 
     }
-        //les librairies sont toujours stockées dans un dossier comporant la version du module
-        //utilisation directe des fonctions de versios déjà chargées par le hook pre_system
+        //les librairies sont toujours stockï¿½es dans un dossier comporant la version du module
+        //utilisation directe des fonctions de versios dï¿½jï¿½ chargï¿½es par le hook pre_system
     $module_full_name = get_module_versioned_name($CI->config->item('versions'),$module);
-        //puis appel standard à la méthode load du controller
+        //puis appel standard ï¿½ la mï¿½thode load du controller
         //var_dump($module_full_name."/".$filename);
     $CI->load->library($module_full_name."/".$filename);
   }
@@ -76,15 +76,15 @@ if (!function_exists('load_library'))
 
 /**
   * Chargement d'une vue d'un autre module avec son numero de version
-  * encaspulée dans le template spécifié
+  * encaspulï¿½e dans le template spï¿½cifiï¿½
   *
   * @author Marie.Barbier.work@gmail.com
   * @see libraries/template.php
   *
   * @param String $filename le nom de la vue
-  * @param array $data les données envoyées aux vues
+  * @param array $data les donnï¿½es envoyï¿½es aux vues
   * @param String $template le nom du template d'encapsulation de la vue
-  * @param array $template_data les données envoyées au layout
+  * @param array $template_data les donnï¿½es envoyï¿½es au layout
   * @param String $module le nom du module, si chaine vide utilise le module du controller
   *
   * @return void
@@ -93,14 +93,14 @@ if (!function_exists('load_templated_view'))
 {
   function load_templated_view($filename, $data = '', $template, $templat_data, $module="") 
   {
-        //accès à tous les outils du controller
+        //accï¿½s ï¿½ tous les outils du controller
     $CI = get_instance(); 
         //par defaut, on utilise le module courrant
     if($module===""){
       $module = $CI->module; 
     }
-        //la vue est toujours stockée dans un dossier comporant la version du module
-        //utilisation directe des fonctions de versios déjà chargées par le hook pre_system
+        //la vue est toujours stockï¿½e dans un dossier comporant la version du module
+        //utilisation directe des fonctions de versios dï¿½jï¿½ chargï¿½es par le hook pre_system
     $module_full_name = get_module_versioned_name($CI->config->item('versions'),$module);
 
         //passer les params au template
@@ -109,7 +109,7 @@ if (!function_exists('load_templated_view'))
       $CI->template->set($key,$value);
     }
 
-        //puis appel à la méthode chargeant la vue dans un template
+        //puis appel ï¿½ la mï¿½thode chargeant la vue dans un template
     $CI->template->load($template, $module_full_name."/".$filename, $data);
 
   }
@@ -117,13 +117,13 @@ if (!function_exists('load_templated_view'))
 
 /**
   * Chargement d'une vue d'un autre module avec son numero de version
-  * encaspulée dans le template par defaut spécifié dans la configuration
+  * encaspulï¿½e dans le template par defaut spï¿½cifiï¿½ dans la configuration
   *
   * @author Jerome.Demonchaux@gmail.com
   * @see libraries/template.php
   *
   * @param String $filename le nom de la vue
-  * @param array $data les données envoyées aux vues
+  * @param array $data les donnï¿½es envoyï¿½es aux vues
   * @param String $module le nom du module, si chaine vide utilise le module du controller
   *
   * @return void
@@ -132,7 +132,7 @@ if (!function_exists('load_view'))
 {
   function load_view($filename, $data = '', $module="")  
   {
-        //accès à tous les outils du controller
+        //accï¿½s ï¿½ tous les outils du controller
     $CI = get_instance(); 
         //par defaut, on utilise le module courrant
     if($module===""){
@@ -140,8 +140,8 @@ if (!function_exists('load_view'))
     }
         //definition du template par defaut
     $default_template = $CI->config->item("default_template");
-        //la vue est toujours stockée dans un dossier comporant la version du module
-        //utilisation directe des fonctions de versios déjà chargées par le hook pre_system
+        //la vue est toujours stockï¿½e dans un dossier comporant la version du module
+        //utilisation directe des fonctions de versios dï¿½jï¿½ chargï¿½es par le hook pre_system
     $module_full_name = get_module_versioned_name($CI->config->item('versions'),$module);
 
         //passer les params au template
@@ -150,21 +150,21 @@ if (!function_exists('load_view'))
       $CI->template->set($key,$value);
     }
 
-        //puis appel à la méthode chargeant la vue dans un template
+        //puis appel ï¿½ la mï¿½thode chargeant la vue dans un template
     $CI->template->load($default_template, $module_full_name."/".$filename, $data);
   }
 }
 
 /**
   * Chargement d'une vue d'un autre module avec son numero de version
-  * sans tempate (pour les appel Ajax nottament, ou les prints?)
+  * sans template (pour les appel Ajax notamment, ou les prints?)
   *
   * @author Jerome.Demonchaux@gmail.com
   * @see libraries/template.php
   *
   * @param String $module le nom du module
   * @param String $filename le nom de la vue
-  * @param array $data les données envoyées aux vues
+  * @param array $data les donnï¿½es envoyï¿½es aux vues
   *
   * @return void
   */
@@ -173,16 +173,16 @@ if (!function_exists('load_simple_view'))
   function load_simple_view($filename, $data = '', $module="")  
   {
 
-        //accès à tous les outils du controller
+        //accï¿½s ï¿½ tous les outils du controller
     $CI = get_instance(); 
         //par defaut, on utilise le module courrant
     if($module===""){
       $module = $CI->module; 
     }
-        //la vue est toujours stockée dans un dossier comporant la version du module
-        //utilisation directe des fonctions de versios déjà chargées par le hook pre_system
+        //la vue est toujours stockï¿½e dans un dossier comporant la version du module
+        //utilisation directe des fonctions de versios dï¿½jï¿½ chargï¿½es par le hook pre_system
     $module_full_name = get_module_versioned_name($CI->config->item('versions'),$module);
-        //puis appel standard à la méthode load du controller
+        //puis appel standard ï¿½ la mï¿½thode load du controller
     $CI->load->view($module_full_name."/".$filename, $data);
   }
 }

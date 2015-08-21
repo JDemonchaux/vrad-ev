@@ -22,7 +22,7 @@ class right {
         $controller = $uriPath[0];
         $action =$uriPath[1];
         if (!$user->getRight($controller, $action) === true) {
-            //TODO rediriger ves error_405
+            //TODO rediriger vers error_405
             redirect(index_page());
             return false;
         }else{
@@ -38,7 +38,7 @@ class right {
         // on doit cr??er des role, tel que le role "non connect??" 
         // il nous faut un utilisateur anomymous 
         // a qui on donnera les droits de tous ce qui ne necessite pas de droits
-        //soit je charge tous les controller pour en extraire toutes leur fonctions (mais ca risque d'etre consomatueur)
+        //soit je charge tous les controller pour en extraire toutes leur fonctions (mais ca risque d'etre consommateur)
         //$arr = get_defined_functions();
         //get_declared_classes()
         //soit je lis dans les fichiers php pour les parser et en sortir lesfonctions...

@@ -19,6 +19,7 @@ class Member extends User
         $this->classe = $classe;
     }
 
+    //TODO verifie si c'est pertinent d'avoir ça ici vu que la fonction est presente dans la parent
 //    public function login() {
 //        load_model("userModel");
 //

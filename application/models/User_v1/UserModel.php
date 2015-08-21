@@ -95,19 +95,20 @@ class UserModel extends CI_Model
 
                 $classe = $this->CI->GradeModel->readOneGrade($res->fk_grd);
                 $groupe = $this->CI->GroupModel->readOneGroupSchool($res->fk_grp);
-                $enfant = new Member($res->pk_usr,$res->usr_firstname, $res->usr_name,$login,"",$res->usr_account_valid,$groupe,$classe);
+                $enfant = new Member($res->pk_usr,$res->usr_firstname, $res->usr_name,$login,"",$groupe,$classe,$res->usr_account_valid);
 
             }elseif($res->usr_role=="jury"){
                 $ecole = $this->SchoolModel->readOneSchool($res->fk_schl);
                 $specialite = "";
 
-                $enfant = new Jury($res->pk_usr,$res->usr_firstname, $res->usr_name,$login,"",$res->usr_account_valid,$ecole,$specialite);
+                $enfant = new Jury($res->pk_usr,$res->usr_firstname, $res->usr_name,$login,"",$ecole,$specialite,$res->usr_account_valid);
             }else{
                 $enfant = new User($login,"",$res->pk_usr,$res->usr_name, $res->usr_firstname,$res->usr_account_valid);
             }
 
             //récup des droits
             $enfant->setRights($this->getDroits($res->usr_role));
+
         }
 
         return $enfant;
@@ -123,6 +124,7 @@ class UserModel extends CI_Model
         foreach ($res as $key => $value) {
             $rights[$value->rgt_model][$value->rgt_controller] = bindec($value->rgt_allow);
         }
+        var_dump($rights);
         return $rights;
     }
 

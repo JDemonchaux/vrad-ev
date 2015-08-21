@@ -43,13 +43,13 @@ class User
         return $allowAccess;
     }
 
-    public function login() 
+    public function login()
     {
         load_model("userModel");
 
         $CI = get_instance();
         $user = $CI->userModel->validerLogin($this->email, $this->password);
-        
+
         if ($user->accountValid == 0) {
             throw new Exception("Votre compte n'a pas encore été activé", 1);
         }
@@ -69,6 +69,7 @@ class User
     {
         if (!isset($this->rights[$module][$controller])) {
             //module/controller non definit pour l'utilisateur = pas de droit
+            // TODO : c'est la que ça chie pour le 403
             $acces = FALSE;
         } else {
             //BitBashing : &logic entre la valeur de action demandé et les droit utilisateur pour ce controller
@@ -82,76 +83,69 @@ class User
         return $acces;
     }
 
-    public function getMenu(){
+    public function getMenu()
+    {
+        //TODO : ya un truc de pas bien la dedans! On se retrouve dans l'url avec /plaNNification au lieu de /plaNification
+        // Ducoup le controller PlaNification merdouille au moment du load_view
 
+        load_library('Rubrique', 'ToolBox');
+        load_library('ItemRubrique', 'ToolBox');
+        load_library('Link', 'ToolBox');
 
-        load_library('Rubrique','ToolBox');
-        load_library('ItemRubrique','ToolBox');
-        load_library('Link','ToolBox');
-        
 
         //accès à tous les outils du controller
-        $CI =& get_instance(); 
+        $CI =& get_instance();
 
-        
+
         $module_current = $CI->module; //$CI->router->directory;
         $controller_current = $CI->router->class;
         $action_current = $CI->router->method;
 
         $les_droits = $CI->config->item("droits");
         $acces = FALSE;
-                
+
         $menu = array();
-        $CI->lang->load('menu',"french");
+        $CI->lang->load('menu', "french");
 
         //Module
-        while ($contolleur = current($les_droits)) 
-        {
-    
+        while ($contolleur = current($les_droits)) {
+
 
             $module_name = key($les_droits);
             $droit_current = "";
-            $name_rubrique = $CI->lang->line("menu_".$module_name);
+            $name_rubrique = $CI->lang->line("menu_" . $module_name);
 
             //On initialise notre rubrique
-            $rubrique = new Rubrique($name_rubrique,array());
-            
+            $rubrique = new Rubrique($name_rubrique, array());
+
             //Traitement des items du menu
             //Controler
-            while ($action = current($contolleur)) 
-            {
+            while ($action = current($contolleur)) {
                 $contolleur_name = key($contolleur);
                 $name_item = $CI->lang->line($contolleur_name);
 
                 //Action
-                while ($droit = current($action)) 
-                {
+                while ($droit = current($action)) {
                     $action_name = key($action);
-                    $acces  = $this->demander_acces($module_name,$contolleur_name,$les_droits[$module_name][$contolleur_name][$action_name]);
-                    if($acces)
-                    {
-                        if($droit_current == $droit)
-                        {
+                    $acces = $this->demander_acces($module_name, $contolleur_name, $les_droits[$module_name][$contolleur_name][$action_name]);
+                    if ($acces) {
+                        if ($droit_current == $droit) {
                             //Menu deja initialisé
-                            
-                            if($contolleur_name == $controller_current && $action_name == $action_current)
-                            {
+
+                            if ($contolleur_name == $controller_current && $action_name == $action_current) {
                                 $item->setCurrent();
                             }
-                        }
-                        else
-                        {
+                        } else {
                             $droit_current = $droit;
 
-                            $name_action = $CI->lang->line("menu_".$module_name."_".$contolleur_name."_".$action_name);
+                            $name_action = $CI->lang->line("menu_" . $module_name . "_" . $contolleur_name . "_" . $action_name);
 
                             //On initialise un Link
                             $link = new Link($action_name, $contolleur_name, $module_name);
-                            
+
                             //On initialise un item
                             $item = new ItemRubrique($name_action, $link);
-                            if($contolleur_name == $controller_current && $action_name == $action_current)
-                            {
+                            if ($contolleur_name == $controller_current && $action_name == $action_current) {
                                 $item->setCurrent();
                             }
                             //var_dump($item);
@@ -164,18 +158,17 @@ class User
                 next($contolleur);
             }
 
-            if(count($rubrique->getItem()) >= 1)
-            {
-                array_push($menu,$rubrique);
+            if (count($rubrique->getItem()) >= 1) {
+                array_push($menu, $rubrique);
             }
             next($les_droits);
         }
 
 
-$data = array("menu" =>$menu);
+        $data = array("menu" => $menu);
 
 
-        return load_simple_view("menu",$data,"User");
+        return load_simple_view("menu", $data, "User");
     }
 
     public function getId()
@@ -238,9 +231,10 @@ $data = array("menu" =>$menu);
     {
         $this->accountValid = $bool;
     }
+
     public function setRights($rights)
     {
-         $this->rights = $rights;
+        $this->rights = $rights;
     }
 
     public function getRights()
@@ -248,7 +242,8 @@ $data = array("menu" =>$menu);
         return $this->rights;
     }
 
-    public function setUser($user){
+    public function setUser($user)
+    {
         $this->id = $user->getId();
         $this->prenom = $user->getPrenom();
         $this->nom = $user->getNom();

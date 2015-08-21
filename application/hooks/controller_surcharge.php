@@ -57,6 +57,7 @@ function verif_droits()
             $session = $CI->session->get_userdata();
             $user = $session['current_user'];
             //as-t-il les droits?
+
             $acces = $user->demander_acces($module, $controller, $les_droits[$module][$controller][$action]);
 
         }
@@ -69,6 +70,7 @@ function verif_droits()
         $message = "403 : vous n'avez pas le droit d'acc&egrave;der à cette page";
         $message .= "(".$module."/".$controller."/".$action.")";
         set_user_message( $message);
+
 
         redirect(construct_full_url("Connexion", "login", "User"));
     }

@@ -3,7 +3,7 @@
 $lang['menu_membre'] = "S'inscrire comme participant";
 
 $lang["menu_Projet"] = "Mon Projet";
-$lang["menu_Projet_Plannification_gantt"] = "Plannification";
+$lang["menu_Projet_Plannification_gantt"] = "Planification";
 $lang["menu_Projet_Plannification_todoListe"] = "Ma ToDo Liste";
 
 
