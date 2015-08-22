@@ -1,3 +1,6 @@
+.idea/
+*.iml
+
 # Fichier de configuration codeIgniter
 */config/database.php
 */config/config.php
@@ -54,3 +57,4 @@ application/config/config.php
 application/config/development/application_environement.php
 
 assets/img/sponsors
+application/config/database.php
