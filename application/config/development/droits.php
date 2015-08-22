@@ -73,7 +73,7 @@ $config['droits']["Projet"]['Tache'] = array_merge(	$droit_COR,
 
 
 												//definition droits COS
-$config['droits']["Projet"]['Plannification'] = array(	"gantt" 	=> 1, 	//A
+$config['droits']["Projet"]['Planification'] = array(	"gantt" 	=> 1, 	//A
 														"todoListe"	=> 2 	//B
 														// "" 		=> 4 	//C
 													);				

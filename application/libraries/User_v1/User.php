@@ -85,7 +85,7 @@ class User
 
     public function getMenu()
     {
-        //TODO : ya un truc de pas bien la dedans! On se retrouve dans l'url avec /plaNNification au lieu de /plaNification
+        
         // Ducoup le controller PlaNification merdouille au moment du load_view
 
         load_library('Rubrique', 'ToolBox');

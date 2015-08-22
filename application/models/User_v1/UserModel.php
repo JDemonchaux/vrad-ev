@@ -124,7 +124,7 @@ class UserModel extends CI_Model
         foreach ($res as $key => $value) {
             $rights[$value->rgt_model][$value->rgt_controller] = bindec($value->rgt_allow);
         }
-        var_dump($rights);
+        //var_dump($rights);
         return $rights;
     }
 
