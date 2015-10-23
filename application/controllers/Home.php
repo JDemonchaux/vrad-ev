@@ -8,7 +8,7 @@ class Home extends CI_Controller
     public function index()
     {
         $CI = get_instance();
-        if ($CI->session->userdata("current_user") !== NULL) {
+        if (isset($_SESSION['current_user'])) {
             $link = new Link ("home", "Resultats", "Notation");
             redirect($link->getURL());
         } else {

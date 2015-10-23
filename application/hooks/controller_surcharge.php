@@ -50,12 +50,13 @@ function verif_droits()
         $acces = TRUE;
     } else {
         //il y a-t-il un utilisateur en session?
-        if (!$CI->session->has_userdata("current_user")) {
+        if (!isset($_SESSION['current_user'])) {
             $acces = FALSE;
             $user_droits = array();
         } else {
-            $session = $CI->session->get_userdata();
-            $user = $session['current_user'];
+//            $session = $CI->session->get_userdata();
+            $user = $_SESSION['current_user'];
+            $user->unSerialize();
             //as-t-il les droits?
 
             $acces = $user->demander_acces($module, $controller, $les_droits[$module][$controller][$action]);

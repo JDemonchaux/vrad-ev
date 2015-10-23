@@ -27,7 +27,8 @@ class Planification extends CI_Controller
     public function gantt()
     {
         // On récupère le groupe de l'utilisateur connecté
-        $user = $this->session->current_user;
+        $user = $_SESSION['current_user'];
+        var_dump($_SESSION);
         $data['groupe'] = $user->getGroup();
 
         load_view("gantt");

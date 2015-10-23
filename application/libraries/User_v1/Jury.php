@@ -32,4 +32,18 @@ class Jury extends user
     public function setSpecialite($specialite) {
         $this->specialite = $specialite;
     }
+
+
+    public function serialize(){
+        parent::serialize();
+        $this->serrialized_ecole =  $ecole->getId().'|'.//0
+                                    $ecole->getLibelle().'|'.//1
+                                    $ecole->getVille().'|'; //2
+    }
+
+    public function unSerialize(){
+        parent::unSerialize();
+        $tab_ecole = explode('|', $serrialized_ecole);
+        $ecole = new School($tab_ecole[0],$tab_ecole[1],$tab_ecole[2]);
+    }
 }

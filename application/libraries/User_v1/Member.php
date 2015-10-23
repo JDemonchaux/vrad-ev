@@ -12,11 +12,36 @@ class Member extends User
 {
     private $groupe;
     private $classe;
+    private $serrialized_groupe;
+    private $serrialized_classe;
     
     public function __construct($id = '', $prenom = '', $nom = '', $email = '', $password = '', Group $groupe = NULL, Grade $classe = NULL, $accountValid = FALSE) {
         parent::__construct($email, $password,$id, $prenom, $nom,$accountValid);
         $this->groupe = $groupe;
         $this->classe = $classe;
+    }
+
+    public function serialize(){
+        parent::serialize();
+        $this->serrialized_groupe =   $groupe->getId().'|'. //0
+                                $groupe->getLibelle().'|'. //1
+                                $groupe->getEcole()->getId().'|'.//2
+                                $groupe->getEcole()->getLibelle().'|'.//3
+                                $groupe->getEcole()->getVille().'|'. //4
+                                $groupe->getAvancement().'|'. //5
+                                $groupe->getScore().'|'.//6
+                                $groupe->getResultats();//7
+        $this->serrialized_classe =   $classe->getId().'|'.
+                                $classe->getLibelle();
+    }
+
+    public function unSerialize(){
+        parent::unSerialize();
+        $tab_group = explode('|', $this->serrialized_groupe);
+        $ecole = new School($tab_group[2],$tab_group[3],$tab_group[4]);
+        $this->groupe = new Group($tab_group[0],$tab_group[1],$tab_group[5],$tab_group[6],$tab_group[7]);
+        $tab_classe = explode('|', $this->serrialized_classe);
+        $this->classe = new Grade($tab_classe[0],$tab_classe[1]);
     }
 
     //TODO verifie si c'est pertinent d'avoir ça ici vu que la fonction est presente dans la parent

@@ -24,9 +24,8 @@ class Template
     function load($template = '', $view = '', $view_data = array(), $return = FALSE)
     {
         $this->CI = &get_instance();
-        $session = $this->CI->session->get_userdata();
-        if (isset($session['current_user'])) {
-            $user = $session['current_user'];
+        if (isset($_SESSION['current_user'])) {
+            $user = $_SESSION['current_user'];
         }
         if (!empty($user)) {
             $menu = $user->getMenu();

@@ -17,10 +17,13 @@ class Group
     private $score; //note totale
     private $resultats; //liste d'Items avec leur notation
     
-    public function __construct($id = '', $libelle = '', $ecole = '') {
+    public function __construct($id = '', $libelle = '', $ecole = '',$avancement = '',$score = "", $resultats = "") {
         $this->id = $id;
         $this->libelle = $libelle;
         $this->ecole = $ecole;
+        $this->avancement = $avancement;
+        $this->score = $score;
+        $this->resultats = $resultats;
     }
     
     public function getId() {

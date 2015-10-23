@@ -40,5 +40,7 @@ class School
     public function setVille($ville) {
         $this->ville = $ville;
     }
+
+    
     
 }

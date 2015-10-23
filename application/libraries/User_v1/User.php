@@ -55,14 +55,16 @@ class User
         }
 
         //Mise en session
-        $CI->session->set_userdata("current_user", $user);
+        $_SESSION['current_user'] = $user->serialize();
+//        $CI->session->set_userdata("current_user", $user);
 
     }
 
     public function logoff()
     {
-        $CI = get_instance();
-        $CI->session->unset_userdata("current_user");
+        session_destroy();
+//        $CI = get_instance();
+//        $CI->session->unset_userdata("current_user");
     }
 
     public function demander_acces($module, $controller, $action_droit)
@@ -85,7 +87,7 @@ class User
 
     public function getMenu()
     {
-        
+
         // Ducoup le controller PlaNification merdouille au moment du load_view
 
         load_library('Rubrique', 'ToolBox');
@@ -251,6 +253,15 @@ class User
         $this->password = ""; //par defaut on "effface" le mot de passe
         $this->rights = $user->getRights();
         $this->accountValid = $user->getAccountValid();
+    }
+
+
+    public function serialize(){
+        //nothing
+    }
+
+    public function unSerialize(){
+        //nothing
     }
 
 }

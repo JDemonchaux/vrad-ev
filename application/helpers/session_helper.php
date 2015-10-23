@@ -8,14 +8,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Fonction pour savoir si un utilisateur est connecté
+ * Fonction pour savoir si un utilisateur est connectï¿½
  * @return TRUE or FALSE
  */
 if (!function_exists("is_connected")) {
     function is_connected()
     {
         $CI = get_instance();
-        if ($CI->session->userdata("current_user") !== NULL) {
+        if ($_SESSION['current_user'] !== NULL) {
             return TRUE;
         } else {
             return FALSE;
