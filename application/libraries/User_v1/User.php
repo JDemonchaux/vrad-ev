@@ -55,8 +55,9 @@ class User
         }
 
         //Mise en session
-        $_SESSION['current_user'] = $user->serialize();
-//        $CI->session->set_userdata("current_user", $user);
+       // $_SESSION['current_user'] = 
+        $user->serialize();
+        $CI->session->set_userdata("current_user", $user);
 
     }
 
@@ -255,9 +256,8 @@ class User
         $this->accountValid = $user->getAccountValid();
     }
 
-
     public function serialize(){
-        //nothing
+       //nothing : pas d'attributs objets à serrialiser
     }
 
     public function unSerialize(){

@@ -98,7 +98,7 @@ class UserModel extends CI_Model
                 $enfant = new Member($res->pk_usr,$res->usr_firstname, $res->usr_name,$login,"",$groupe,$classe,$res->usr_account_valid);
 
             }elseif($res->usr_role=="jury"){
-                $ecole = $this->SchoolModel->readOneSchool($res->fk_schl);
+                $ecole = $this->CI->SchoolModel->readOneSchool($res->fk_schl);
                 $specialite = "";
 
                 $enfant = new Jury($res->pk_usr,$res->usr_firstname, $res->usr_name,$login,"",$ecole,$specialite,$res->usr_account_valid);

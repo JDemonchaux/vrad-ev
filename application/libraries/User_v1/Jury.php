@@ -12,6 +12,7 @@ class Jury extends user
 {
     private $ecole;
     private $specialite;
+    private $serrialized_ecole;
     
     public function __construct($id = '', $prenom = '', $nom = '', $email = '', $password = '', $ecole = '', $specialite = '', $accountValid = FALSE) {
         parent::__construct($email, $password,$id, $prenom, $nom,$accountValid);
@@ -43,7 +44,7 @@ class Jury extends user
 
     public function unSerialize(){
         parent::unSerialize();
-        $tab_ecole = explode('|', $serrialized_ecole);
+        $tab_ecole = explode('|', $this->serrialized_ecole);
         $ecole = new School($tab_ecole[0],$tab_ecole[1],$tab_ecole[2]);
     }
 }
