@@ -165,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `tj_rights_rgt` (
 
 INSERT INTO `tj_rights_rgt` (`fk_usr_role`, `rgt_model`, `rgt_controller`, `rgt_allow`) VALUES
 ('admin', 'Notation', 'Ressources', '00000000011'),
-('jury', 'Notation', 'Jury', '00000000011'),
+('jury', 'Notation', 'Evaluation', '00000000011'),
 ('jury', 'Notation', 'Ressouces', '00000000001'),
 ('jury', 'Notation', 'Resultats', '00000000111'),
 ('jury', 'Projet', 'Planification', '00000000001'),
@@ -294,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `tm_user_usr` (
 INSERT INTO `tm_user_usr` (`pk_usr`, `fk_grd`, `fk_schl`, `fk_grp`, `usr_role`, `usr_name`, `usr_firstname`, `usr_email`, `usr_pwd`, `usr_account_valid`) VALUES
 (1, NULL, 1, NULL, 'admin', 'Dussert', 'Nicolas', 'nicolas.dussert@stjodijon.com', 'admin', 1),
 (2, NULL, 2, NULL, 'jury', 'Bailly', 'Olivier', 'o.bailly@glpmr.info', 'Oby', 1),
-(3, NULL, 1, NULL, 'jury', 'Barbier', 'Marie', 'marie.barbier.work@gmail.com', '05a671c66aefea124cc08b76ea6d30bb', 1),
+(3, NULL, 1, NULL, 'jury', 'Barbier', 'Marie', 'marie.barbier.work@gmail.com', '05a671c66aefea124cc08b76ea6d30bb', 1), --testtest
 (4, 6, 2, 1, 'membre', 'Renard', 'Julien', 'j.renard@glpmr.info', 'j.renard', 1),
 (5, 4, 2, 1, 'membre', 'Quentin', 'Faivre', 'q.faivre@glpmr.info', 'q.faivre', 1),
 (6, 4, 2, 1, 'membre', 'Demonchaux', 'Jérome', 'j.demonchaux@glpmr.info', 'd41d8cd98f00b204e9800998ecf8427e', 1),

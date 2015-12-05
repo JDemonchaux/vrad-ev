@@ -8,7 +8,7 @@
  * @version 1.0
  * @author Jérôme
  */
-class Jury extends user
+class Jury extends User
 {
     private $ecole;
     private $specialite;

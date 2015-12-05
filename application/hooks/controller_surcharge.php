@@ -58,8 +58,8 @@ function verif_droits()
             $user = $_SESSION['current_user'];
             $user->unSerialize();
             //as-t-il les droits?
-
             $acces = $user->demander_acces($module, $controller, $les_droits[$module][$controller][$action]);
+
 
         }
     }

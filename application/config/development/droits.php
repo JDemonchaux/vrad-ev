@@ -79,7 +79,7 @@ $config['droits']["Projet"]['Planification'] = array(	"gantt" 	=> 1, 	//A
 													);				
 
 												//definition droits COS
-$config['droits']["Notation"]['Jury'] = array(	"harmonisation" 		=> 1, 	//A
+$config['droits']["Notation"]['Evaluation'] = array(	"harmonisation" 		=> 1, 	//A
 												"harmonisation_action"	=> 1,	//A
 												"noterGroupe"			=> 2,	//B
 												"noterGroupe_action"	=> 2 	//B

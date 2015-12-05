@@ -8,8 +8,8 @@ $lang["menu_Projet_Planification_todoListe"] = "Ma ToDo Liste";
 
 
 $lang["menu_Notation"] = "Notation";
-$lang["menu_Notation_Jury_harmonisation"] = "Harmonisation";
-$lang["menu_Notation_Jury_noterGroupe"] = "Noter un groupe";
+$lang["menu_Notation_Evaluation_harmonisation"] = "Harmonisation";
+$lang["menu_Notation_Evaluation_noterGroupe"] = "Noter un groupe";
 
 $lang["menu_Notation_Ressources"]  = "Ressources";
 $lang["menu_Notation_Ressources_listeItem"]  = "Consulter Items";	
