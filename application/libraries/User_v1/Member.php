@@ -23,14 +23,14 @@ class Member extends User
 
     public function serialize(){
         parent::serialize();
-        $this->serrialized_groupe =   $groupe->getId().'|'. //0
-                                $groupe->getLibelle().'|'. //1
-                                $groupe->getEcole()->getId().'|'.//2
-                                $groupe->getEcole()->getLibelle().'|'.//3
-                                $groupe->getEcole()->getVille().'|'. //4
-                                $groupe->getAvancement().'|'. //5
-                                $groupe->getScore().'|'.//6
-                                $groupe->getResultats();//7
+        $this->serrialized_groupe =   $this->groupe->getId().'|'. //0
+                                $this->groupe->getLibelle().'|'. //1
+                                $this->groupe->getEcole()->getId().'|'.//2
+                                $this->groupe->getEcole()->getLibelle().'|'.//3
+                                $this->groupe->getEcole()->getVille().'|'. //4
+                                $this->groupe->getAvancement().'|'. //5
+                                $this->groupe->getScore().'|'.//6
+                                $this->groupe->getResultats();//7
         $this->serrialized_classe =   $classe->getId().'|'.
                                 $classe->getLibelle();
     }

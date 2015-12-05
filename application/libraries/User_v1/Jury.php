@@ -36,9 +36,9 @@ class Jury extends user
 
     public function serialize(){
         parent::serialize();
-        $this->serrialized_ecole =  $ecole->getId().'|'.//0
-                                    $ecole->getLibelle().'|'.//1
-                                    $ecole->getVille().'|'; //2
+        $this->serrialized_ecole =  $this->ecole->getId().'|'.//0
+                                    $this->ecole->getLibelle().'|'.//1
+                                    $this->ecole->getVille().'|'; //2
     }
 
     public function unSerialize(){
