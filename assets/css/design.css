@@ -56,3 +56,13 @@
     display: flex;
     align-items: center;
 }
+
+
+.datetimepicker {
+    display:flex !important;
+}
+
+#datetimepicker1, #datetimepicker2 {
+    margin-left:1rem;
+    margin-right:1rem;
+}

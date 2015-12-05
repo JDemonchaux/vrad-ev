@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 /**
  *
@@ -62,11 +62,11 @@ class Task
 	}
 
 	public function setPlanning($startHourPlan, $endHourPlan, $startHourReal, $endHourReal){
-		$this->planning = new Planification($startHourPlan, $endHourPlan, $startHourReal, $endHourReal);
+		$this->planning = new Schedule($startHourPlan, $endHourPlan, $startHourReal, $endHourReal);
 	}
 
 	public function setFirstPlanning($startHourPlan, $endHourPlan){
-		$this->planning = new Planification($startHourPlan, $endHourPlan);
+		$this->planning = new Schedule($startHourPlan, $endHourPlan);
 	}
 
 	public function setItem($item){

@@ -10,6 +10,19 @@ class Planification extends CI_Controller
 
     public $module = "Projet";
 
+    public function __construct()
+    {
+        parent::__construct();
+        load_library("Notation", "Notation");
+        load_library("Categorie", "Notation");
+        load_library("Item", "Notation");
+        load_library("Task", "Projet");
+
+        load_model("UserModel", "User");
+        load_model("ItemModel", "Notation");
+        load_model("TaskModel", "Projet");
+    }
+
     /**
      * NOT TODO ! : ne jamais utiliser la fonction index :
      * toujours spécifier l'action par defaut dans route
@@ -30,8 +43,11 @@ class Planification extends CI_Controller
         $user = $_SESSION['current_user'];
         if($user->getRole()=="membre"){
             $data['groupe'] = $user->getGroupe();
+            $data['ressources'] = $this->UserModel->getMembres($data['groupe']->getId());
+            $data['items'] = $this->ItemModel->readAll();
+            $data['form_ajout_tache'] = new Link("ajouterTache", "Planification");
         }else{
-            if(!isset($id_group)){$id_group=1;}//toto a enlever lorsque le menu proposera de choisir le groupe à consulter pour le jury
+            if(!isset($id_group)){$id_group=1;}//@TODO a enlever lorsque le menu proposera de choisir le groupe à consulter pour le jury
             $data['groupe']=$id_group;
         }
 
@@ -47,4 +63,29 @@ class Planification extends CI_Controller
     {
 
     }
+
+
+    public function ajouterTache() {
+
+        $nom = $_POST["nom"];
+        $ressource = $_POST['ressource'];
+        $item = $_POST["item"];
+        $heure_debut = new DateTime($_POST["heure_debut"]);
+        $heure_fin = new DateTime($_POST["heure_fin"]);
+
+        $tache = new Task("", $nom, "", $item, "", $ressource);
+        $tache->setFirstPlanning($heure_debut, $heure_fin);
+
+            try {
+                $this->TaskModel->create($tache);
+            } catch(Exception $e) {
+                set_user_message($e->getMessage());
+            }
+
+            $url = new Link("gantt", "Planification");
+            redirect($url->getURL());
+
+
+    }
+
 }

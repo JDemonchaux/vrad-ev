@@ -18,9 +18,9 @@ class UserModel extends CI_Model
             load_library("User");
 
             $this->CI = get_instance();
-            load_model("GradeModel");
-            load_model("GroupModel");
-            load_model("SchoolModel");
+            load_model("GradeModel", "User");
+            load_model("GroupModel", "User");
+            load_model("SchoolModel", "User");
     }
     /*
      * Fonction qui vérifie si l'email déjà présent en base de données
@@ -71,7 +71,6 @@ class UserModel extends CI_Model
         if ($this->db->insert("TM_USER_USR", $insert)) {
             $success = true;
         }
-
         return $success;
     }
 
@@ -81,9 +80,6 @@ class UserModel extends CI_Model
         $this->db->where('usr_pwd', $password);
       //  var_dump($this->db->get_compiled_select('tm_user_usr'));die;
         $query = $this->db->get('tm_user_usr');
-
-
-
         $res = $query->result()[0];
 
         if (empty($res)) {
@@ -97,22 +93,21 @@ class UserModel extends CI_Model
                 $groupe = $this->CI->GroupModel->readOneGroupSchool($res->fk_grp);
                 $enfant = new Member($res->pk_usr,$res->usr_firstname, $res->usr_name,$login,"",$groupe,$classe,$res->usr_account_valid);
 
-            }elseif($res->usr_role=="jury"){
+            }
+            elseif($res->usr_role=="jury"){
                 $ecole = $this->CI->SchoolModel->readOneSchool($res->fk_schl);
                 $specialite = "";
 
                 $enfant = new Jury($res->pk_usr,$res->usr_firstname, $res->usr_name,$login,"",$ecole,$specialite,$res->usr_account_valid);
-            }else{
+            }
+            else{
                 $enfant = new User($login,"",$res->pk_usr,$res->usr_name, $res->usr_firstname,$res->usr_account_valid);
             }
 
             //récup des droits
             $enfant->setRights($this->getDroits($res->usr_role));
-
         }
-
         return $enfant;
-
     }
 
     public function getDroits($role) {
@@ -128,5 +123,26 @@ class UserModel extends CI_Model
         return $rights;
     }
 
+
+    public function getMembres($idGroupe) {
+        $this->db->where("fk_grp", $idGroupe);
+        $query = $this->db->get("TM_USER_USR");
+
+        $resultats = $this->fullFillUser($query->result());
+
+        return $resultats;
+    }
+
+
+    public function fullFillUser($rows) {
+        $result = array();
+        foreach ($rows as $key => $data) {
+            $user = new Member($data->pk_usr, $data->usr_firstname, $data->usr_name, $data->usr_email);
+            $arr["membre"] = $user;
+            array_push($result, $arr["membre"]);
+        }
+
+        return $result;
+    }
 
 }

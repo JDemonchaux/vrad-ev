@@ -20,6 +20,20 @@ class TaskModel extends CI_Model
         load_library('Notation','Notation');
         load_library('User',"User");
     }
+
+    public function create($task) {
+        $tache = array(
+            "pk_tsk" => $task->getIdTask(),
+            "fk_usr" => $task->getUser(),
+            "fk_itm" => $task->getItem(),
+            "tsk_lib" => $task->getLibelle(),
+            "tsk_comment" => $task->getDescription(),
+            "tsk_start_hour_plan" => $task->getPlanning()->getStartHourPlan(),
+            "tsk_end_hour_plan" => $task->getPlanning()->getEndHourPlan(),
+        );
+        $this->db->insert("TM_TASK_TSK", $tache);
+    }
+
     public function readAllByGroup($idGroup){
       $query = $this->selectFullTask();
       $query = $this->db->where('tm_user_usr.fk_grp',$idGroup);

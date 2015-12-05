@@ -9,6 +9,7 @@
     echo css_url('slick');
     echo css_url('slick-theme');
     echo css_url('toastr.min');
+    echo css_url('datetimepicker');
     ?>
 
 
@@ -24,10 +25,13 @@
 <!-- INSERT JS HERE -->
 <?php
 echo js_url('jquery');
+echo js_url('moment');
+echo js_url('moment-locale-fr');
 echo js_url('bootstrap.min');
 echo js_url('validator');
 echo js_url('slick');
 echo js_url('toastr.min');
+echo js_url('datetimepicker');
 echo js_url('script');
 ?>
 </html>

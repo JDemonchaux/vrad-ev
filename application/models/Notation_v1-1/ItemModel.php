@@ -26,7 +26,7 @@ class ItemModel extends CI_Model
 
         return $this->fillItem($rows);
     }
-    
+
     public function readAllByGroup($idGroup){
       $query = $this->selectScoredItem();
       $query = $this->db->where('tm_score_grp_itm_scr.fk_grp',$idGroup);
@@ -36,6 +36,16 @@ class ItemModel extends CI_Model
 
       return $this->fillItem($rows);
   }
+
+    public function readOne($id) {
+        $query = $this->selectItem();
+        $query = $this->db->where("pk_itm", $id);
+        $query = $this->db->get();
+
+        $resultats = $this->fillItem($query->result());
+        return $resultats;
+    }
+
 
 
   private function selectScoredItem(){
