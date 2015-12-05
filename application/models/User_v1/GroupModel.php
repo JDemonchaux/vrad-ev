@@ -26,7 +26,7 @@ class GroupModel extends CI_Model
         $query = $this->db->where("pk_grp", $idGroup);
         $query = $this->db->get("TM_GROUP_GRP");
         $resultat = $this->fullFillGroup($query->result());
-        return $resultat[0];
+        return array_shift($resultat);
     }
 
     public function readOneGroupByLibelle($libelle) {
@@ -55,7 +55,7 @@ class GroupModel extends CI_Model
         $query = $this->db->get();
         
         $resultat = $this->fullFillGroupSchool($query->result());
-        return $resultat[0];
+        return array_shift($resultat);
     }
     
     
@@ -70,7 +70,7 @@ class GroupModel extends CI_Model
         $req = $this->db->join("TM_SCHOOL_SCHL", "fk_schl=pk_schl");
         $req = $this->db->get("TM_GROUP_GRP");
         $resultat = $this->fullFillGroupSchool($req->result());
-        return $resultat[0];
+        return array_shift($resultat);
     }
     
     
@@ -80,7 +80,8 @@ class GroupModel extends CI_Model
             $ecole = "";
             $groupe = new Group($data->pk_grp, $data->grp_lib, $ecole);
             $arr["groupe"] = $groupe;
-            array_push($result, $arr["groupe"]);
+            $result[$data->pk_grp] = $arr["groupe"];
+            //array_push($result, $arr["groupe"]);
         }
         
         return $result;
@@ -94,10 +95,18 @@ class GroupModel extends CI_Model
             $ecole = new School($data->pk_schl, $data->schl_lib, $data->schl_city);
             $groupe = new Group($data->pk_grp, $data->grp_lib, $ecole);
             $arr["groupe"] = $groupe;
-            array_push($result, $arr["groupe"]);
+            //array_push($result, $arr["groupe"]);
+            $result[$data->pk_grp] = $arr["groupe"];
+
         }
-        
+        var_dump($result);
         return $result;
+        
+    }
+
+    public function loadMenu() {
+        
+        return $this->readAllGroup();
         
     }
 }

@@ -15,9 +15,23 @@
                         <ul class="dropdown-menu">
                          <?php  foreach($rubrique->getItem() as $item)
                          {
-                            $URL = $item->getURL()
-                            ?>
-                            <li><a href="<?php echo $URL->getURL(); ?>"><?php echo $item->getName(); ?></a>
+                            $URL = $item->getURL();
+                                 $les_sub = $item->getSubItem();
+                                 if(isset($les_sub)){
+                                  ?> <li><a href="#"><?php echo $item->getName(); ?></a>
+                                   <ul> <?php
+                                   foreach ($item->getSubItem() as $key => $value) {
+                                ?>
+                                     <li><a href="<?php echo $URL->getURL().'/'.$key; ?>"><?php echo $value->getLibelle(); ?></a>  </li>
+                                 <?php  } 
+                                 echo "</ul>";
+                                }else{
+                                   ?> <li><a href="<?php echo $URL->getURL(); ?>"><?php echo $item->getName(); ?></a>
+                                   <?php
+                                }
+                                ?>
+                          
+                             
                             </li>
                             <?php
                         }

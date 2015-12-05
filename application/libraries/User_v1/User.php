@@ -104,10 +104,11 @@ class User
         $action_current = $CI->router->method;
 
         $les_droits = $CI->config->item("droits");
+        $les_sous_menu = $CI->config->item("menu");
         $acces = FALSE;
 
         $menu = array();
-        $CI->lang->load('menu', "french");
+        $CI->lang->load('menu');
 
         //Module
         while ($contolleur = current($les_droits)) {
@@ -145,8 +146,18 @@ class User
                             //On initialise un Link
                             $link = new Link($action_name, $contolleur_name, $module_name);
 
+                            //on vérifie si on doit générer des sous-item liés aux valeurs de la BDD
+                            $config_sub_item = array();
+                            if( isset($les_sous_menu[$module_name][$contolleur_name][$action_name]) ){
+                                $config_menu = $les_sous_menu[$module_name][$contolleur_name][$action_name];
+                                //si le role est authorisé
+                                if( in_array($this->role, $config_menu["role"])){
+                                    $config_sub_item = $config_menu;
+                                }  
+                            }
+
                             //On initialise un item
-                            $item = new ItemRubrique($name_action, $link);
+                            $item = new ItemRubrique($name_action, $link, $config_sub_item);
                             if ($contolleur_name == $controller_current && $action_name == $action_current) {
                                 $item->setCurrent();
                             }
