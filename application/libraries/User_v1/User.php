@@ -20,6 +20,7 @@ class User
     protected $password;
     protected $accountValid;
     protected $rights;
+    protected $role;
 
     public function __construct($email = '', $password = '', $id = '', $prenom = '', $nom = '', $accountValid = FALSE)
     {
@@ -231,6 +232,16 @@ class User
     public function setAccountValid($bool)
     {
         $this->accountValid = $bool;
+    }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    public function setRole($role)
+    {
+        $this->role = $role;
     }
 
     public function setRights($rights)

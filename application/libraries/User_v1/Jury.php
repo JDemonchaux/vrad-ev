@@ -15,9 +15,12 @@ class Jury extends user
     private $serrialized_ecole;
     
     public function __construct($id = '', $prenom = '', $nom = '', $email = '', $password = '', $ecole = '', $specialite = '', $accountValid = FALSE) {
+        $this->role="jury";
         parent::__construct($email, $password,$id, $prenom, $nom,$accountValid);
         $this->ecole = $ecole;
         $this->specialite = $specialite;
+
+
     }
     
     public function getEcole() {
@@ -45,6 +48,6 @@ class Jury extends user
     public function unSerialize(){
         parent::unSerialize();
         $tab_ecole = explode('|', $this->serrialized_ecole);
-        $ecole = new School($tab_ecole[0],$tab_ecole[1],$tab_ecole[2]);
+        $this->ecole = new School($tab_ecole[0],$tab_ecole[1],$tab_ecole[2]);
     }
 }

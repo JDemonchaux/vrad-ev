@@ -24,12 +24,16 @@ class Planification extends CI_Controller
      * KJIHGFEDCBA
      * 00000000001 => 1
      */
-    public function gantt()
+    public function gantt($id_group=1)
     {
-        // On récupère le groupe de l'utilisateur connecté
+        // On récupère le groupe de l'utilisateur connecté  si c'est un member, si c'est un jury...
         $user = $_SESSION['current_user'];
-        var_dump($_SESSION);
-        $data['groupe'] = $user->getGroup();
+        if($user->getRole()=="membre"){
+            $data['groupe'] = $user->getGroup();
+        }else{
+            if(!isset($id_group)){$id_group=1;}//toto a enlever lorsque le menu proposera de choisir le groupe à consulter pour le jury
+            $data['groupe']=$id_group;
+        }
 
         load_view("gantt");
     }
