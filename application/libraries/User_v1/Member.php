@@ -31,8 +31,8 @@ class Member extends User
                                 $this->groupe->getAvancement().'|'. //5
                                 $this->groupe->getScore().'|'.//6
                                 $this->groupe->getResultats();//7
-        $this->serrialized_classe =   $classe->getId().'|'.
-                                $classe->getLibelle();
+        $this->serrialized_classe =   $this->classe->getId().'|'.
+                                $this->classe->getLibelle();
     }
 
     public function unSerialize(){
