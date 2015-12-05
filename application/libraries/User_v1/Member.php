@@ -72,10 +72,10 @@ class Member extends User
 //        }
 //    }
 
-    public function getGroup() {
+    public function getGroupe() {
         return $this->groupe;
     }
-    public function setGroup($groupe) {
+    public function setGroupe($groupe) {
         $this->groupe = $groupe;
     }
     
