@@ -17,10 +17,10 @@
                          {
                             $URL = $item->getURL();
                                  $les_sub = $item->getSubItem();
-                                 if(isset($les_sub)){
+                                 if(!empty($les_sub)){
                                   ?> <li><a href="#"><?php echo $item->getName(); ?></a>
                                    <ul> <?php
-                                   foreach ($item->getSubItem() as $key => $value) {
+                                   foreach ($les_sub as $key => $value) {
                                 ?>
                                      <li><a href="<?php echo $URL->getURL().'/'.$key; ?>"><?php echo $value->getLibelle(); ?></a>  </li>
                                  <?php  } 
