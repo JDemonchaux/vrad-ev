@@ -29,13 +29,13 @@ class Planification extends CI_Controller
         // On récupère le groupe de l'utilisateur connecté  si c'est un member, si c'est un jury...
         $user = $_SESSION['current_user'];
         if($user->getRole()=="membre"){
-            $data['groupe'] = $user->getGroup();
+            $data['groupe'] = $user->getGroupe();
         }else{
             if(!isset($id_group)){$id_group=1;}//toto a enlever lorsque le menu proposera de choisir le groupe à consulter pour le jury
             $data['groupe']=$id_group;
         }
 
-        load_view("gantt");
+        load_view("gantt", $data);
     }
 
     /**
