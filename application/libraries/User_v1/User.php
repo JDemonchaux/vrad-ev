@@ -71,8 +71,6 @@ class User
     public function demander_acces($module, $controller, $action_droit)
     {
         if (!isset($this->rights[$module][$controller])) {
-            //module/controller non definit pour l'utilisateur = pas de droit
-            // TODO : c'est la que ça chie pour le 403
             $acces = FALSE;
         } else {
             //BitBashing : &logic entre la valeur de action demandé et les droit utilisateur pour ce controller

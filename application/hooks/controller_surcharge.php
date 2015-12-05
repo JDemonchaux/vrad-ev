@@ -72,7 +72,6 @@ function verif_droits()
         $message .= "(".$module."/".$controller."/".$action.")";
         set_user_message( $message);
 
-
         redirect(construct_full_url("Connexion", "login", "User"));
     }
 

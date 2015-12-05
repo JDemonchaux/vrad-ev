@@ -64,7 +64,7 @@ $autoload['packages'] = array();
        $vu = $versions["User"];
        $vtb = $versions["ToolBox"];
 
-$autoload['libraries'] = array('database', "ToolBox_v".$vtb."/Template","ToolBox_v".$vtb."/Link", 'User_v'.$vu.'/User','User_v'.$vu.'/Member','User_v'.$vu.'/Jury', "form_validation", "session");
+$autoload['libraries'] = array('database', "ToolBox_v".$vtb."/Template","ToolBox_v".$vtb."/Link", 'User_v'.$vu.'/User', 'User_v'.$vu.'/Member', 'User_v'.$vu.'/Jury', 'User_v'.$vu.'/School', 'User_v'.$vu.'/Grade', "form_validation", "session");
 //laisser session en dernier dans l'autolaod
 
 
