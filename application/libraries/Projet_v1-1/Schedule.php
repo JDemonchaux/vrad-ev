@@ -7,28 +7,48 @@
  */
 class Schedule
 {
-	private  $startTimePlan;
-	private  $endTimePlan;
-	private  $startHourReal;
-	private  $endHourReal;
-	private  $hoursToDo;
-	private  $hoursDone;
+	private  $startTimePlan; //datetime
+	private  $endTimePlan; //datetime
+	private  $startHourReal; //datetime
+	private  $endHourReal; //datetime
+	private  $hoursToDo; //datetime
+	private  $hoursDone; //datetime
 	private  $raf; // peut être boolean
+    private  $format_date;
 
     public function __construct( $startTimePlan = NULL, $endTimePlan = NULL, $startTimeReal = NULL, $endTimeReal = NULL){
 
+        $CI =& get_instance();
+        $this->format_date = $CI->config->item('date_format_display');
+
         // nb heures planifiées
-        $this->startTimePlan = $startTimePlan;
-        $this->endTimePlan = $endTimePlan;
-        $this->startHourReal = $startTimeReal;
-        $this->endHourReal = $endTimeReal;
+        if(gettype($startTimePlan) !== "DateTime") {
+            $this->startTimePlan = new DateTime($startTimePlan);
+        } else {
+            $this->startTimePlan = $startTimePlan;
+        }
+        if(gettype($endTimePlan) !== "DateTime") {
+            $this->endTimePlan = new DateTime($endTimePlan);
+        } else {
+            $this->endTimePlan = $endTimePlan;
+        }
+        if(gettype($startTimeReal) !== "DateTime") {
+            $this->startHourReal = new DateTime($startTimeReal);
+        } else {
+            $this->startHourReal = $startTimeReal;
+        }
+        if(gettype($endTimeReal) !== "DateTime") {
+            $this->endHourReal = new DateTime($endTimeReal);
+        } else {
+            $this->endHourReal = $endTimeReal;
+        }
         $this->sethoursPlan();
-        $this->setReal();		
+        $this->setReal();
     }
 
     private function sethoursPlan(){
-        if (!is_null($this->startTimePlan) && !is_null($this->endTimePlan)) {            
-            $periodePlan = date_diff($this->startTimePlan,$this->endTimePlan);    
+        if (!is_null($this->startTimePlan) && !is_null($this->endTimePlan)) {
+            $periodePlan = date_diff($this->startTimePlan, $this->endTimePlan);
             $this->hoursToDo = $periodePlan->h + $periodePlan->i/60;
         }
         else {
@@ -48,12 +68,20 @@ class Schedule
     }
 
     public function setStartHourReal( $startHourReal){
-        $this->startHourReal = $startHourReal;
+        if(gettype($startHourReal) !== "DateTime") {
+            $this->startHourReal = new DateTime($startHourReal);
+        } else {
+            $this->startHourReal = $startHourReal;
+        }
         $this->setReal();
     }
 
     public function setEndHourReal( $endHourReal){
-        $this->endHourReal = $endHourReal;
+        if(gettype($endHourReal) !== "DateTime") {
+            $this->endHourReal = new DateTime($endHourReal);
+        } else {
+            $this->endHourReal = $endHourReal;
+        }
         $this->setReal();
     }
 
@@ -78,7 +106,10 @@ class Schedule
         return $this->startTimePlan;
     }
 
-    public function displayStartHourPlan($format=DEFAULT_DT_FORMAT){
+    public function displayStartHourPlan($format=""){
+       if(empty($format)){
+           $format = $this->format_date;
+       }
         return $this->startTimePlan->format($format);
     }
 
@@ -86,7 +117,10 @@ class Schedule
         return $this->endTimePlan;
     }
 
-    public function displayEndHourPlan($format=DEFAULT_DT_FORMAT){
+    public function displayEndHourPlan($format=""){
+        if(empty($format)){
+            $format = $this->format_date;
+        }
         return $this->endTimePlan->format($format);
     }
 
@@ -94,7 +128,10 @@ class Schedule
         return $this->startHourReal;
     }
 
-    public function displayStartHourReal($format=DEFAULT_DT_FORMAT){
+    public function displayStartHourReal($format=""){
+        if(empty($format)){
+            $format = $this->format_date;
+        }
         return $this->startHourReal->format($format);
     }
 
@@ -102,7 +139,10 @@ class Schedule
         return $this->endHourReal;
     }
 
-    public function displayEndHourReal($format=DEFAULT_DT_FORMAT){
+    public function displayEndHourReal($format=""){
+        if(empty($format)){
+            $format = $this->format_date;
+        }
         return $this->endHourReal->format($format);
     }
 

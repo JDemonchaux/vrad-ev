@@ -62,7 +62,15 @@
     display:flex !important;
 }
 
+
+/* GANTT */
+
 #datetimepicker1, #datetimepicker2 {
     margin-left:1rem;
     margin-right:1rem;
+}
+
+th.minute {
+    font-size:0.7rem !important;
+    padding:3px !important;
 }

@@ -22,14 +22,18 @@ class TaskModel extends CI_Model
     }
 
     public function create($task) {
+
+        $CI =& get_instance();
+        $format_date = $CI->config->item('date_format_bdd');
+
         $tache = array(
             "pk_tsk" => $task->getIdTask(),
             "fk_usr" => $task->getUser(),
             "fk_itm" => $task->getItem(),
             "tsk_lib" => $task->getLibelle(),
             "tsk_comment" => $task->getDescription(),
-            "tsk_start_hour_plan" => $task->getPlanning()->getStartHourPlan(),
-            "tsk_end_hour_plan" => $task->getPlanning()->getEndHourPlan(),
+            "tsk_start_hour_plan" => $task->getPlanning()->getStartHourPlan()->format($format_date),
+            "tsk_end_hour_plan" => $task->getPlanning()->getEndHourPlan()->format($format_date),
         );
         $this->db->insert("TM_TASK_TSK", $tache);
     }

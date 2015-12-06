@@ -25,6 +25,11 @@ class Task
 		$this->item = $item;
 	}
 
+	public function getIsNp() {
+	//@Todo : a coder ici
+	return false;
+}
+
 	public function getIdTask(){
 		return $this->idTask;
 	}

@@ -33,25 +33,61 @@
 <div class="row">
     <div class="col-sm-1"></div>
     <div class="col-sm-10">
-        <table class="gantt table">
+        <table class="gantt table table-condensed table-bordered">
             <thead>
             <tr>
-                <th>Tâche</th>
-                <th>Heure début</th>
-                <th>Heure fin</th>
+                <th rowspan="2">Tâche</th>
+                <th rowspan="2">Heure début</th>
+                <th rowspan="2">Heure fin</th>
                 <?php for ($i = 20; $i < 24; $i++) { ?>
-                    <th><?php echo $i; ?>h</th>
+                    <th colspan="4" class="text-center"><?php echo $i; ?>h</th>
                 <?php } ?>
                 <?php for ($i = 0; $i < 9; $i++) { ?>
-                    <th><?php echo $i; ?>h</th>
+                    <th colspan="4" class="text-center"><?php echo $i; ?>h</th>
                 <?php } ?>
-                <th>Actions</th>
+                <th rowspan="2" colspan="4">Actions</th>
+            </tr>
+            <tr>
+                <?php for ($i = 20; $i < 24; $i++) { ?>
+                    <th class="minute">00</th>
+                    <th class="minute">15</th>
+                    <th class="minute">30</th>
+                    <th class="minute">45</th>
+                <?php } ?>
+                <?php for ($i = 0; $i < 9; $i++) { ?>
+                    <th class="minute">00</th>
+                    <th class="minute">15</th>
+                    <th class="minute">30</th>
+                    <th class="minute">45</th>
+                <?php } ?>
             </tr>
             </thead>
             <tbody>
-                <?php if (isset($rows)) { foreach($rows as $row) { ?>
+                <?php if (isset($taches)) { foreach($taches as $tache) { ?>
                     <tr>
-                        <td></td>
+                        <td><?php echo $tache->getLibelle(); ?></td>
+                        <td class="text-center"><?php echo $tache->getPlanning()->displayStartHourPlan("H:i"); ?></td>
+                        <td class="text-center"><?php echo $tache->getPlanning()->displayEndHourPlan("H:i"); ?></td>
+                        <?php for ($i = 20; $i < 24; $i++) { ?>
+                            <td data-heure="<?php echo $i; ?>" data-minute="00"></td>
+                            <td data-heure="<?php echo $i; ?>" data-minute="15"></td>
+                            <td data-heure="<?php echo $i; ?>" data-minute="30"></td>
+                            <td data-heure="<?php echo $i; ?>" data-minute="45"></td>
+                        <?php } ?>
+                        <?php for ($i = 0; $i < 9; $i++) { ?>
+                            <td data-heure="<?php echo $i; ?>" data-minute="00"></td>
+                            <td data-heure="<?php echo $i; ?>" data-minute="15"></td>
+                            <td data-heure="<?php echo $i; ?>" data-minute="30"></td>
+                            <td data-heure="<?php echo $i; ?>" data-minute="45"></td>
+                        <?php } ?>
+                        <td class="NP">
+                            <?php
+                            ?>
+                        </td>
+                        <td class="modifier">
+                        </td>
+                        <td class="supprimer"></td>
+                        <td class="etat"></td>
                     </tr>
                 <?php }} ?>
             </tbody>
