@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="82df1c81-a734-41d7-9938-514d73c82eb3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/development/application_environement.php" afterPath="$PROJECT_DIR$/application/config/development/application_environement.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Projet_v1-1/Planification.php" afterPath="$PROJECT_DIR$/application/controllers/Projet_v1-1/Planification.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/libraries/Projet_v1-1/ManageEV.php" afterPath="$PROJECT_DIR$/application/libraries/Projet_v1-1/ManageEV.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/libraries/Projet_v1-1/Schedule.php" afterPath="$PROJECT_DIR$/application/libraries/Projet_v1-1/Schedule.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/libraries/Projet_v1-1/Task.php" afterPath="$PROJECT_DIR$/application/libraries/Projet_v1-1/Task.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Projet_v1-1/TaskModel.php" afterPath="$PROJECT_DIR$/application/models/Projet_v1-1/TaskModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/Projet_v1-1/gantt.php" afterPath="$PROJECT_DIR$/application/views/Projet_v1-1/gantt.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/design.css" afterPath="$PROJECT_DIR$/assets/css/design.css" />
     </list>
     <ignored path="vrad-ev.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1108,7 +1100,7 @@
       <workItem from="1449320702190" duration="6450000" />
       <workItem from="1449336563068" duration="17000" />
       <workItem from="1449350043592" duration="3796000" />
-      <workItem from="1449390411388" duration="5666000" />
+      <workItem from="1449390411388" duration="5701000" />
     </task>
     <task id="LOCAL-00001" summary="- Inscription / Connexion OK&#10;&#10;- Changement dump SQL : pas de md5 en bdd&#10;- Cryptage md5 du password directement dans le constructeur user&#10;- Changement du cryptage dans le formulaire --&gt; on passe par le constructeur.&#10;&#10;">
       <created>1435306571101</created>
@@ -1170,18 +1162,25 @@
       <option name="project" value="LOCAL" />
       <updated>1449325145600</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="MOdif gestion des date datetime toussa">
+      <created>1449396373123</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1449396373123</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61950000" />
+    <option name="totallyTimeSpent" value="61985000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1201,7 +1200,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1254,7 +1252,8 @@
     <MESSAGE value="add autload class" />
     <MESSAGE value="ça marche merde" />
     <MESSAGE value="AJouter tache : plantage insert datetime to string" />
-    <option name="LAST_COMMIT_MESSAGE" value="AJouter tache : plantage insert datetime to string" />
+    <MESSAGE value="MOdif gestion des date datetime toussa" />
+    <option name="LAST_COMMIT_MESSAGE" value="MOdif gestion des date datetime toussa" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
