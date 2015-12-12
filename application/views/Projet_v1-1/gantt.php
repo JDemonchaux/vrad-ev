@@ -81,13 +81,14 @@
                             <td data-heure="<?php echo $i; ?>" data-minute="45"></td>
                         <?php } ?>
                         <td class="NP text-center">
-                            <?php if ($tache->getIsNp()) { ?>
+                            <?php if ($tache->getIsNp() == 1) { ?>
                                 (NP)
                             <?php } ?>
                         </td>
                         <td class="modifier text-center">
-                            <?php if ($tache->getPlanning()->getStartHourReal() !== NULL) { ?>
-                                <a href="#!" data-toggle="modal" data-target="#modifTask" onClick="modalModifTache(this)"
+                            <?php if ($tache->getPlanning()->getStartHourReal() == NULL) { ?>
+                                <a href="#!" data-toggle="modal" data-target="#modifTask"
+                                   onClick="modalModifTache(this)"
                                    data-href="<?php echo $form_modif_tache->getUrl() . "/" . $tache->getIdTask(); ?>"
                                    data-ressource="<?php echo $tache->getUser()->getId(); ?>"
                                    data-nom="<?php echo $tache->getLibelle(); ?>"
@@ -103,17 +104,32 @@
                             <?php } ?>
                         </td>
                         <td class="supprimer text-center">
-<!--                            --><?php //var_dump($tache->getIsNp());?>
-                            <?php if ($tache->getPlanning()->getStartHourReal() !== NULL) { ?>
-                                <a href="#!" data-toggle="modal" data-target="#confirm-delete"
-                                   onClick="modalConfirmDelete(this)"
-                                   data-href="<?php echo $form_suppr_tache->getUrl() . "/" . $tache->getIdTask(); ?>">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </a>
+                            <?php if (date('H') >= 22) { ?>
+                                <?php if ($tache->getIsNp()) { ?>
+                                    <?php if ($tache->getPlanning()->getStartHourReal() == NULL) { ?>
+                                        <a href="#!" data-toggle="modal" data-target="#confirm-delete"
+                                           onClick="modalConfirmDelete(this)"
+                                           data-href="<?php echo $form_suppr_tache->getUrl() . "/" . $tache->getIdTask(); ?>">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    <?php } else { ?>
+                                        <a href="#!" title="La tache est deja commencée" class="disabled">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    <?php } ?>
+                                <?php } else { ?>
+                                    <a href="#!" title="La tache ne peut etre supprimée" class="disabled">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                <?php } ?>
                             <?php } else { ?>
-                                <a href="#!" title="La tache est deja commencée" class="disabled">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </a>
+                                <?php if ($tache->getPlanning()->getStartHourReal() == NULL) { ?>
+                                    <a href="#!" data-toggle="modal" data-target="#confirm-delete"
+                                       onClick="modalConfirmDelete(this)"
+                                       data-href="<?php echo $form_suppr_tache->getUrl() . "/" . $tache->getIdTask(); ?>">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                <?php } ?>
                             <?php } ?>
                         </td>
                         <td class="etat text-center">
@@ -146,7 +162,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nom">Nom de la tâche</label>
-                        <input type="text" class="form-control" id="nom" name="nom"/>
+                        <input type="text" class="form-control" id="nom" name="nom" size="45"/>
                     </div>
                     <div class="form-group">
                         <label for="ressource">Ressource</label>
@@ -248,7 +264,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" onClick="clearModal()">Fermer</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onClick="clearModal()">Fermer
+                    </button>
                     <button type="submit" class="btn btn-primary">Enregistrer</button>
                 </div>
             </form>

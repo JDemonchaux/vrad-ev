@@ -243,11 +243,61 @@ function colorGantt() {
         var hf = tmp2[0];
         var mf = tmp2[1];
 
+
         $(this).children("td").each(function () {
-            if ($(this).data("heure")) {
-
+                if (hd == hf) {
+                    if ($(this).data("heure") == hd) {
+                        if ($(this).data("minute") < mf) {
+                            $(this).addClass("colored");
+                        }
+                    }
+                }
+                //else if (parseInt(hd) + 1 == hf) {
+                //    console.log($(this).data("heure") + ":" + $(this).data("minute"));
+                //    if ($(this).data("minute") >= 0 && $(this).data("minute") <= 15) {
+                //        $(this).addClass("colored");
+                //    }
+                //    if ($(this).data("minute") > 15 && $(this).data("minute") <= 30) {
+                //        $(this).addClass("colored");
+                //    }
+                //    if ($(this).data("minute") > 30 && $(this).data("minute") <= 45) {
+                //        $(this).addClass("colored");
+                //    }
+                //    if ($(this).data("minute") > 45 && $(this).data("minute") <= 60) {
+                //        $(this).addClass("colored");
+                //    }
+                //}
+                else if (hd < hf) {
+                    if ($(this).data("heure") >= hd && $(this).data("heure") <= hf) {
+                        if ($(this).data("heure") < hf && $(this).data("minute") >= md) {
+                            $(this).addClass("colored");
+                        } else if ($(this).data("heure") == hf) {
+                            if ($(this).data("minute") < mf) {
+                                $(this).addClass("colored");
+                            }
+                        }
+                    }
+                }
+                else if (hd > hf) {
+                    if ($(this).data("heure") == hd) {
+                        if ($(this).data("minute") >= md) {
+                            $(this).addClass("colored");
+                        }
+                    }
+                    else if ($(this).data("heure") == hf) {
+                        if ($(this).data("minute") < mf) {
+                            $(this).addClass("colored");
+                        }
+                    }
+                    else if ($(this).data("heure") <= hf) {
+                        $(this).addClass("colored");
+                    }
+                    else if ($(this).data("heure") == parseInt(hd) + 1 || $(this).data("heure") == parseInt(hd) + 2 || $(this).data("heure") == parseInt(hd) + 3) {
+                        $(this).addClass("colored");
+                    }
+                }
             }
-        })
-
-    })
+        )
+        ;
+    });
 }
