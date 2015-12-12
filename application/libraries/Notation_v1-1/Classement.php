@@ -83,7 +83,7 @@ class Classement
 			if($with_total_avancement){
 				$task_list = $this->CI->TaskModel->readAllByGroup($groupe->getId());
 				$list_item_H = $manageEv->getHDoHDoneFromListItem($task_list);
-				$list_avancement_item = $manageEv->getHDoHDoneFromListItem($list_item_H);
+				$list_avancement_item = $manageEv->avancementItems($list_item_H);
 				$avancement = $manageEv->avancementProject($list_avancement_item);
 			}
 

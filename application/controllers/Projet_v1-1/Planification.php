@@ -19,6 +19,7 @@ class Planification extends CI_Controller
         load_library("Task", "Projet");
 
         load_model("UserModel", "User");
+        load_model("GroupModel", "User");
         load_model("ItemModel", "Notation");
         load_model("TaskModel", "Projet");
     }
@@ -44,8 +45,7 @@ class Planification extends CI_Controller
         if($user->getRole()=="membre"){
             $data['groupe'] = $user->getGroupe();
         }else{
-            if(!isset($id_group)){$id_group=1;}//@TODO a enlever lorsque le menu proposera de choisir le groupe à consulter pour le jury
-            $data['groupe']=$id_group;
+            $data['groupe']=$this->GroupModel->readOneGroup($id_group);
         }
         $data['ressources'] = $this->UserModel->getMembres($data['groupe']->getId());
         $data['items'] = $this->ItemModel->readAll();

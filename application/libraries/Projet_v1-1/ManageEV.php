@@ -26,6 +26,7 @@ class ManageEV
         /*
 
         */
+        $avancementItems = array();
         foreach ($listItemHDoHDone as $idItem => $tasks) {
             $sumDo = 0;
             $sumDone = 0;
@@ -82,6 +83,7 @@ class ManageEV
         load_library('Task');
 
         foreach ($listTask as $idTask => $objTask) {
+           //var_dump($objTask);
             if (isset($objTask)) {
                 if (!$objTask->getIsNp()) {
                     $id = $objTask->getItem()->getIdItem();
