@@ -88,32 +88,7 @@ CREATE TABLE IF NOT EXISTS `ref_item_itm` (
 -- Contenu de la table `ref_item_itm`
 --
 
-INSERT INTO `ref_item_itm` (`pk_itm`, `fk_cat`, `itm_lib`, `itm_weight`, `itm_priority`, `itm_type`, `itm_livrable`, `itm_desc`) VALUES
-(1, 1, 'initiatives', 3, 'NA', 'EF', 0, 'réalisation (fonctionnalité/service)'),
-(2, 1, 'revue de projet ', 6, 'NA', 'EF', 0, '(toutes les 2 heures)'),
-(3, 1, 'planification Agora', 6, 'NA', 'EF', 0, NULL),
-(4, 1, 'respect des priorités (réel)', 6, 'NA', 'EF', 0, NULL),
-(5, 1, 'pas de bug / réseau Opérationnel', 2, 'NA', 'EF', 0, 'robustesse'),
-(6, 2, 'document règles de filtrage FW', 4, 'NA', 'EF', 1, 'maintenabilité  Système & réseau'),
-(7, 2, 'Document ressource avec mots de passe', 2, '', 'EF', 1, ' maintenabilité  Système & réseau'),
-(8, 2, 'Schéma de principe des machines VM', 5, 'NA', 'EF', 1, '  maintenabilité  Système & réseau'),
-(9, 2, 'Schéma réseau', 5, 'NA', 'EF', 0, ' maintenabilité  Système & réseau'),
-(10, 2, 'évolutions et intervention en production facilité', 5, 'NA', 'EF', 0, 'maintenabilité  développement'),
-(11, 2, 'respect charte graphique', 5, 'NA', 'EF', 0, ' ergonomie développement'),
-(12, 2, 'respect maquettes', 5, 'NA', 'EF', 0, '  ergonomie développement'),
-(13, 3, 'injections SQL/XSS', 4, 'NA', 'EF', 0, 'Sécurité développement'),
-(14, 2, 'pretty URL (URL rewrinting)', 4, 'NA', 'EF', 0, 'Sécurité  développement'),
-(15, 3, 'login et gestion des droits par AD', 4, 'NA', 'EF', 0, 'Sécurité développement'),
-(16, 4, 'configuration PFSENSE (NAT,DMZ,FW,LAN…)', 10, 'NA', 'EF', 1, 'Sécurité développement'),
-(17, 3, 'HTTPS sur WEB', 2, 'NA', 'EF', 1, 'Sécurité  développement'),
-(18, 3, 'Base de données sécurisées (mot de passe, acc', 2, 'NA', 'EF', 1, 'Sécurité  Système & réseau'),
-(19, 5, 'home > avancement', 5, 'MUST', 'EF', 1, 'front office connecté home tous'),
-(20, 5, 'affichage Gantt visuel', 5, 'SHOULD', 'EF', 1, 'front office connecté  mon projet  participant Gantt visuel'),
-(21, 5, 'Importer la liste des items', 3, 'WOULD', 'EF', 1, 'back office  ressources  Administrateur'),
-(22, 5, 'Inscription Participant', 1, 'COULD', 'EF', 1, 'front office inscription'),
-(23, 5, 'Création groupe', 1, 'COULD', 'EF', 1, 'front office inscription'),
-(24, 5, 'Inscription Jury', 1, 'WOULD', 'EF', 1, 'front office  inscription'),
-(25, 5, 'Création école', 1, 'WOULD', 'EF', 1, 'front office  inscription');
+-- NOTHING AT START !!!
 
 -- --------------------------------------------------------
 
@@ -215,10 +190,7 @@ CREATE TABLE IF NOT EXISTS `tm_group_grp` (
 -- Contenu de la table `tm_group_grp`
 --
 
-INSERT INTO `tm_group_grp` (`pk_grp`, `fk_schl`, `grp_lib`) VALUES
-(1, 2, 'les Anonymous'),
-(2, 2, 'Les Bras Cassés'),
-(3, 2, 'invASIon');
+-- NOTHING AT START !!!
 
 -- --------------------------------------------------------
 
@@ -268,7 +240,6 @@ INSERT INTO `tm_user_usr` (`pk_usr`, `fk_grd`, `fk_schl`, `fk_grp`, `usr_role`, 
 (1, NULL, 1, NULL, 'admin', 'Dussert', 'Nicolas', 'nicolas.dussert@stjodijon.com', '05a671c66aefea124cc08b76ea6d30bb', 1), -- mdp : testtest
 (2, NULL, 2, NULL, 'jury', 'Bailly', 'Olivier', 'o.bailly@glpmr.info', '05a671c66aefea124cc08b76ea6d30bb', 1), -- mdp : testtest
 (3, NULL, 1, NULL, 'jury', 'Barbier', 'Marie', 'mariebarbierwork@gmail.com', '05a671c66aefea124cc08b76ea6d30bb', 1), -- mdp : testtest
-(4, 4, 2, 3, 'membre', 'Demonchaux', 'Jerome', 'jerome.demonchaux@gmail.com', '08adfb6ad85c3a66b42f69139f3cec80', 1); -- jeyz1990
 
 -- --------------------------------------------------------
 
@@ -307,12 +278,7 @@ CREATE TABLE IF NOT EXISTS `tm_task_tsk` (
 -- Contenu de la table `tm_task_tsk`
 --
 
-INSERT INTO `tm_task_tsk` (`pk_tsk`, `fk_usr`, `fk_itm`, `tsk_lib`, `tsk_comment`, `tsk_start_hour_plan`, `tsk_end_hour_plan`, `tsk_start_hour_real`, `tsk_end_hour_real`, `tsk_state`, `tsk_is_np`) VALUES
-(1, 4, 1, 'faire item 1', NULL, '2015-12-12 07:25:00', '2015-12-12 07:55:00', NULL, NULL, NULL, 0),
-(2, 4, 1, 'faire item 1 bis', NULL, '2015-12-12 08:25:00', '2015-12-12 08:55:00', NULL, NULL, NULL, 0),
-(3, 4, 2, 'faire item 2', NULL, '2015-12-12 07:00:00', '2015-12-12 07:25:00', '2015-12-12 07:00:00', '2015-12-12 07:30:00', NULL, 0),
-(4, 4, 3, 'faire item 3', NULL, '2015-12-12 07:00:00', '2015-12-12 07:25:00', '2015-12-12 07:00:00', NULL, NULL, 0);
-
+-- NOTHING AT START !!!
 
 -- --------------------------------------------------------
 

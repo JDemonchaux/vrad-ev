@@ -56,5 +56,6 @@ Temporary Items
 application/config/config.php
 application/config/development/application_environement.php
 
-assets/img/sponsors
+assets/css
+assets/img/sponsors/*
 application/config/database.php
