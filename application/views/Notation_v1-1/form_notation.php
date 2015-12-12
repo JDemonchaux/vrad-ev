@@ -1,90 +1,136 @@
-<?php
+<style>
+.small-padding {
+	padding-right:5px;
+	padding-left:5px;
+}
 
-	if($only_one){
-		$group = $les_groupes[$id_groupe];
-		echo "<h1>".$group->getLibelle()." - ".$group->getAvancement()."% - ".$group->getScore()."/200 </h1>";
-	}
+.no-padding {
+	padding-right:0px;
+	padding-left:0px;
+}
 
-	//début du formulaire
-	echo "<form action='$action' method='post'>";
-		echo "<input type='submit' value='Valider'/>";
+.small-input{
+	height : 25px;
+}
+</style>
 
-	//début de la grille de notation
-	echo "<table>";
-	echo "<tr>";
-	echo "<th colspan='2'>Categorie / Item</th>";
-	$nb_columns = 2 ;
 
-	if($only_one){
-		//entete pour 1 groupe
-		echo "<th>Progression</th>";
-
-		echo "<th colspan='2'>";
-		echo "Note";
-		echo "</th>";
-
-		echo "<th colspan='2'>";
-		echo "Commentaire";
-		echo "</th>";
-
-		$nb_columns = $nb_columns + 5;
-	}else{
-		//entete pour chaque groupe
-		foreach ($les_groupes as $id_group => $group) {
-			echo "<th colspan='3'>";
-			echo $group->getLibelle();
-			echo "</th>";
+<div class="row-fluid">
+	<h1 class="hcenter">
+		<?php
+		if($only_one){
+			$group = $les_groupes[$id_groupe];
+			echo $group->getLibelle()." - ".$group->getAvancement()."% - ".$group->getScore()."/200";
+		}else{
+			echo "Harmonisation";
 		}
-		$nb_columns = $nb_columns + sizeof($les_groupes)*3;
-	}
-	echo "</tr>";
+		?>
 
-	//lignes pour chaque item (dont entete de catégorie)
-	$prev_categorie="";
-	foreach ($les_items as $id_item => $item) {
+	</h1>
+</div>
 
-		//ligne pour une nouvelle catégorie
-		if($item->getCategorie()->getLibelle() != $prev_categorie){
-			echo "<tr>";
-			echo "<th colspan='$nb_columns'>".$item->getCategorie()->getLibelle();
-			if($only_one){
+<div class="container-fluid container">
+	<?php
+//début du formulaire
+	echo "<form action='$action' method='post'>";
+	echo "<input type='submit' value='Valider'/>";
+	?>
+
+	<!-- entete -->
+	<div class="row"> 
+		
+		<?php	if($only_one){ ?>
+		<div class="col-xs-4"></div>
+		<div class="col-xs-2">%</div>
+		<div class="col-xs-2">note</div>
+		<div class="col-xs-4">Commentaire</div>
+		<?php	}else{ 
+			?>
+			<div class="col-xs-3"></div>
+			<?php
+			foreach ($les_groupes as $id_group => $group) {
+				?>
+				<div class="col-xs-1"> 
+					<div class="row"><img src='<?php echo base_url();?>assets/img/empty.jpg' class='img-responsive'/></div>
+			<div class="row">
+				<h6 class="hcenter"><?php echo $group->getLibelle()?><br/><span><?php echo $group->getScore();?> / 200</span></h6>
+			</div>	
+				</div>
+				<?php
+			}		
+		}
+		?>
+</div><!-- fin row entete-->
+
+
+		<!-- remplissage -->
+		<?php
+		//lignes pour chaque item (dont entete de catégorie)
+		$prev_categorie="";
+		foreach ($les_items as $id_item => $item) {
+
+		//ligne pour une nouvelle catégorie (avant l'item ) ------------------------------------
+			if($item->getCategorie()->getLibelle() != $prev_categorie){
+
+				$score = "";
+				if($only_one){
 					//affichage du score du groupe pour la categ
 					$key=array_keys($les_groupes);
 					$item_group = $les_groupes[$key[0]]->getResultats()[$id_item];
-					echo " (".$item_group->getCategorie()->getScore()."/".$item_group->getCategorie()->getCoef().")";
-				}
-			echo "</th></tr>";
-			$prev_categorie = $item->getCategorie()->getLibelle();
-		}
+					$score = " (".$item_group->getCategorie()->getScore()."/".$item_group->getCategorie()->getCoef().")";
+				}// fin if only_one
 
-		//ligne pour l'item
-		echo "<tr>";
-		echo "<td colspan='2'>".$item->getLibelle()."</td>";
-		
-		foreach ($les_groupes as $id_group => $group) {
-			
+				?>
+
+				<div class="row"> 
+					<div class="col-xs-4"> 
+						<h3>
+						<?php echo $item->getCategorie()->getLibelle();?>
+					</h3>
+					</div>
+					<div class="col-xs-2"> 
+					</div>
+					<div class="col-xs-2 hcenter"> 
+						<h3><?php echo $score;?></h3>
+					</div>
+					<div class="col-xs-4"> 
+					</div>
+				</div>
+				<?php
+				$prev_categorie = $item->getCategorie()->getLibelle();
+			}// fin si nouvelle categorie ---------------------------------------------------------
+
+
+
+			//ligne pour un item
+			?>
+			<div class="row"> <!-- debut row de item-->
+				<?php if($only_one){ ?>
+						<div class="col-xs-4"> 
+				<?php }else { ?>
+						<div class="col-xs-3">  
+				<?php } // fin if only_one ?>
+					<div class="row"> 
+						<div class="col-xs-1"></div>
+						<div class="col-xs-11">
+							<?php echo $item->getLibelle();?>
+						</div>
+					</div>
+						</div>
+
+				<?php
+					foreach ($les_groupes as $id_group => $group) {
+
 			//mise à jour des infos de l'item avec les résultat du groupe
 			if(isset ($group->getResultats()[$id_item])){
 				$item_group = $group->getResultats()[$id_item];
 			}else{
 				$item_group = $item;
 			}
-		
-		
-
-
-			//affichage de l'avancement pour l'item
-			if($only_one){
-				if($item_group->getLivrable()==0){
-					echo "<td >"."N/A"."</td>";
-				}else{
-					echo "<td >".$item->getAvancement()."%</td>";
-				}
-			}
 
 			//si item planifiable et avancement à 0 on ne peut pas noter
 			$disable = "";
-			if($item_group->getAvancement()==0 && $item_group->getLivrable()==1){
+			if($item_group->isEvaluable()){
 				$disable = "DISABLED";
 			}
 
@@ -92,26 +138,50 @@
 			$val = $item_group->getNotation()->getNote();
 			$valcom = $item_group->getNotation()->getCommentaire();
 			$name = "g_".$group->getId()."|i_".$id_item."";
+			$note_name = "N_".$name;
+			$com_name = "C_".$name;
 
-			//note
-			echo "<td>";
-			echo "<input class='form-control'  type='text' size ='3' name='N_$name' value='$val'  $disable />";
-			echo "</td>";
-			echo "<td>&nbsp;/&nbsp;".$item_group->getCoef()."</td>";
+			//affichage de l'avancement pour l'item
+			$style = "small-input";
+		if($only_one){
+			$style = "";
+			?>
+				<div class="col-xs-2"><?php echo $item->displayAvancement();?></div>
+				<div class="col-xs-2">
+	<?php }else{ ?>
+				<div class="col-xs-1"> 
+				<input type='hidden'  name='<?php echo $com_name;?>'  value='<?php echo $valcom;?>' />
+	<?php } // fin if only_one ?>
+					<div class="row">
+						<div class="col-xs-8 small-padding"> 
+							<input class='form-control small-padding <?php echo $style;?>'  type='text' size ='3' name='<?php echo $note_name;?>' value='<?php echo $val;?>'  <?php echo $disable;?> />
+						</div>
+						<div class="col-xs-4 small-padding">/<?php echo $item_group->getCoef();?></div>
+					</div>
+				</div>
+	<?php   // fin if only_one
 
-			//commentaire
-			if($only_one){
-				echo "<td colspan='2'> ";
-				echo "<textarea class='form-control' size ='20' name='C_$name'  $disable />$valcom</textarea>";
-				echo "</td>";	
-			}else{
-				echo "<td><input type='hidden'  name='C_$name'  value='$valcom' /></td>";
-			}
-			
-		}
-		echo "</tr>"; //fin ligne et fin boucle
-	}
-	echo "</table>";
-	echo "<input type='submit' value='Valider'/>";
-	echo "</form >";
+		if($only_one){ ?>
+			<div class="col-xs-4">
+				<textarea class='form-control' size ='20' name='<?php echo $com_name;?>'  <?php echo $disable;?> />
+					<?php echo $valcom;?>
+				</textarea>
+			</div>
+		<?php
+		}// fin if only_one
+					
+
+	}//fin for groupes
 ?>
+	</div><!-- fin row de item -->
+
+<?php
+
+	}//fin for items
+
+		//fin du formulaire
+		echo "<input type='submit' value='Valider'/>";
+		echo "</form >"; 
+
+		?>
+	</div><!-- fin du contenaire fluid-->

@@ -101,5 +101,9 @@ class Task
         $this->isNp = $np;
     }
 
+	public function getEtat(){
+		return "";
+	}
+
 
 }

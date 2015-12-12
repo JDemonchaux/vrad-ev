@@ -11,6 +11,10 @@ class Item
 	private  $libelle;
 	private  $description;
 	private  $categorie;
+	private  $priority;
+	private  $coef;
+	private  $type;
+	private  $livrable;
 
 	public function __construct( $idItem='',  $libelle='', $priority='', $coef='', $type='', $livrable='',  $description='', $categorie=NULL, $notation=NULL, $avancement=0) {
 		load_library('Categorie');
@@ -121,5 +125,23 @@ class Item
     public function setAvancement($avancement){
         $this->avancement = $avancement;
     }
+
+public function displayAvancement(){
+         if($this->livrable==0){
+							 $avancement = "N/A";
+						}else{
+							$avancement = $this->avancement;
+						}
+        return $avancement ;
+    }
+
+	//si item planifiable et avancement à 0 on ne peut pas noter
+    public function isEvaluable(){
+if($this->avancement ==0 && $this->livrable==1){
+							return FALSE;
+						}
+    	return TRUE;
+    }
+   
 
 }

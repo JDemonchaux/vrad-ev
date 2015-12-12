@@ -65,8 +65,8 @@ class Planification extends CI_Controller
     {
         $data = array();
         $user = $_SESSION['current_user'];
-        $data['nomAffiche'] = $user->getPrenom() . " " . $user->getNom();
-        $data['tasks'] = $this->TaskModel->readAllByUser($user->getId());
+        $data['nomAffiche'] = $user->getPrenom()." ".$user->getNom();
+        $data['les_taches'] = $this->TaskModel->readAllByUser($user->getId());
 
         load_view("todoliste", $data);
     }
