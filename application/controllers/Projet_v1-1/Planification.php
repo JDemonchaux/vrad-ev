@@ -43,21 +43,14 @@ class Planification extends CI_Controller
         $user = $_SESSION['current_user'];
         if($user->getRole()=="membre"){
             $data['groupe'] = $user->getGroupe();
-<<<<<<< Updated upstream
-            $data['ressources'] = $this->UserModel->getMembres($data['groupe']->getId());
-            $data['items'] = $this->ItemModel->readAll();
-            $data['form_ajout_tache'] = new Link("ajouterTache", "Planification");
-            $data['taches'] = $this->TaskModel->readAllByGroup($data['groupe']->getId());
-=======
->>>>>>> Stashed changes
         }else{
             if(!isset($id_group)){$id_group=1;}//@TODO a enlever lorsque le menu proposera de choisir le groupe à consulter pour le jury
             $data['groupe']=$id_group;
         }
-         $data['ressources'] = $this->UserModel->getMembres($data['groupe']->getId());
-            $data['items'] = $this->ItemModel->readAll();
-            $data['form_ajout_tache'] = new Link("ajouterTache", "Planification");
-
+        $data['ressources'] = $this->UserModel->getMembres($data['groupe']->getId());
+        $data['items'] = $this->ItemModel->readAll();
+        $data['form_ajout_tache'] = new Link("ajouterTache", "Planification");
+        $data['taches'] = $this->TaskModel->readAllByGroup($data['groupe']->getId());
         load_view("gantt", $data);
     }
 
