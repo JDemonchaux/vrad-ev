@@ -68,6 +68,7 @@ class Resultats extends CI_Controller
 
         $data = array(
             'les_groupes' => $this->classement->getLesGroupes(),
+            'les_items' => $this->ItemModel->readAll(),
         );
 
         load_view("scores", $data);

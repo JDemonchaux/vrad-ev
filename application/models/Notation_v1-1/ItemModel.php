@@ -49,7 +49,7 @@ class ItemModel extends CI_Model
 
 
   private function selectScoredItem(){
-      $startQuery =  $this->db->select('pk_itm, itm_lib, itm_weight, itm_priority, itm_type, itm_livrable, itm_desc, pk_cat, cat_lib, scr_score, scr_comment ' );
+      $startQuery =  $this->db->select('pk_itm, itm_lib, itm_weight, itm_priority, itm_type, itm_livrable, itm_desc, pk_cat, cat_lib, cat_hexa_color, scr_score, scr_comment ' );
       $startQuery = $this->db->from('ref_item_itm');
       $startQuery = $this->db->join('tm_score_grp_itm_scr', 'ref_item_itm.pk_itm = tm_score_grp_itm_scr.fk_itm');
       $startQuery = $this->db->join('ref_category_cat', 'ref_item_itm.fk_cat = ref_category_cat.pk_cat');
@@ -57,7 +57,7 @@ class ItemModel extends CI_Model
   }
 
   private function selectItem(){
-    $startQuery =  $this->db->select('pk_itm, itm_lib, itm_weight, itm_priority, itm_type, itm_livrable, itm_desc, pk_cat, cat_lib ');
+    $startQuery =  $this->db->select('pk_itm, itm_lib, itm_weight, itm_priority, itm_type, itm_livrable, itm_desc, pk_cat, cat_lib, cat_hexa_color ');
     $startQuery = $this->db->from('ref_item_itm');
     $startQuery = $this->db->join('ref_category_cat', 'ref_item_itm.fk_cat = ref_category_cat.pk_cat');
 
@@ -67,7 +67,7 @@ class ItemModel extends CI_Model
 private function fillItem($rows){
     $result = array();
     foreach ($rows as $key => $data) {
-        $categorie = new Categorie($data->pk_cat, $data->cat_lib);
+        $categorie = new Categorie($data->pk_cat, $data->cat_lib,$data->cat_hexa_color);
         
         if(isset($data->scr_score)){
             $notation = new Notation($data->scr_score, $data->scr_comment);

@@ -12,11 +12,13 @@ class Categorie
 	private  $description;
 	private  $score;
 	private  $coef;
+	private  $hexaColor;
 
-public function __construct( $idCategorie='',  $libelle='',  $description='') {
+public function __construct( $idCategorie='',  $libelle='',  $description='', $hexaColor="") {
 	$this->idCategorie = $idCategorie;
 	$this->libelle = $libelle;
 	$this->description = $description;
+	$this->hexaColor = $hexaColor;
 	$this->score = 0;
 	$this->coef = 0;
 
@@ -42,6 +44,11 @@ public function getCoef(){
 	return $this->coef;
 }
 
+
+public function getHexaColor(){
+	return $this->hexaColor;
+}
+
 public function setId($idCategorie){
 	$this->idCategorie = $idCategorie;
 }
@@ -61,6 +68,12 @@ public function setScore($score){
 public function setCoef($coef){
 	$this->coef = $coef;
 }
+
+public function setHexaColor($hexaColor){
+	$this->hexaColor = $hexaColor;
+}
+
+
 
 
 }

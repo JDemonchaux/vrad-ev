@@ -80,9 +80,9 @@
       		$groupe = new Group($id_groupe);
       		$result = $list_item;
       		foreach ($result as $idItem => $item) {
-      			$item->getNotation()->setNote = $note;
+      			$item->getNotation()->setNote = $note;//todo recup la note au format : $name = "N_g_".$group->getId()."|i_".$id_item."";
       			if($detail){
-      				$item->getNotation()->setCommentaire = $commentaire;
+      				$item->getNotation()->setCommentaire = $commentaire; // todo recup le comment au format : $name = "C_g_".$group->getId()."|i_".$id_item."";
       			}
       		}
       		$groupe->setResulats($result);
