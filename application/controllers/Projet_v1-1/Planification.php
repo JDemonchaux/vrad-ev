@@ -38,18 +38,20 @@ class Planification extends CI_Controller
      * KJIHGFEDCBA
      * 00000000001 => 1
      */
-    public function gantt($id_group=1)
+    public function gantt($id_group = 1)
     {
         // On récupère le groupe de l'utilisateur connecté  si c'est un member, si c'est un jury...
         $user = $_SESSION['current_user'];
-        if($user->getRole()=="membre"){
+        if ($user->getRole() == "membre") {
             $data['groupe'] = $user->getGroupe();
-        }else{
-            $data['groupe']=$this->GroupModel->readOneGroup($id_group);
+        } else {
+            $data['groupe'] = $this->GroupModel->readOneGroup($id_group);
         }
         $data['ressources'] = $this->UserModel->getMembres($data['groupe']->getId());
         $data['items'] = $this->ItemModel->readAll();
         $data['form_ajout_tache'] = new Link("ajouterTache", "Planification");
+        $data['form_modif_tache'] = new Link("modifierTache", "Planification");
+        $data['form_suppr_tache'] = new Link("supprimerTache", "Planification");
         $data['taches'] = $this->TaskModel->readAllByGroup($data['groupe']->getId());
         load_view("gantt", $data);
     }
@@ -61,16 +63,17 @@ class Planification extends CI_Controller
      */
     public function todoListe()
     {
-        $data=array();
+        $data = array();
         $user = $_SESSION['current_user'];
-        $data['nomAffiche'] = $user->getPrenom()." ".$user->getNom();
+        $data['nomAffiche'] = $user->getPrenom() . " " . $user->getNom();
         $data['tasks'] = $this->TaskModel->readAllByUser($user->getId());
 
         load_view("todoliste", $data);
     }
 
 
-    public function ajouterTache() {
+    public function ajouterTache()
+    {
 
         $nom = $_POST["nom"];
         $ressource = $_POST['ressource'];
@@ -81,16 +84,46 @@ class Planification extends CI_Controller
         $tache = new Task("", $nom, "", $item, "", $ressource);
         $tache->setFirstPlanning($heure_debut, $heure_fin);
 
-            try {
-                $this->TaskModel->create($tache);
-            } catch(Exception $e) {
-                set_user_message($e->getMessage());
-            }
+        try {
+            $this->TaskModel->create($tache);
+        } catch (Exception $e) {
+            set_user_message($e->getMessage());
+        }
 
-            $url = new Link("gantt", "Planification");
-            redirect($url->getURL());
+        $url = new Link("gantt", "Planification");
+        redirect($url->getURL());
+    }
+
+    public function modifierTache($idTache)
+    {
+        $ressource = $_POST['ressource'];
+        $item = $_POST["item"];
+        $tache = new Task($idTache, "", "", $item, "", $ressource);
+        if (true) {
+            $tache->setFirstPlanning(new DateTime($_POST["heure_debut"]), new DateTime($_POST["heure_fin"]));
+        }
 
 
+        try {
+            $this->TaskModel->update($tache);
+        } catch (Exception $e) {
+            set_user_message($e->getMessage());
+        }
+
+        $url = new Link("gantt", "Planification");
+        redirect($url->getURL());
+    }
+
+    public function supprimerTache($idTache)
+    {
+        try {
+            $this->TaskModel->delete($idTache);
+        } catch (Exception $e) {
+            set_user_message($e->getMessage());
+        }
+
+        $url = new Link("gantt", "Planification");
+        redirect($url->getURL());
     }
 
 }

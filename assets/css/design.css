@@ -65,12 +65,25 @@
 
 /* GANTT */
 
-#datetimepicker1, #datetimepicker2 {
+#datetimepicker1, #datetimepicker2,  {
     margin-left:1rem;
     margin-right:1rem;
 }
 
+#datetimepicker3, #datetimepicker4 {
+    width: 12rem;
+    margin-top: -2.8rem;
+    margin-left: 3rem;
+    margin-right:1rem;
+}
+
+
 th.minute {
     font-size:0.7rem !important;
     padding:3px !important;
+}
+
+.disabled {
+    color:grey;
+    cursor:not-allowed;
 }

@@ -1424,6 +1424,10 @@
             element.removeData('date');
         };
 
+        picker.setToNull = function() {
+            element.removeData('date');
+        };
+
         picker.toggle = toggle;
 
         picker.show = show;
@@ -2079,9 +2083,11 @@
         };
 
         picker.clear = function () {
-            clear();
+            this.clear();
             return picker;
         };
+
+
 
         picker.keyBinds = function (keyBinds) {
             options.keyBinds = keyBinds;

@@ -137,6 +137,68 @@ $(document).ready(function () {
     });
 
 
-
-
 });
+
+function modalConfirmDelete(el) {
+    var lien = $(el).data("href");
+    $("#btDelete").attr("href", lien);
+}
+
+function modalModifTache(el) {
+
+    var href = $(el).data("href");
+    var ressource = $(el).data("ressource");
+    var item = $(el).data("item");
+    var nom = $(el).data("nom");
+    var heure_debut = moment($(el).data("heure_debut"), "hh:mm");
+    var heure_fin = moment($(el).data("heure_fin"), "hh:mm");
+    var d = new Date();
+    if (d.getHours() >= 22) {
+        $("#datetimepicker3").find("input").attr("disabled", true);
+        $("#datetimepicker4").find("input").attr("disabled", true);
+    }
+
+    $('#datetimepicker3').remove();
+    $('.datetimepicker3').append(createDateTimePicker("datetimepicker3", "heure_debut", "heure_debut"))
+    $('#datetimepicker3').datetimepicker({
+        locale: 'fr',
+        format: 'LT',
+        defaultDate: heure_debut
+    });
+
+    $('#datetimepicker4').remove();
+    $('.datetimepicker4').append(createDateTimePicker("datetimepicker4", "heure_fin", "heure_fin"))
+    $('#datetimepicker4').datetimepicker({
+        locale: 'fr',
+        format: 'LT',
+        defaultDate: heure_fin
+    });
+
+    $("#formModifTask").attr("action", href);
+    $('#nomTache').html(nom);
+
+
+    $('#ressource_modifier option[value='+ ressource +']').prop('selected', true);
+    $('#itm_modifier option[value='+ item +']').prop('selected', true);
+
+
+}
+
+function clearModal() {
+    console.log("clear");
+    $("#formModifTask").attr("action", "");
+    $('#nomTache').html("");
+    $("#datetimepicker3").data("DateTimePicker").destroy();
+    $("#datetimepicker4").data("DateTimePicker").destroy();
+}
+
+function createDateTimePicker(nom, id, name) {
+var el = '<div class="input-group date col-sm-4" id="'+nom+'">' +
+    '<input type="text" class="form-control" name="'+name+'" id="'+id+'"/>' +
+    '<span class="input-group-addon">' +
+    '<span class="glyphicon glyphicon-calendar"></span>' +
+    '        </span>' +
+    '        </div>';
+
+    return el;
+}
