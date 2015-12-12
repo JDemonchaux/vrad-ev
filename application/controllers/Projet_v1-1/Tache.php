@@ -6,7 +6,17 @@
   */
   class Tache extends CI_Controller {
 
-      public $module = "Planning";
+      public $module = "Projet";
+
+      public function __construct()
+      {
+          parent::__construct();
+          load_library("Task", "Projet");
+          load_library("Categorie", "Notation");
+          load_library("Item", "Notation");
+
+          load_model("TaskModel", "Projet");
+    }
 
       /**
       * Fonction 1 : Création (C)
@@ -15,20 +25,20 @@
       */
       public function creer()
       {
-
+            //not for the moment : popup dans Plannification !
       }
       public function creer_action()
       {
-          $nom = $_POST["nom"];
-          $ressource = $_POST['ressource'];
-          $item = $_POST["item"];
-          $heure_debut = new DateTime($_POST["heure_debut"]);
-          $heure_fin = new DateTime($_POST["heure_fin"]);
+        $nom = $_POST["nom"];
+        $ressource = $_POST['ressource'];
+        $item = $_POST["item"];
+        $heure_debut = new DateTime($_POST["heure_debut"]);
+        $heure_fin = new DateTime($_POST["heure_fin"]);
 
-          $tache = new Task("", $nom, "", $item, "", $ressource);
-          $tache->setFirstPlanning($heure_debut, $heure_fin);
+        $tache = new Task("", $nom, "", $item, "", $ressource);
+        $tache->setFirstPlanning($heure_debut, $heure_fin);
 
-          try {
+        try {
             $this->TaskModel->create($tache);
       } catch (Exception $e) {
             set_user_message($e->getMessage());
@@ -46,7 +56,7 @@
       */
       public function editer()
       {
-      	
+
       }
       
       /**
@@ -56,14 +66,14 @@
       */
       public function modifier()
       {
-      	
+      	//not for the moment : popup dans Plannification !
       }
       public function modifier_action()
       {
-       $ressource = $_POST['ressource'];
-       $item = $_POST["item"];
-       $tache = new Task($idTache, "", "", $item, "", $ressource);
-       if (true) {
+           $ressource = $_POST['ressource'];
+           $item = $_POST["item"];
+           $tache = new Task($idTache, "", "", $item, "", $ressource);
+           if (true) {
             $tache->setFirstPlanning(new DateTime($_POST["heure_debut"]), new DateTime($_POST["heure_fin"]));
       }
 
@@ -146,13 +156,18 @@
       * 00100000000 => 256
       * le nom est à définir et le libellé est a associer dans lang_droit
       */    
-      public function start_tache($idTache)
+      public function start($idTache)
       {
-        //
+            $task = $this->TaskModel->readOneTask($idTache);
+            echo "<pre>";
+            var_dump($task);
+            echo "</pre>";
+            $task->start();
+            $this->TaskModel->update($task);
 
-          $url = new Link("todoListe", "Planification");
-          redirect($url->getURL());
-    }
+            $url = new Link("todoListe", "Planification");
+            redirect($url->getURL());
+      }
 
       /**
       * Fonction 10 : fonction personalisable 2 (Y)
@@ -160,13 +175,15 @@
       * 01000000000 => 512
       * le nom est à définir et le libellé est a associer dans lang_droit
       */    
-      public function startTache($idTache)
+      public function stop($idTache)
       {
-        //
+          $task = $this->TaskModel->readOneTask($idTache);
+          $task->stop();
+          $this->TaskModel->update($task);
 
-          $url = new Link("todoListe", "Planification");
-          redirect($url->getURL());
-    }
+        $url = new Link("todoListe", "Planification");
+        redirect($url->getURL());
+  }
 
       /**
       * Fonction 11 : fonction personalisable 3 (Z)

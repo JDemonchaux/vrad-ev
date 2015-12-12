@@ -10,20 +10,24 @@
 
 <div class="container-fluid container">
 	<div class="row"> 
-		<div class="col-xs-1">Etat</div>
-		<div class="col-xs-5">
-			<div class="row">
-				<div class="col-xs-4">Item</div>
-				<div class="col-xs-1">Prio</div>
-				<div class="col-xs-7">Task</div>
-			</div>
-		</div>
+		<div class="col-xs-1"><h4>Etat</h4></div>
 		<div class="col-xs-6">
 			<div class="row">
-				<div class="col-xs-3">Heure Debut planifiée</div>
-				<div class="col-xs-3">Heure Fin planifiée</div>
-				<div class="col-xs-3">Heure Debut réelle</div>
-				<div class="col-xs-3">Heure Fin réelle</div>
+				<div class="col-xs-4"><h4>Item</h4></div>
+				<div class="col-xs-2"><h4>Prio</h4></div>
+				<div class="col-xs-6"><h4>Task</h4></div>
+			</div>
+		</div>
+		<div class="col-xs-5">
+			<div class="row">
+				<div class="col-xs-6 hcenter"><h4>planifié</h4></div>
+				<div class="col-xs-6 hcenter"><h4>Réel</h4></div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3 hcenter"><h5>Heure Debut</div>
+				<div class="col-xs-3 hcenter"><h5>Heure Fin</h5></div>
+				<div class="col-xs-3 hcenter"><h5>Heure Debut</h5></div>
+				<div class="col-xs-3 hcenter"><h5>Heure Fin</h5></div>
 			</div>
 		</div>
 	</div>
@@ -33,31 +37,43 @@
 		?>
 		<div class="row"> 
 			<div class="col-xs-1"> <?php echo $tache->displayIconeEtat();?> </div>
-			<div class="col-xs-5">
-				<div class="row">
-					<div class="col-xs-4"><?php echo $tache->getItem()->getLibelle();?> </div>
-					<div class="col-xs-4"><?php echo $tache->getItem()->getPriority();?> </div>
-					<div class="col-xs-4"><?php echo $tache->getLibelle();?></div>
-				</div>
-			</div>
 			<div class="col-xs-6">
 				<div class="row">
-					<div class="col-xs-3"><?php echo $tache->getPlanning()->displayStartHourPlan("H:i");?></div>
-					<div class="col-xs-3"><?php echo $tache->getPlanning()->displayEndHourPlan("H:i");?></div>
-					<div class="col-xs-3">
+					<div class="col-xs-4"><?php echo $tache->getItem()->getLibelle();?> </div>
+					<div class="col-xs-2"><?php echo $tache->getItem()->getPriority();?> </div>
+					<div class="col-xs-6"><?php echo $tache->getLibelle();?></div>
+				</div>
+			</div>
+			<div class="col-xs-5">
+				<div class="row">
+					<div class="col-xs-3 hcenter"><?php echo $tache->getPlanning()->displayStartHourPlan("H:i");?></div>
+					<div class="col-xs-3 hcenter"><?php echo $tache->getPlanning()->displayEndHourPlan("H:i");?></div>
+					<div class="col-xs-3 hcenter">
 						<?php 
 						if(is_null($tache->getEtat())){ //pas commencée
-							echo "Btn Start"; //$data['URL_start']."/".$tache->getId()
+							$URL = $URL_start->getURL()."/".$tache->getIdTask();
+							?>
+							<form action="<?php echo $URL; ?>" method="POST" id="formStartT<?php echo$tache->getIdTask();?>">
+        
+							<button type="submit" class="btn btn-success">Commencer</button>
+						</form>
+							<?
 						} else{
 							echo $tache->getPlanning()->displayStartHourReal("H:i");
 						}
 						
 						?>
 					</div>
-					<div class="col-xs-3">
+					<div class="col-xs-3 hcenter">
 						<?php 
 						if($tache->getEtat()==1 ){ //pas commencée
-							echo "Btn Stop"; //$data['URL_stop']."/".$tache->getId()
+							$URL = $URL_stop->getURL()."/".$tache->getIdTask();
+							?>
+							<form action="<?php echo $URL; ?>" method="POST" id="formStopT<?php echo$tache->getIdTask();?>">
+        
+							<button type="submit" class="btn btn-danger">Terminer</button>
+						</form>
+							<?
 						} else{
 							echo $tache->getPlanning()->displayEndHourReal("H:i");
 						}

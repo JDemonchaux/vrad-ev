@@ -134,5 +134,13 @@ class Task
 		
 	}
 
+    public function start(){
+        $this->planning->setStartHourRealNow();
+    }
+
+    public function stop(){
+        $this->planning->setEndHourRealNow();
+    }
+
 
 }

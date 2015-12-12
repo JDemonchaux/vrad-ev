@@ -17,8 +17,8 @@ class Item
 	private  $livrable;
 
 	public function __construct( $idItem='',  $libelle='', $priority='', $coef='', $type='', $livrable='',  $description='', $categorie=NULL, $notation=NULL, $avancement=0) {
-		load_library('Categorie');
-		load_library('Notation');
+		load_library('Categorie','Notation');
+		load_library('Notation','Notation');
 		$this->idItem = $idItem;
 		$this->libelle = $libelle;
 		$this->description = $description;

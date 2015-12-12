@@ -174,7 +174,7 @@ INSERT INTO `tj_rights_rgt` (`fk_usr_role`, `rgt_model`, `rgt_controller`, `rgt_
 ('jury', 'Projet', 'Planification', '00000000001'),
 ('membre', 'Notation', 'Resultats', '00000000111'),
 ('membre', 'Projet', 'Planification', '00000000011'),
-('membre', 'Projet', 'tache', '11111111111');
+('membre', 'Projet', 'Tache', '11111111111');
 
 -- --------------------------------------------------------
 

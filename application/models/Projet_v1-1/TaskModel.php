@@ -42,8 +42,16 @@ class TaskModel extends CI_Model
             "tsk_start_hour_plan" => $task->getPlanning()->getStartHourPlan()->format($format_date),
             "tsk_end_hour_plan" => $task->getPlanning()->getEndHourPlan()->format($format_date),
             "tsk_is_np" => $np,
-        );
+            );
         $this->db->insert("TM_TASK_TSK", $tache);
+    }
+
+    public function readOneTask($idTask) {
+        $query = $this->selectFullTask();
+        $query = $this->db->where("pk_tsk", $idTask);
+        $query = $this->db->get();
+        $resultat = $this->fillFullTask($query->result());
+        return array_shift($resultat);
     }
 
     public function readAllByGroup($idGroup)
@@ -76,13 +84,19 @@ class TaskModel extends CI_Model
 
         $array = array(
             "pk_tsk" => $task->getIdTask(),
-            "fk_usr" => $task->getUser(),
-            "fk_itm" => $task->getItem()
-        );
+            "fk_usr" => $task->getUser()->getId(),
+            "fk_itm" => $task->getItem()->getIdItem()
+            );
 
         if ($task->getPlanning() !== "") {
             $array["tsk_start_hour_plan"] = $task->getPlanning()->getStartHourPlan()->format($format_date);
             $array["tsk_end_hour_plan"] = $task->getPlanning()->getEndHourPlan()->format($format_date);
+            if(!is_null($task->getPlanning()->getStartHourReal())){
+                $array["tsk_start_hour_real"] = $task->getPlanning()->getStartHourReal()->format($format_date);
+            }
+            if(!is_null($task->getPlanning()->getEndHourReal())){
+                $array["tsk_end_hour_real"] = $task->getPlanning()->getEndHourReal()->format($format_date);
+            }
         }
 
         $this->db->where("pk_tsk", $array["pk_tsk"]);
@@ -100,7 +114,7 @@ class TaskModel extends CI_Model
     private function selectFullTask()
     {
         $startQuery = $this->db->select('pk_tsk, tsk_lib, tsk_comment, tsk_start_hour_plan, tsk_end_hour_plan, tsk_start_hour_real, tsk_end_hour_real,
-       tsk_state, tsk_is_np ,pk_itm, itm_lib, itm_weight, itm_priority, pk_cat, cat_lib, scr_score, scr_comment, pk_usr, usr_firstname, usr_name');
+         tsk_state, tsk_is_np ,pk_itm, itm_lib, itm_weight, itm_priority, pk_cat, cat_lib, scr_score, scr_comment, pk_usr, usr_firstname, usr_name');
         $startQuery = $this->db->from('tm_task_tsk');
         $startQuery = $this->db->join('ref_item_itm', 'tm_task_tsk.fk_itm = ref_item_itm.pk_itm');
         $startQuery = $this->db->join('tm_user_usr', 'tm_task_tsk.fk_usr = tm_user_usr.pk_usr');

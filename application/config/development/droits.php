@@ -66,8 +66,8 @@ $droit_COR = array(	"creer" 			=> 1,	//C
 $config['droits']["Projet"]['Tache'] = array_merge(	$droit_COR, 
 													//extention droits COR
 													array(	"voir_detail_autre"	=>	128, //W
-															"start_tache"	=>	256, //X
-															"stop_tache"	=>	512, //Y
+															"start"	=>	256, //X
+															"stop"	=>	512, //Y
 															"fonction_perso_Z"	=>	1024 //Z
 														));	
 
