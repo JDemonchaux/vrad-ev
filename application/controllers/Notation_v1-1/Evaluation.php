@@ -13,11 +13,21 @@
             load_model("GroupModel","User");
       }
 
+    /**
+     * Service A :
+     * KJIHGFEDCBA
+     * 00000000001 => 1
+     */
       public function index()
       {
             $this->harmonisation();
       }
 
+    /**
+     * Service A :
+     * KJIHGFEDCBA
+     * 00000000001 => 1
+     */
       public function harmonisation()
       {
       		//charger les notes par groupes pour pré-remplir le formulaire
@@ -37,7 +47,12 @@
             load_view("form_notation",$data);
       }
 
-      //ou pas en Ajax ca serait bien... non?
+    /**
+     * Service A :
+     * KJIHGFEDCBA
+     * 00000000001 => 1
+     */
+      //ou pas en Ajax ca serait bien... non? --> oui mais plus tard alors !
        public function harmonisation_action()
       {
       		$list_item = $this->ItemModel->readAll();
@@ -47,6 +62,11 @@
       		}
       }
 
+    /**
+     * Service B :
+     * KJIHGFEDCBA
+     * 00000000010 => 2
+     */
       public function noterGroupe($id_groupe)
       {
       	//charger les notes du groupe pour pré-remplir le formulaire
@@ -68,13 +88,23 @@
 
 	}
 
-		//ou pas en Ajax ca serait bien... non?
+    /**
+     * Service B :
+     * KJIHGFEDCBA
+     * 00000000010 => 2
+     */
+		//ou pas en Ajax ca serait bien... non? --> oui mais plus tard alors !
 	public function noterGroupe_action()
       {
 			$list_item = $this->ItemModel->readAll();
 			saveResultOneGroup($id_groupe,$list_item,TRUE);
 
       }
+
+
+
+// --- PRIVATE ---------------------------------------------------------------------
+
 
       private function saveResultOneGroup($id_groupe,$list_item,$detail=FALSE){
       		$groupe = new Group($id_groupe);

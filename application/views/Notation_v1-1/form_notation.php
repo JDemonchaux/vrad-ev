@@ -40,7 +40,7 @@
                     <?php echo $groupe->getAvancement(); ?> % 
                 </div>
                  <div class="col-sm-2">
-                   <?php echo $groupe->getScore();?> / 200;
+                   <?php echo $groupe->getScore();?> / 200
                 </div>
             </div>
 			<?

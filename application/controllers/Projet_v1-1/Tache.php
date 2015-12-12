@@ -15,12 +15,28 @@
       */
       public function creer()
       {
-            
+
       }
       public function creer_action()
       {
-            
+          $nom = $_POST["nom"];
+          $ressource = $_POST['ressource'];
+          $item = $_POST["item"];
+          $heure_debut = new DateTime($_POST["heure_debut"]);
+          $heure_fin = new DateTime($_POST["heure_fin"]);
+
+          $tache = new Task("", $nom, "", $item, "", $ressource);
+          $tache->setFirstPlanning($heure_debut, $heure_fin);
+
+          try {
+            $this->TaskModel->create($tache);
+      } catch (Exception $e) {
+            set_user_message($e->getMessage());
       }
+
+      $url = new Link("gantt", "Planification");
+      redirect($url->getURL());
+}
 
 
       /**
@@ -44,8 +60,23 @@
       }
       public function modifier_action()
       {
-            
+       $ressource = $_POST['ressource'];
+       $item = $_POST["item"];
+       $tache = new Task($idTache, "", "", $item, "", $ressource);
+       if (true) {
+            $tache->setFirstPlanning(new DateTime($_POST["heure_debut"]), new DateTime($_POST["heure_fin"]));
       }
+
+
+      try {
+            $this->TaskModel->update($tache);
+      } catch (Exception $e) {
+            set_user_message($e->getMessage());
+      }
+
+      $url = new Link("gantt", "Planification");
+      redirect($url->getURL());
+}
 
       /**
       * Fonction 4 : Supression (S)
@@ -54,7 +85,14 @@
       */
       public function supprimer_action()
       {
-            
+            try {
+                  $this->TaskModel->delete($idTache);
+            } catch (Exception $e) {
+                  set_user_message($e->getMessage());
+            }
+
+            $url = new Link("gantt", "Planification");
+            redirect($url->getURL());
       }
 
       /**
@@ -64,11 +102,11 @@
       */
       public function rechercher()
       {
-            
+
       }
       public function rechercher_action()
       {
-            
+
       }
 
       /**
@@ -78,7 +116,7 @@
       */
       public function lister()
       {
-            
+
       }
 
       /**
@@ -88,7 +126,7 @@
       */
       public function voir_detail()
       {
-            
+
       }
 
       /**
@@ -99,7 +137,7 @@
       */    
       public function voir_detail_autre()
       {
-            
+
       }
 
       /**
@@ -108,10 +146,13 @@
       * 00100000000 => 256
       * le nom est à définir et le libellé est a associer dans lang_droit
       */    
-      public function fonction_perso_X()
+      public function start_tache($idTache)
       {
-            
-      }
+        //
+
+          $url = new Link("todoListe", "Planification");
+          redirect($url->getURL());
+    }
 
       /**
       * Fonction 10 : fonction personalisable 2 (Y)
@@ -119,10 +160,13 @@
       * 01000000000 => 512
       * le nom est à définir et le libellé est a associer dans lang_droit
       */    
-      public function fonction_perso_Y()
+      public function startTache($idTache)
       {
-            
-      }
+        //
+
+          $url = new Link("todoListe", "Planification");
+          redirect($url->getURL());
+    }
 
       /**
       * Fonction 11 : fonction personalisable 3 (Z)
@@ -132,7 +176,8 @@
       */    
       public function fonction_perso_Z()
       {
-            
+
       }
+
 
 }

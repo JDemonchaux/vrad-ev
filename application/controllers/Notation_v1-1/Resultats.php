@@ -16,11 +16,21 @@ class Resultats extends CI_Controller
         load_library("ImageResizer", "ToolBox");
     }
 
+    /**
+     * Service A :
+     * KJIHGFEDCBA
+     * 00000000001 => 1
+     */
     public function index()
     {
         $this->home();
     }
 
+    /**
+     * Service A :
+     * KJIHGFEDCBA
+     * 00000000001 => 1
+     */
     public function home()
     {
         $imageResizer = new imageResizer();
@@ -44,6 +54,11 @@ class Resultats extends CI_Controller
 
     }
 
+    /**
+     * Service B :
+     * KJIHGFEDCBA
+     * 00000000010 => 2
+     */
     public function podium()
     {
         $les_groupes = $this->GroupModel->readAllGroup();
@@ -59,6 +74,11 @@ class Resultats extends CI_Controller
 
     }
 
+    /**
+     * Service C :
+     * KJIHGFEDCBA
+     * 00000000100 => 4
+     */
     public function scores()
     {
         $les_groupes = $this->GroupModel->readAllGroup();

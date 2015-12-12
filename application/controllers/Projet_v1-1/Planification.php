@@ -74,6 +74,11 @@ class Planification extends CI_Controller
     }
 
 
+    /**
+     * Service C :
+     * KJIHGFEDCBA
+     * 00000000100 => 4
+     */
     public function ajouterTache()
     {
 
@@ -96,6 +101,11 @@ class Planification extends CI_Controller
         redirect($url->getURL());
     }
 
+    /**
+     * Service D :
+     * KJIHGFEDCBA
+     * 00000001000 => 8
+     */
     public function modifierTache($idTache)
     {
         $ressource = $_POST['ressource'];
@@ -116,6 +126,11 @@ class Planification extends CI_Controller
         redirect($url->getURL());
     }
 
+    /**
+     * Service E :
+     * KJIHGFEDCBA
+     * 00000010000 => 16
+     */
     public function supprimerTache($idTache)
     {
         try {
@@ -127,5 +142,6 @@ class Planification extends CI_Controller
         $url = new Link("gantt", "Planification");
         redirect($url->getURL());
     }
+
 
 }
