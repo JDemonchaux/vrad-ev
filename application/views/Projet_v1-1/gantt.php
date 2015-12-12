@@ -6,13 +6,12 @@
 
     </div>
     <div class="col-sm-2">
-        <input list="ressources" type="text" id="filtre_ressource" placeholder="Filtrer pour une ressource"
-               style="width: 100%;">
-        <datalist id="ressources">
-            <option value="pelo 1">
-            <option value="pelo 2">
-            <option value="pelo 3">
-        </datalist>
+        <select id="ressources">
+            <option value=""><i>Filtrer par une ressource</i></option>
+            <?php foreach ($ressources as $unGens) { ?>
+                <option value="<?php echo $unGens->getId(); ?>"><?php echo $unGens->getPrenom(); ?></option>
+            <?php } ?>
+        </select>
     </div>
     <div class="col-sm-7">
         <span class="text-center"> <?php echo $groupe->getLibelle(); ?></span>
@@ -65,10 +64,10 @@
             <tbody>
             <?php if (isset($taches)) {
                 foreach ($taches as $tache) { ?>
-                    <tr>
+                    <tr class="<?php echo $tache->getUser()->getId(); ?>">
                         <td><?php echo $tache->getLibelle(); ?></td>
-                        <td class="text-center"><?php echo $tache->getPlanning()->displayStartHourPlan("H:i"); ?></td>
-                        <td class="text-center"><?php echo $tache->getPlanning()->displayEndHourPlan("H:i"); ?></td>
+                        <td class="text-center dd"><?php echo $tache->getPlanning()->displayStartHourPlan("H:i"); ?></td>
+                        <td class="text-center df"><?php echo $tache->getPlanning()->displayEndHourPlan("H:i"); ?></td>
                         <?php for ($i = 20; $i < 24; $i++) { ?>
                             <td data-heure="<?php echo $i; ?>" data-minute="00"></td>
                             <td data-heure="<?php echo $i; ?>" data-minute="15"></td>
@@ -104,7 +103,7 @@
                             <?php } ?>
                         </td>
                         <td class="supprimer text-center">
-                            <?php //var_dump($tache->getUser());?>
+<!--                            --><?php //var_dump($tache->getIsNp());?>
                             <?php if ($tache->getPlanning()->getStartHourReal() !== NULL) { ?>
                                 <a href="#!" data-toggle="modal" data-target="#confirm-delete"
                                    onClick="modalConfirmDelete(this)"

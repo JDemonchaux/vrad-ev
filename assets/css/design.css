@@ -83,7 +83,19 @@ th.minute {
     padding:3px !important;
 }
 
+.NP {
+    font-size:1rem;
+}
+
 .disabled {
     color:grey;
     cursor:not-allowed;
+}
+
+.green-text {
+    color:green;
+}
+
+.orange-text {
+    color:orange;
 }

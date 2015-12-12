@@ -97,7 +97,7 @@ class Task
         $this->user = $user;
     }
 
-    public function setIpNp($np) {
+    public function setIsNp($np) {
         $this->isNp = $np;
     }
 

@@ -137,6 +137,31 @@ $(document).ready(function () {
     });
 
 
+    /**
+     * GANTT
+     */
+    $("#ressources").on('change', function () {
+        var value = $(this).val();
+        console.log(value);
+        if (value == "") {
+            $("tbody>tr").each(function () {
+                $(this).show();
+            });
+        } else {
+            $("tbody>tr").each(function () {
+                if ($(this).hasClass(value)) {
+                    $(this).show();
+                }
+                else {
+                    $(this).hide();
+                }
+            });
+        }
+    });
+
+    colorGantt();
+
+
 });
 
 function modalConfirmDelete(el) {
@@ -153,10 +178,6 @@ function modalModifTache(el) {
     var heure_debut = moment($(el).data("heure_debut"), "hh:mm");
     var heure_fin = moment($(el).data("heure_fin"), "hh:mm");
     var d = new Date();
-    if (d.getHours() >= 22) {
-        $("#datetimepicker3").find("input").attr("disabled", true);
-        $("#datetimepicker4").find("input").attr("disabled", true);
-    }
 
     $('#datetimepicker3').remove();
     $('.datetimepicker3').append(createDateTimePicker("datetimepicker3", "heure_debut", "heure_debut"))
@@ -174,12 +195,18 @@ function modalModifTache(el) {
         defaultDate: heure_fin
     });
 
+    console.log(d.getHours())
+    if (d.getHours() >= 22) {
+        $("#datetimepicker3").find("input").attr("disabled", true);
+        $("#datetimepicker4").find("input").attr("disabled", true);
+    }
+
     $("#formModifTask").attr("action", href);
     $('#nomTache').html(nom);
 
 
-    $('#ressource_modifier option[value='+ ressource +']').prop('selected', true);
-    $('#itm_modifier option[value='+ item +']').prop('selected', true);
+    $('#ressource_modifier option[value=' + ressource + ']').prop('selected', true);
+    $('#itm_modifier option[value=' + item + ']').prop('selected', true);
 
 
 }
@@ -193,12 +220,34 @@ function clearModal() {
 }
 
 function createDateTimePicker(nom, id, name) {
-var el = '<div class="input-group date col-sm-4" id="'+nom+'">' +
-    '<input type="text" class="form-control" name="'+name+'" id="'+id+'"/>' +
-    '<span class="input-group-addon">' +
-    '<span class="glyphicon glyphicon-calendar"></span>' +
-    '        </span>' +
-    '        </div>';
+    var el = '<div class="input-group date col-sm-4" id="' + nom + '">' +
+        '<input type="text" class="form-control" name="' + name + '" id="' + id + '"/>' +
+        '<span class="input-group-addon">' +
+        '<span class="glyphicon glyphicon-calendar"></span>' +
+        '        </span>' +
+        '        </div>';
 
     return el;
+}
+
+
+function colorGantt() {
+    $(".gantt>tbody>tr").each(function () {
+        var dd = $(this).find('td.dd').html();
+        var df = $(this).find('td.df').html();
+
+        var tmp = dd.split(":");
+        var hd = tmp[0];
+        var md = tmp[1];
+        var tmp2 = df.split(":");
+        var hf = tmp2[0];
+        var mf = tmp2[1];
+
+        $(this).children("td").each(function () {
+            if ($(this).data("heure")) {
+
+            }
+        })
+
+    })
 }

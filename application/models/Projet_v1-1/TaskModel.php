@@ -29,7 +29,7 @@ class TaskModel extends CI_Model
         $format_date = $CI->config->item('date_format_bdd');
 
         $np = false;
-        if (date('H') > 20 && date('H') < 22) {
+        if (date('H') >= 22 || date('H') >= 00 && date('H') <= 8) {
             $np = true;
         }
 
@@ -68,7 +68,8 @@ class TaskModel extends CI_Model
         return $this->fillFullTask($rows);
     }
 
-    public function update($task) {
+    public function update($task)
+    {
 
         $CI =& get_instance();
         $format_date = $CI->config->item('date_format_bdd');
@@ -90,7 +91,8 @@ class TaskModel extends CI_Model
 
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $this->db->where("pk_tsk", $id);
         $this->db->delete("TM_TASK_TSK");
     }
@@ -124,6 +126,7 @@ class TaskModel extends CI_Model
             $item = new Item($data->pk_itm, $data->itm_lib, $data->itm_weight, $data->itm_priority, $categorie, $notation);
             $planification = new Schedule($data->tsk_start_hour_plan, $data->tsk_end_hour_plan, $data->tsk_start_hour_real, $data->tsk_end_hour_real);
             $task = new Task($data->pk_tsk, $data->tsk_lib, $data->tsk_comment, $item, $planification, $user);
+            $task->setIsNp($data->tsk_is_np);
 
             $result[$data->pk_tsk] = $task;
         }
