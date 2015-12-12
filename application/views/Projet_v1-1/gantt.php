@@ -41,7 +41,7 @@
                 <?php for ($i = 20; $i < 24; $i++) { ?>
                     <th colspan="4" class="text-center"><?php echo $i; ?>h</th>
                 <?php } ?>
-                <?php for ($i = 0; $i < 9; $i++) { ?>
+                <?php for ($i = 0; $i < 8; $i++) { ?>
                     <th colspan="4" class="text-center"><?php echo $i; ?>h</th>
                 <?php } ?>
                 <th rowspan="2" colspan="4" class="text-center">Actions</th>
@@ -53,7 +53,7 @@
                     <th class="minute text-center">30</th>
                     <th class="minute text-center">45</th>
                 <?php } ?>
-                <?php for ($i = 0; $i < 9; $i++) { ?>
+                <?php for ($i = 0; $i < 8; $i++) { ?>
                     <th class="minute text-center">00</th>
                     <th class="minute text-center">15</th>
                     <th class="minute text-center">30</th>
@@ -74,7 +74,7 @@
                             <td data-heure="<?php echo $i; ?>" data-minute="30"></td>
                             <td data-heure="<?php echo $i; ?>" data-minute="45"></td>
                         <?php } ?>
-                        <?php for ($i = 0; $i < 9; $i++) { ?>
+                        <?php for ($i = 0; $i < 8; $i++) { ?>
                             <td data-heure="<?php echo $i; ?>" data-minute="00"></td>
                             <td data-heure="<?php echo $i; ?>" data-minute="15"></td>
                             <td data-heure="<?php echo $i; ?>" data-minute="30"></td>

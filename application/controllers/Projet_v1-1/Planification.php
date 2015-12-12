@@ -65,7 +65,7 @@ class Planification extends CI_Controller
     {
         $data = array();
         $user = $_SESSION['current_user'];
-        $data['nomAffiche'] = $user->getPrenom()." ".$user->getNom();
+        $data['nomAffiche'] = $user->getPrenom() . " " . $user->getNom();
         $data['les_taches'] = $this->TaskModel->readAllByUser($user->getId());
         $data['URL_start'] = new Link("start", "Tache");;
         $data['URL_stop'] = new Link("stop", "Tache");;
@@ -108,12 +108,41 @@ class Planification extends CI_Controller
      */
     public function modifierTache($idTache)
     {
-        $ressource = $_POST['ressource'];
-        $item = $_POST["item"];
+        $ressource = new User('', '', $_POST['ressource']);
+        $item = new Item($_POST["item"]);
         $tache = new Task($idTache, "", "", $item, "", $ressource);
-        if (true) {
-            $tache->setFirstPlanning(new DateTime($_POST["heure_debut"]), new DateTime($_POST["heure_fin"]));
+
+        $dd = $_POST["heure_debut"];
+        $mdd = substr($dd, 0, 2);
+        $mdf = substr($dd, 3, 2);
+        $df = $_POST["heure_fin"];
+        $mfd = substr($df, 0, 2);
+        $mff = substr($df, 3, 2);
+        $date_debut = new DateTime($_POST["heure_debut"]);
+        $date_fin = new DateTime($_POST["heure_fin"]);
+
+        if (date('H') > 0 && date('H') <= 8) {
+            if ($mdd >= 20 && $mdd < 24) {
+                $date_debut->setDate(date('Y'), date('m'), date('d') - 1);
+                $date_debut->setTime($mdd, $mdf);
+            }
+            if ($mfd >= 20 && $mfd < 24) {
+                $date_fin->setDate(date('Y'), date('m'), date('d') - 1);
+                $date_fin->setTime($mfd, $mff);
+            }
         }
+        elseif (date('H') >= 20 && date('H') < 24) {
+            if ($mdd >= 0 && $mdd < 8) {
+                $date_debut->setDate(date('Y'), date('m'), date('d') + 1);
+                $date_debut->setTime($mdd, $mdf);
+            }
+            if ($mfd >= 0 && $mfd < 8) {
+                $date_fin->setDate(date('Y'), date('m'), date('d') + 1);
+                $date_fin->setTime($mfd, $mff);
+            }
+        }
+
+        $tache->setFirstPlanning($date_debut,$date_fin);
 
 
         try {
