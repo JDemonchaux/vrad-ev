@@ -40,7 +40,7 @@
 			?>
 
 		
-				<div class="col-xs-1"> 
+				<div class="col-xs-1 hcenter"> 
 					<?php echo $item_group->getCategorie()->getScore();?> / <?php echo $item_group->getCategorie()->getCoef();?>
 				</div>		
 	

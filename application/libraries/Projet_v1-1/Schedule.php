@@ -24,34 +24,38 @@ class Schedule
 
         // nb heures planifiées
 
-        if (!$startTimePlan instanceof DateTime) {
-            $this->startTimePlan = new DateTime($startTimePlan);
-        } elseif (is_null($startTimePlan)) {
+
+        if (is_null($startTimePlan)) {
             $this->startTimePlan = NULL;
+        } elseif (!$startTimePlan instanceof DateTime) {
+            $this->startTimePlan = new DateTime($startTimePlan);
         } else {
             $this->startTimePlan = $startTimePlan;
         }
-        if (!$endTimePlan instanceof DateTime) {
-            $this->endTimePlan = new DateTime($endTimePlan);
-        } elseif (is_null($endTimePlan)) {
+        if (is_null($endTimePlan)) {
             $this->endTimePlan = NULL;
+        } elseif (!$endTimePlan instanceof DateTime) {
+            $this->endTimePlan = new DateTime($endTimePlan);
         } else {
             $this->endTimePlan = $endTimePlan;
         }
-        if (!$startTimeReal instanceof DateTime) {
-            $this->startHourReal = new DateTime($startTimeReal);
-        } elseif (is_null($startTimeReal)) {
+        if (is_null($startTimeReal)) {
             $this->startHourReal = NULL;
-        } else {
+        }elseif (!$startTimeReal instanceof DateTime) {
+            $this->startHourReal = new DateTime($startTimeReal);
+        }  else {
             $this->startHourReal = $startTimeReal;
         }
-        if (!$endTimeReal instanceof DateTime) {
-            $this->endHourReal = new DateTime($endTimeReal);
-        } elseif (is_null($endTimeReal)) {
+
+        if (is_null($endTimeReal)) {
             $this->endHourReal = NULL;
-        } else {
+        }else if (!$endTimeReal instanceof DateTime) {
+            $this->endHourReal = new DateTime($endTimeReal);
+        }
+         else {
             $this->endHourReal = $endTimeReal;
         }
+
         $this->sethoursPlan();
         $this->setReal();
     }
@@ -134,6 +138,9 @@ class Schedule
     public
     function displayStartHourPlan($format = "")
     {
+        if (is_null($this->startTimePlan)) {
+            return "";
+        }
         if (empty($format)) {
             $format = $this->format_date;
         }
@@ -149,6 +156,9 @@ class Schedule
     public
     function displayEndHourPlan($format = "")
     {
+        if (is_null($this->endTimePlan)) {
+            return "";
+        }
         if (empty($format)) {
             $format = $this->format_date;
         }
@@ -164,6 +174,9 @@ class Schedule
     public
     function displayStartHourReal($format = "")
     {
+        if (is_null($this->startHourReal)) {
+            return "";
+        }
         if (empty($format)) {
             $format = $this->format_date;
         }
@@ -179,6 +192,9 @@ class Schedule
     public
     function displayEndHourReal($format = "")
     {
+        if (is_null($this->endHourReal)) {
+            return "";
+        }
         if (empty($format)) {
             $format = $this->format_date;
         }

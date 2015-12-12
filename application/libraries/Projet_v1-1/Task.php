@@ -102,7 +102,36 @@ class Task
     }
 
 	public function getEtat(){
-		return "";
+		if(!$this->planning->getRaf()){
+			return 0; //Terminé
+		}else if (!is_null($this->planning->getStartHourReal())){
+			return 1; // En cours
+		}else {
+			return NULL; //pas commencé
+		}
+		
+	}
+
+	public function displayEtat(){
+		if (is_null($this->getEtat())) {
+			return "";
+		}elseif($this->getEtat()==0){
+			return "Terminé";
+		}else if ($this->getEtat()==1){
+			return "En cours";
+		}
+		
+	}
+
+	public function displayIconeEtat(){
+		if (is_null($this->getEtat())) {
+			return "";
+		}elseif($this->getEtat()==0){
+			return '<span class="glyphicon glyphicon-check green-text"></span>';
+		}else if ($this->getEtat()==1){
+			return '<span class="glyphicon glyphicon-time orange-text"></span>';
+		}
+		
 	}
 
 

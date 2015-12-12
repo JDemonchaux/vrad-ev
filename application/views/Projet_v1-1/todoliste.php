@@ -27,30 +27,50 @@
 			</div>
 		</div>
 	</div>
-<?php 
-foreach ($les_taches as $tache) { ?>
-<div class="row"> 
-		<div class="col-xs-1"> <?php echo $tache->getEtat();?> </div>
-		<div class="col-xs-5">
-			<div class="row">
-				<div class="col-xs-4"><?php echo $tache->getItem()->getLibelle();?> </div>
-				<div class="col-xs-4"><?php echo $tache->getItem()->getPriority();?> </div>
-				<div class="col-xs-4"><?php echo $tache->getLibelle();?></div>
+	<?php 
+	foreach ($les_taches as $tache) { 
+
+		?>
+		<div class="row"> 
+			<div class="col-xs-1"> <?php echo $tache->displayIconeEtat();?> </div>
+			<div class="col-xs-5">
+				<div class="row">
+					<div class="col-xs-4"><?php echo $tache->getItem()->getLibelle();?> </div>
+					<div class="col-xs-4"><?php echo $tache->getItem()->getPriority();?> </div>
+					<div class="col-xs-4"><?php echo $tache->getLibelle();?></div>
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<div class="row">
+					<div class="col-xs-3"><?php echo $tache->getPlanning()->displayStartHourPlan("H:i");?></div>
+					<div class="col-xs-3"><?php echo $tache->getPlanning()->displayEndHourPlan("H:i");?></div>
+					<div class="col-xs-3">
+						<?php 
+						if(is_null($tache->getEtat())){ //pas commencée
+							echo "Btn Start"; //$data['URL_start']."/".$tache->getId()
+						} else{
+							echo $tache->getPlanning()->displayStartHourReal("H:i");
+						}
+						
+						?>
+					</div>
+					<div class="col-xs-3">
+						<?php 
+						if($tache->getEtat()==1 ){ //pas commencée
+							echo "Btn Stop"; //$data['URL_stop']."/".$tache->getId()
+						} else{
+							echo $tache->getPlanning()->displayEndHourReal("H:i");
+						}
+						
+						?>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="col-xs-6">getPlanning
-			<div class="row">
-				<div class="col-xs-3"><?php echo $tache->getPlanning()->displayStartHourPlan("H:i");?></div>
-				<div class="col-xs-3"><?php echo $tache->getPlanning()->displayEndHourPlan("H:i");?></div>
-				<div class="col-xs-3"><?php echo $tache->getPlanning()->displayStartHourReal("H:i");?></div>
-				<div class="col-xs-3"><?php echo $tache->getPlanning()->displayEndHourReal("H:i");?></div>
-			</div>
-		</div>
+		<?php } ?>
+
+
 	</div>
-<?php } ?>
-
-
-</div>
 
 
 </div>

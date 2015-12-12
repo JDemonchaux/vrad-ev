@@ -64,7 +64,6 @@ class GroupModel extends CI_Model
             "grp_lib" => $groupe->getLibelle(),
             "fk_schl" => $groupe->getEcole()->getId()
             );
-        var_dump($array);
         $query = $this->db->insert("TM_GROUP_GRP", $array);
         $req = $this->db->where("grp_lib", $groupe->getLibelle());
         $req = $this->db->join("TM_SCHOOL_SCHL", "fk_schl=pk_schl");
@@ -99,7 +98,6 @@ class GroupModel extends CI_Model
             $result[$data->pk_grp] = $arr["groupe"];
 
         }
-        var_dump($result);
         return $result;
         
     }

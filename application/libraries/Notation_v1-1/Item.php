@@ -130,7 +130,7 @@ public function displayAvancement(){
          if($this->livrable==0){
 							 $avancement = "N/A";
 						}else{
-							$avancement = $this->avancement;
+							$avancement = $this->avancement." %";
 						}
         return $avancement ;
     }

@@ -19,8 +19,32 @@
 	<h1 class="hcenter">
 		<?php
 		if($only_one){
-			$group = $les_groupes[$id_groupe];
-			echo $group->getLibelle()." - ".$group->getAvancement()."% - ".$group->getScore()."/200";
+			$groupe = $les_groupes[$id_groupe];
+			//echo $group->getLibelle()." - ".$group->getAvancement()."% - ".$group->getScore()."/200";
+			?>
+			<div class="row vertical-center">
+                <div class="col-sm-2">
+                    <img src="<?php echo base_url(); ?>assets/img/empty.jpg" class="img-responsive"/>
+                </div>
+                <div class="col-sm-2">
+                    <?php echo $groupe->getLibelle(); ?>
+                </div>
+                <div class="col-sm-4">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $groupe->getAvancement() ;?>" aria-valuemin="0"
+                             aria-valuemax="100" style="width: <?php echo $groupe->getAvancement(); ?>%;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <?php echo $groupe->getAvancement(); ?> % 
+                </div>
+                 <div class="col-sm-2">
+                   <?php echo $groupe->getScore();?> / 200;
+                </div>
+            </div>
+			<?
+
 		}else{
 			echo "Harmonisation";
 		}
@@ -41,9 +65,9 @@
 		
 		<?php	if($only_one){ ?>
 		<div class="col-xs-4"></div>
-		<div class="col-xs-2">%</div>
-		<div class="col-xs-2">note</div>
-		<div class="col-xs-4">Commentaire</div>
+		<div class="col-xs-2"><h4 class="hcenter">VA %</h4></div>
+		<div class="col-xs-2"><h4 class="hcenter">note</h4></div>
+		<div class="col-xs-4"><h4 class="hcenter">Commentaire</h4></div>
 		<?php	}else{ 
 			?>
 			<div class="col-xs-3"></div>
@@ -146,8 +170,8 @@
 		if($only_one){
 			$style = "";
 			?>
-				<div class="col-xs-2"><?php echo $item->displayAvancement();?></div>
-				<div class="col-xs-2">
+				<div class="col-xs-2 hcenter"><?php echo $item->displayAvancement();?></div>
+				<div class="col-xs-2 hcenter">
 	<?php }else{ ?>
 				<div class="col-xs-1"> 
 				<input type='hidden'  name='<?php echo $com_name;?>'  value='<?php echo $valcom;?>' />
