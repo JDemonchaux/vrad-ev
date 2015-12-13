@@ -79,18 +79,27 @@ class Classement
 			load_library("ManageEv","Projet");
 			$manageEv = new ManageEv();
 
+			$item_full_list = $this->CI->ItemModel->readAll();
 
 			if($with_total_avancement){
-				$task_list = $this->CI->TaskModel->readAllByGroup($groupe->getId());
-				$list_item_H = $manageEv->getHDoHDoneFromListItem($task_list);
-				$list_avancement_item = $manageEv->avancementItems($list_item_H);
-				$avancement = $manageEv->avancementProject($list_avancement_item);
+				
+			$task_list = $this->CI->TaskModel->readAllByGroup($groupe->getId());
+			$list_item_H = $manageEv->getHDoHDoneFromListItem($task_list);
+			$list_avancement_item = $manageEv->avancementItems($list_item_H,$item_full_list);
+			$avancement = $manageEv->avancementProject($list_avancement_item);
 			}
+
+			/*
+			echo "<pre>";
+			var_dump($list_avancement_item);
+			echo "</pre>";
+			die;
+			*/
 
 			if($with_total_note || $with_detail_avancement || $with_detail_note){
 
 				//préparation de la boucle 1
-				$item_full_list = $this->CI->ItemModel->readAll();
+				
 				if($with_total_note){
 					$item_list_scored = $this->CI->ItemModel->readAllByGroup($groupe->getId());
 					//$item_list = array_merge($item_full_list,$item_list_scored);//TODO à verif!!!
@@ -152,11 +161,27 @@ class Classement
 			
 			$groupe->setScore($somme);
 			$groupe->setAvancement($avancement);
+			//MAJ de la liste
 			if (isset($item_list)){
 				$groupe->setResultats($item_list);
 			}
 
+	/*
+			echo "<pre>";
+			var_dump($groupe->getResultats());
+			echo "</pre>";
+			die;
+			
+*/
 			$this->les_groupes[$key]=$groupe;
+
+/*
+			echo "<pre>";
+			var_dump($this->les_groupes[$key]->getResultats());
+			echo "</pre>";
+			die;
+			*/
+
 		}
 
 	}
