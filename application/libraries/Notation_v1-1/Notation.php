@@ -2,14 +2,23 @@
 
 /**
  *
+ * Note obtenue pour l'item par le groupe de projet
+ *
  * @version 1.0
- * @author Marie
+ * @package Vrad-EV
+ * @author Marie.Barbier.work@gmail.com
+ * @copyright  MB&JD December 2015
+ * @since   Version 1.0.0
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+
+
 class Notation
 {
 
-	private  $note;
-	private  $commentaire;
+	private  $note; //int
+	private  $commentaire; //String
 
 	public function __construct( $note=0,  $commentaire=''){
 		$this->note = $note;

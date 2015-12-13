@@ -2,17 +2,27 @@
 
 /**
  *
+ * Categorisation des items du Barème de notation (niveau 1)
+ * (Equivalant des activités de projet)
+ *
  * @version 1.0
- * @author Marie
+ * @package Vrad-EV
+ * @author Marie.Barbier.work@gmail.com
+ * @copyright  MB&JD December 2015
+ * @since   Version 1.0.0
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+
+
 class Categorie
 {
-	private  $id;
-	private  $libelle;
-	private  $description;
-	private  $score;
-	private  $coef;
-	private  $hexaColor;
+	private  $id; //int
+	private  $libelle; //String
+	private  $description; //String
+	private  $score; //int
+	private  $coef; //int
+	private  $hexaColor; //String ex : #FF0000
 
 public function __construct( $idCategorie='',  $libelle='',  $description='', $hexaColor="") {
 	$this->idCategorie = $idCategorie;

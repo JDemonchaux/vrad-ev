@@ -37,7 +37,12 @@ class Jury extends User
         $this->specialite = $specialite;
     }
 
-
+    /**
+     * permet de transformer les objets contenus en chaine 
+     * pour leur récupération après mise en session 
+     * sans passer par la BDD
+     * @author Marie.Barbier.work@gmail.com
+     */
     public function serialize(){
         parent::serialize();
         $this->serrialized_ecole =  $this->ecole->getId().'|'.//0
@@ -45,6 +50,11 @@ class Jury extends User
                                     $this->ecole->getVille().'|'; //2
     }
 
+    /**
+     * permet de récupérer les objets contenus en chaine 
+     * après leur mise en session 
+     * @author Marie.Barbier.work@gmail.com
+     */
     public function unSerialize(){
         parent::unSerialize();
         $tab_ecole = explode('|', $this->serrialized_ecole);

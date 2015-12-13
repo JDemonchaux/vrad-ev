@@ -22,6 +22,12 @@ class Member extends User
         $this->classe = $classe;
     }
 
+    /**
+     * permet de transformer les objets contenus en chaine 
+     * pour leur récupération après mise en session 
+     * sans passer par la BDD
+     * @author Marie.Barbier.work@gmail.com
+     */
     public function serialize(){
         parent::serialize();
         $this->serrialized_groupe =   $this->groupe->getId().'|'. //0
@@ -36,6 +42,11 @@ class Member extends User
                                 $this->classe->getLibelle();
     }
 
+    /**
+     * permet de récupérer les objets contenus en chaine 
+     * après leur mise en session 
+     * @author Marie.Barbier.work@gmail.com
+     */
     public function unSerialize(){
         parent::unSerialize();
         $tab_group = explode('|', $this->serrialized_groupe);
@@ -44,33 +55,6 @@ class Member extends User
         $tab_classe = explode('|', $this->serrialized_classe);
         $this->classe = new Grade($tab_classe[0],$tab_classe[1]);
     }
-
-    //TODO verifie si c'est pertinent d'avoir ça ici vu que la fonction est presente dans la parent
-//    public function login() {
-//        load_model("userModel");
-//
-//        $CI = get_instance();
-//        $res = $CI->userModel->validerLogin($this->email, $this->password);
-//        if (empty($res)) {
-//            throw new Exception($this->password, 1);
-//        } else {
-//            $this->id = $res->pk_usr;
-//            $this->prenom = $res->usr_name;
-//            $this->nom = $res->usr_firstname;
-//            $this->accountValid = $res->usr_account_valid;
-//            if ($this->accountValid == 0) {
-//                throw new Exception("Votre compte n'a pas encore été activé", 1);
-//            }
-//
-//            //récup des droits
-//
-//            $this->rights = $CI->userModel->getDroits($res->usr_role);
-//
-//            //Mise en session
-//            $CI->session->set_userdata("current_user", $this);
-//
-//        }
-//    }
 
     public function getGroupe() {
         return $this->groupe;

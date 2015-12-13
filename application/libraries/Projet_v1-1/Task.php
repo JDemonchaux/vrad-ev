@@ -2,18 +2,34 @@
 
 /**
  *
+ * Tache de projet rataché à un item du Barem
+ * contien un object Schedule pour sa plannification et son calcul d'avancement
+ *
  * @version 1.0
- * @author Marie
+ * @package Vrad-EV
+ * @author Marie.Barbier.work@gmail.com
+ * @copyright  MB&JD December 2015
+ * @since   Version 1.0.0
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+
+
+
 class Task
 {
-    private $idTask;
-    private $libelle;
-    private $description;
-    private $user;
-    private $item;
-    private $planning;
-    private $isNp;
+    private $idTask; //int
+    private $libelle; //String
+    private $description; //String
+    private $user; //User Object
+    private $item; //item Object
+    private $planning; //Schedule Object
+
+    /**
+    * Les taches enregistrées en BDD après 22h sont marqué comme NP
+    * cad non planifiées initialement dans les delais impartis
+    */
+    private $isNp; //Boolean
 
     public function __construct($idTask = '', $libelle = '', $description = '', $item = NULL, $planification = NULL, $user = NULL)
     {
@@ -101,6 +117,9 @@ class Task
         $this->isNp = $np;
     }
 
+    /**
+    *
+    */
 	public function getEtat(){
 		if(!$this->planning->getRaf()){
 			return 0; //Terminé

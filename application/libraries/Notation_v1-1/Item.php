@@ -2,19 +2,30 @@
 
 /**
  *
+ * Items du Barème de notation (niveau 2)
+ * (Equivalant des specifications : EF, ENF)
+ *
  * @version 1.0
- * @author Marie
+ * @package Vrad-EV
+ * @author Marie.Barbier.work@gmail.com
+ * @copyright  MB&JD December 2015
+ * @since   Version 1.0.0
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+
+
 class Item
 {
-	private  $idItem;
-	private  $libelle;
-	private  $description;
-	private  $categorie;
-	private  $priority;
-	private  $coef;
-	private  $type;
-	private  $livrable;
+	private  $idItem; //int
+	private  $libelle; //String
+	private  $description; //String
+	private  $categorie; //Categorie Object
+	private  $priority; // String (MoSCow)
+	private  $coef; // int
+	private  $type; //String : EF | ENF
+	private  $livrable; // int : 0 ou 1 : BOOLEAN
+	private  $notation; // Notation Object
 
 	public function __construct($idItem='',  $libelle='', $priority='', $coef='', $type='', $livrable='',  $description='', $categorie=NULL, $notation=NULL, $avancement=0) {
 		load_library('Categorie','Notation');
@@ -126,6 +137,7 @@ class Item
 		$this->avancement = $avancement;
 	}
 
+	// seule les EF et les ENF livrables peuvent commpter dans l'avancement
 	public function displayAvancement(){
 		if($this->livrable==0){
 			$avancement = "N/A";

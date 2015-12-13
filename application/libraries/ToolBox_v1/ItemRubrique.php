@@ -1,4 +1,14 @@
 <?php
+/**
+ *
+ * Item de Rubrique pour l'affichage du Menu utilisateur
+ * niveau juste en dessous de la Rubrique
+ *
+ * @package customCI-by-MB&JD
+ * @author  inconnu
+ * @copyright  MB&JD April 2015
+ * @since   Version 1.0.0
+ */
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 

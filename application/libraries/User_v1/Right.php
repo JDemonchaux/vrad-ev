@@ -6,7 +6,7 @@
  * user description.
  *
  * @version 1.0
- * @author J??r??me
+ * @author Jerome.Demonchaux@gmail.com
  */
 class right {
 

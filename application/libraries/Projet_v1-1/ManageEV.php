@@ -1,13 +1,20 @@
 <?php
 
 /**
+ *
  * Classe de calcul de l'avancement selon le modèle de la gestion par la valeur aquise
  *
- * manageEV description.
- *
  * @version 1.0
- * @author Marie
+ * @package Vrad-EV
+ * @author Marie.Barbier.work@gmail.com
+ * @copyright  MB&JD December 2015
+ * @since   Version 1.0.0
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+
+
+
 class ManageEV
 {
     /**

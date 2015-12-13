@@ -3,12 +3,13 @@
 /**
  *
  * @version 1.0
- * @author Marie
+ * @author Marie.Barbier.work@gmail.com
  */
 class Classement
 {
 
-	private  $les_groupes;
+	private  $les_groupes; // Array of Group Object
+
 	public static  $AVANCEMENT_ON = TRUE;
 	public static  $AVANCEMENT_OFF = FALSE;
 	public static  $SCORE_ON = TRUE;
@@ -33,6 +34,9 @@ class Classement
 		$this->les_groupes = $les_groupes;
 	}
 
+	/**
+	* @author Jerome.Demonchaux@gmail.com
+	*/
 	public function orderByScores(){
 //		$groupes_by_scores = array();
 //		foreach ($this->les_groupes as $key => $groupe) {
@@ -64,6 +68,9 @@ class Classement
 
 	}
 
+	/**
+	* @author Jerome.Demonchaux@gmail.com
+	*/
 	public function orderByAvancement(){
 		$les_groupes_tries = array();
 
@@ -104,6 +111,7 @@ class Classement
 	* with_detail_note = 2 boucles item
 	* si with_total_note && with_detail_avancement --> 1 seule boucle item
 	* si toutes les options à TRUE : alors que 2 boucles item
+	* @author Marie.Barbier.work@gmail.com
 	*/
 	public function calcul($with_total_avancement,$with_total_note=FALSE,$with_detail_avancement=FALSE,$with_detail_note=FALSE)
 	{

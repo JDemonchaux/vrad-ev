@@ -2,66 +2,96 @@
 
 /**
  *
+ * Classe de plannification d'une tache
+ * contien uniquement les dates et le RAF associé
+ * permet ainsi le calcul d'avancement
+ *
  * @version 1.0
- * @author Marie
+ * @package Vrad-EV
+ * @author Marie.Barbier.work@gmail.com
+ * @copyright  MB&JD December 2015
+ * @since   Version 1.0.0
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+
+
+
 class Schedule
 {
-    private $startTimePlan; //datetime
-    private $endTimePlan; //datetime
-    private $startHourReal; //datetime
+    /**
+     * DateTime
+     * Heure Planifiée de début de la tache
+     */
+    private $startTimePlan;
+
+    /**
+     * DateTime
+     * Heure Planifiée de fin de la tache
+     */
+    private $endTimePlan;
+
+    /**
+     * DateTime
+     * Heure Réelle de début de la tache
+     */
+    private $startHourReal;
+
+    /**
+     * DateTime
+     * Heure Réelle de fin de la tache
+     */
     private $endHourReal; //datetime
-    private $hoursToDo; //datetime
-    private $hoursDone; //datetime
-    private $raf; // peut être boolean
+
+    /**
+     * INT
+     * difféernce en heures entre startTimePlan et endTimePlan
+     */
+    private $hoursToDo; 
+
+    /**
+     * INT
+     * difféernce en heures entre startHourReal et endHourReal
+     */
+    private $hoursDone;
+
+    /**
+     * vaut TRUE si la tache n'est pas terminées
+     * (cad $endHourReal == NULL)
+     * vaut 0 sinon
+     */
+    private $raf; 
+
+    /**
+     * String (ex : YYYY-mm-dd)
+     * Format d'Affichage des dates (récup depuis la config)
+     */
     private $format_date;
 
+    /**
+     * Détermines les indicateurs d'avancement en fonction des DateTime définits
+     */
     public function __construct($startTimePlan = NULL, $endTimePlan = NULL, $startTimeReal = NULL, $endTimeReal = NULL)
     {
 
         $CI =& get_instance();
         $this->format_date = $CI->config->item('date_format_display');
 
-        // nb heures planifiées
+        //verification du format DateTime
+        $this->startTimePlan = $this->checkDate($startTimePlan);
+        $this->endTimePlan = $this->checkDate($endTimePlan);
+        $this->startTimeReal = $this->checkDate($startTimeReal);
+        $this->endTimeReal = $this->checkDate($endTimeReal);
 
-
-        if (is_null($startTimePlan)) {
-            $this->startTimePlan = NULL;
-        } elseif (!$startTimePlan instanceof DateTime) {
-            $this->startTimePlan = new DateTime($startTimePlan);
-        } else {
-            $this->startTimePlan = $startTimePlan;
-        }
-        if (is_null($endTimePlan)) {
-            $this->endTimePlan = NULL;
-        } elseif (!$endTimePlan instanceof DateTime) {
-            $this->endTimePlan = new DateTime($endTimePlan);
-        } else {
-            $this->endTimePlan = $endTimePlan;
-        }
-        if (is_null($startTimeReal)) {
-            $this->startHourReal = NULL;
-        }elseif (!$startTimeReal instanceof DateTime) {
-            $this->startHourReal = new DateTime($startTimeReal);
-        }  else {
-            $this->startHourReal = $startTimeReal;
-        }
-
-        if (is_null($endTimeReal)) {
-            $this->endHourReal = NULL;
-        }else if (!$endTimeReal instanceof DateTime) {
-            $this->endHourReal = new DateTime($endTimeReal);
-        }
-         else {
-            $this->endHourReal = $endTimeReal;
-        }
-
+        //détermination des autres attributs calculés
         $this->sethoursPlan();
         $this->setReal();
     }
 
-    private
-    function sethoursPlan()
+    /*
+     * Détermine la Période en heures entre les dates Planifiées de début et de fin 
+     */
+    private function sethoursPlan()
     {
         if (!is_null($this->startTimePlan) && !is_null($this->endTimePlan)) {
             $periodePlan = date_diff($this->startTimePlan, $this->endTimePlan);
@@ -71,8 +101,11 @@ class Schedule
         }
     }
 
-    private
-    function setReal()
+    /*
+     * Détermine la Période en heures entre les dates Réeles de début et de fin 
+     * Détermine également le RAF de la tache
+     */
+    private function setReal()
     {
         // calcul du RAF (pas en heure pour le moment) : si false alors raf = 0 : tache terminée
         $this->raf = true;
@@ -84,44 +117,50 @@ class Schedule
         }
     }
 
-    public
-    function setStartHourReal($startHourReal)
+    /*
+     * affecte la date de début Réelle
+     * et met à jours les indicateurs
+     */
+    public function setStartHourReal($startHourReal)
     {
-        if (gettype($startHourReal) !== "DateTime") {
-            $this->startHourReal = new DateTime($startHourReal);
-        } else {
-            $this->startHourReal = $startHourReal;
-        }
+        $this->startHourReal = $this->checkDate($startHourReal);
         $this->setReal();
     }
 
-    public
-    function setEndHourReal($endHourReal)
+    /*
+     * affecte la date de fin Réelle
+     * et met à jours les indicateurs
+     */
+    public function setEndHourReal($endHourReal)
     {
-        if (gettype($endHourReal) !== "DateTime") {
-            $this->endHourReal = new DateTime($endHourReal);
-        } else {
-            $this->endHourReal = $endHourReal;
-        }
+        $this->endHourReal = $this->checkDate($endHourReal);
         $this->setReal();
     }
 
-    public
-    function setStartHourRealNow()
+    /*
+     * Initialise le commencement de la tache
+     * et met à jours les indicateurs
+     */
+    public function setStartHourRealNow()
     {
         $this->startHourReal = new DateTime();
         $this->setReal();
     }
 
-    public
-    function setEndHourRealNow()
+    /*
+     * Initialise la fin de la tache
+     * et met à jours les indicateurs
+     */
+    public function setEndHourRealNow()
     {
         $this->endHourReal = new DateTime();
         $this->setReal();
     }
 
-    public
-    function setTimePlan($startTimePlan, $endTimePlan)
+    /**
+     * Affecte les dates de début et de fin planiffiées
+     */
+    public function setTimePlan($startTimePlan, $endTimePlan)
     {
         $this->startHoursPlan = $startTimePlan;
         $this->endTimePlan = $endTimePlan;
@@ -129,14 +168,16 @@ class Schedule
 
     }
 
-    public
-    function getStartHourPlan()
+    public function getStartHourPlan()
     {
         return $this->startTimePlan;
     }
 
-    public
-    function displayStartHourPlan($format = "")
+    /**
+     * mets en forme la date planifiée de début en fonction du format
+     * (en paramettre ou pas defaut)
+     */
+    public function displayStartHourPlan($format = "")
     {
         if (is_null($this->startTimePlan)) {
             return "";
@@ -153,8 +194,11 @@ class Schedule
         return $this->endTimePlan;
     }
 
-    public
-    function displayEndHourPlan($format = "")
+    /**
+     * mets en forme la date planifiée de fin en fonction du format
+     * (en paramettre ou pas defaut)
+     */
+    public function displayEndHourPlan($format = "")
     {
         if (is_null($this->endTimePlan)) {
             return "";
@@ -171,8 +215,11 @@ class Schedule
         return $this->startHourReal;
     }
 
-    public
-    function displayStartHourReal($format = "")
+    /**
+     * mets en forme la date réelle de début en fonction du format
+     * (en paramettre ou pas defaut)
+     */
+    public function displayStartHourReal($format = "")
     {
         if (is_null($this->startHourReal)) {
             return "";
@@ -189,8 +236,11 @@ class Schedule
         return $this->endHourReal;
     }
 
-    public
-    function displayEndHourReal($format = "")
+     /**
+     * mets en forme la date planifiées de fin en fonction du format
+     * (en paramettre ou pas defaut)
+     */
+    public function displayEndHourReal($format = "")
     {
         if (is_null($this->endHourReal)) {
             return "";
@@ -217,6 +267,21 @@ class Schedule
     function getHoursDone()
     {
         return $this->hoursDone;
+    }
+
+    /*
+     * Gère l'initialisation d'un DateTime
+     * en prennant en compte les valeurs nulles
+     * et en transtipant les chaines de caractères
+     */
+    private function checkDate($dateToCheck){
+        if (is_null($dateToCheck)) {
+            return NULL;
+        } elseif (!$dateToCheck instanceof DateTime) {
+            return new DateTime($dateToCheck);
+        } else {
+            return = $dateToCheck;
+        }
     }
 
 
