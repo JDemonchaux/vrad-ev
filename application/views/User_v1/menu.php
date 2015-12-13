@@ -52,18 +52,17 @@
                 // R�cup�ration de l'heure
             $dt = new DateTime("now", new DateTimeZone('Europe/Paris'));
             echo "<p class='navbar-text'>Il est : " . $dt->format('H') . "h" . $dt->format('i');
+                $ci = get_instance();
+                $user = $ci->session->current_user;
             ?>
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                 aria-haspopup="true" aria-expanded="false">
                 <i class="glyphicon glyphicon-user"></i>
+                <?php echo $user->getPrenom(). " " .$user->getNom() ; ?>
             </a>
             <ul class="dropdown-menu">
-                <li><?php
-                $ci = get_instance();
-                $user = $ci->session->current_user;
-                echo $user->getNom();
-
-                ?>
+                <li>
+                    Pas d'actions possibles
             </li>
         </ul>
     </li>

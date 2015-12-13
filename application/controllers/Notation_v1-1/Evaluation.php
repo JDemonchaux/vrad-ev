@@ -56,10 +56,9 @@ class Evaluation extends CI_Controller {
     public function harmonisation_action()
     {
       $list_item = $this->ItemModel->readAll();
-      //TODO : récup les groupes !!!
-      		//traitement du formulaire
-      foreach ($les_groupes as $id_groupe) {
-       saveResultOneGroup($id_groupe,$list_item,TRUE);
+      $les_groupes = $this->GroupModel->readAllGroup();
+      foreach ($les_groupes as $id_groupe => $groupe) {
+       $this->saveResultOneGroup($id_groupe,$list_item,TRUE);
      }
      $url = new Link("harmonisation", "Evaluation");
      redirect($url->getURL());
@@ -110,7 +109,7 @@ class Evaluation extends CI_Controller {
 
 // --- PRIVATE ---------------------------------------------------------------------
 
-// attention si detail pas a trou alors comme annuel et remplace on perds les commentaires...
+// attention si detail pas a true alors comme annuel et remplace on perds les commentaires...
    private function saveResultOneGroup($id_groupe,$list_item,$detail=FALSE){
     $groupe = new Group($id_groupe);
     $result = array();
