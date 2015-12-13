@@ -1,0 +1,17 @@
+1) mettre la couleur de la categ :
+		- dans form_notation
+		- dans todoliste
+		- scores
+2) todoliste : séparer les lignes et centrer verticalement
+
+3) revoir le style des boutons valider du form_notation
+
+4) bootstraper avec les couleurs :
+Rouge : #E50525
+Vert : #83BE3B
+Noir : #070707
+Bleu : #1AA1EA
+Orange : #FC831B
+Blanc
+
+5) tester avec limage de fond en reapeat
