@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `ref_category_cat` (
   `pk_cat` int(2) NOT NULL,
   `cat_lib` varchar(45) NOT NULL,
   `cat_hexa_color` varchar(7) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `ref_category_cat`
@@ -39,9 +39,10 @@ CREATE TABLE IF NOT EXISTS `ref_category_cat` (
 INSERT INTO `ref_category_cat` (`pk_cat`, `cat_lib`, `cat_hexa_color`) VALUES
 (1, 'Gestion de projet', '#9974AA'),
 (2, 'Qualité', '#84C68C'),
-(3, 'Système & réseau', '#FFF875'),
-(4, 'Développement', '#FFC875'),
-(6, 'Sécurité', '#059CD6');
+(3, 'Sécurité', '#059CD6'),
+(4, 'Système & réseau', '#FFF875'),
+(5, 'Développement', '#FFC875');
+
 
 -- --------------------------------------------------------
 
@@ -52,7 +53,7 @@ INSERT INTO `ref_category_cat` (`pk_cat`, `cat_lib`, `cat_hexa_color`) VALUES
 CREATE TABLE IF NOT EXISTS `ref_grade_grd` (
   `pk_grd` int(2) NOT NULL,
   `grd_lib` varchar(45) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `ref_grade_grd`
@@ -81,38 +82,31 @@ CREATE TABLE IF NOT EXISTS `ref_item_itm` (
   `itm_type` enum('EF','ENF') NOT NULL,
   `itm_livrable` tinyint(1) NOT NULL,
   `itm_desc` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `ref_item_itm`
 --
+INSERT INTO `ref_item_itm` 
+(`pk_itm`, `fk_cat`, `itm_lib`,     `itm_weight`, `itm_priority`, `itm_type`, `itm_livrable`, `itm_desc`) VALUES
+(   1,       1,      'C1 item 1',     1,           'NA',          'ENF',         0,              ''),
+(   2,       1,      'C1 item 2',     2,           'Must',          'ENF',         0,              ''),
 
-INSERT INTO `ref_item_itm` (`pk_itm`, `fk_cat`, `itm_lib`, `itm_weight`, `itm_priority`, `itm_type`, `itm_livrable`, `itm_desc`) VALUES
-(1, 1, 'initiatives', 3, 'NA', 'EF', 0, 'réalisation (fonctionnalité/service)'),
-(2, 1, 'revue de projet ', 6, 'NA', 'EF', 0, '(toutes les 2 heures)'),
-(3, 1, 'planification Agora', 6, 'NA', 'EF', 0, NULL),
-(4, 1, 'respect des priorités (réel)', 6, 'NA', 'EF', 0, NULL),
-(5, 1, 'pas de bug / réseau Opérationnel', 2, 'NA', 'EF', 0, 'robustesse'),
-(6, 2, 'document règles de filtrage FW', 4, 'NA', 'EF', 1, 'maintenabilité	Système & réseau'),
-(7, 2, 'Document ressource avec mots de passe', 2, '', 'EF', 1, '	maintenabilité	Système & réseau'),
-(8, 2, 'Schéma de principe des machines VM', 5, 'NA', 'EF', 1, '	maintenabilité	Système & réseau'),
-(9, 2, 'Schéma réseau', 5, 'NA', 'EF', 0, '	maintenabilité	Système & réseau'),
-(10, 2, 'évolutions et intervention en production facilité', 5, 'NA', 'EF', 0, 'maintenabilité	développement'),
-(11, 2, 'respect charte graphique', 5, 'NA', 'EF', 0, '	ergonomie	développement'),
-(12, 2, 'respect maquettes', 5, 'NA', 'EF', 0, '	ergonomie	développement'),
-(13, 2, 'injections SQL/XSS', 4, 'NA', 'EF', 0, 'Sécurité	développement'),
-(14, 2, 'pretty URL (URL rewrinting)', 4, 'NA', 'EF', 0, 'Sécurité	développement'),
-(15, 2, 'login et gestion des droits par AD', 4, 'NA', 'EF', 0, 'Sécurité	développement'),
-(16, 2, 'configuration PFSENSE (NAT,DMZ,FW,LAN…)', 10, 'NA', 'EF', 1, 'Sécurité	développement'),
-(17, 2, 'HTTPS sur WEB', 2, 'NA', 'EF', 1, 'Sécurité	développement'),
-(18, 2, 'Base de données sécurisées (mot de passe, acc', 2, 'NA', 'EF', 1, 'Sécurité	Système & réseau'),
-(19, 4, 'home > avancement', 5, 'MUST', 'EF', 1, 'front office connecté home tous'),
-(20, 4, 'affichage Gantt visuel', 5, 'SHOULD', 'EF', 1, 'front office connecté	mon projet	participant	Gantt visuel'),
-(21, 4, 'Importer la liste des items', 3, 'WOULD', 'EF', 1, 'back office	ressources	Administrateur'),
-(27, 4, 'Inscription Participant', 1, 'COULD', 'EF', 1, 'front office	inscription'),
-(28, 4, 'Création groupe', 1, 'COULD', 'EF', 1, 'front office	inscription'),
-(29, 4, 'Inscription Jury', 1, 'WOULD', 'EF', 1, 'front office	inscription'),
-(30, 4, 'Création école', 1, 'WOULD', 'EF', 1, 'front office	inscription');
+(   3,       2,      'C2 item 1',     2,           'NA',          'ENF',         0,              ''),
+(   4,       2,      'C2 item 2',     1,           'Should',          'EF',         1,              ''),
+
+(   5,       3,      'C3 item 1',     1,           'Must',          'ENF',         1,              ''),
+(   6,       3,      'C3 item 2',     2,           'Could',          'ENF',         1,              ''),
+
+(   7,       4,      'C4 item 1',     6,           'Must',          'EF',         1,              ''),
+(   8,       4,      'C4 item 2',     4,           'Must',          'EF',         1,              ''),
+(   9,       4,      'C4 item 3',     3,           'Should',          'EF',         1,              ''),
+
+(   10,       5,      'C5 item 1',     8,           'Must',          'EF',         1,              ''),
+(   11,       5,      'C5 item 2',     6,           'Should',          'EF',         1,              ''),
+(   12,       5,      'C5 item 3',     4,           'Could',          'EF',         1,              ''),
+(   13,       5,      'C5 item 4',     2,           'Would',          'EF',         1,              '');
+
 
 -- --------------------------------------------------------
 
@@ -173,7 +167,7 @@ INSERT INTO `tj_rights_rgt` (`fk_usr_role`, `rgt_model`, `rgt_controller`, `rgt_
 ('jury', 'Projet', 'Planification', '00000000001'),
 ('membre', 'Notation', 'Resultats', '00000000111'),
 ('membre', 'Projet', 'Planification', '00000000011'),
-('membre', 'Projet', 'tache', '11111111111');
+('membre', 'Projet', 'Tache', '11111111111');
 
 -- --------------------------------------------------------
 
@@ -208,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `tm_group_grp` (
   `pk_grp` int(2) NOT NULL,
   `fk_schl` int(2) NOT NULL,
   `grp_lib` varchar(45) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `tm_group_grp`
@@ -216,7 +210,8 @@ CREATE TABLE IF NOT EXISTS `tm_group_grp` (
 
 INSERT INTO `tm_group_grp` (`pk_grp`, `fk_schl`, `grp_lib`) VALUES
 (1, 2, 'les Anonymous'),
-(2, 2, 'Les Bras Cassés');
+(2, 2, 'Les Bras Cassés'),
+(3, 2, 'invASIon');
 
 -- --------------------------------------------------------
 
@@ -228,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `tm_school_schl` (
   `pk_schl` int(2) NOT NULL,
   `schl_lib` varchar(50) NOT NULL,
   `schl_city` varchar(25) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `tm_school_schl`
@@ -237,6 +232,36 @@ CREATE TABLE IF NOT EXISTS `tm_school_schl` (
 INSERT INTO `tm_school_schl` (`pk_schl`, `schl_lib`, `schl_city`) VALUES
 (1, 'ESAIP - Saint Joseph', 'Dijon'),
 (2, 'ES Pasteur Mont Roland', 'Dole');
+
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `tm_user_usr`
+--
+
+CREATE TABLE IF NOT EXISTS `tm_user_usr` (
+  `pk_usr` int(3) NOT NULL,
+  `fk_grd` int(2) DEFAULT NULL,
+  `fk_schl` int(2) DEFAULT NULL,
+  `fk_grp` int(2) DEFAULT NULL,
+  `usr_role` varchar(10) NOT NULL,
+  `usr_name` varchar(25) NOT NULL,
+  `usr_firstname` varchar(25) NOT NULL,
+  `usr_email` varchar(50) NOT NULL,
+  `usr_pwd` varchar(32) NOT NULL,
+  `usr_account_valid` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `tm_user_usr`
+--
+
+INSERT INTO `tm_user_usr` (`pk_usr`, `fk_grd`, `fk_schl`, `fk_grp`, `usr_role`, `usr_name`, `usr_firstname`, `usr_email`, `usr_pwd`, `usr_account_valid`) VALUES
+(1, NULL, 1, NULL, 'admin', 'Dussert', 'Nicolas', 'nicolas.dussert@stjodijon.com', '05a671c66aefea124cc08b76ea6d30bb', 1), -- mdp : testtest
+(2, NULL, 2, NULL, 'jury', 'Bailly', 'Olivier', 'o.bailly@glpmr.info', '05a671c66aefea124cc08b76ea6d30bb', 1), -- mdp : testtest
+(3, NULL, 1, NULL, 'jury', 'Barbier', 'Marie', 'mariebarbierwork@gmail.com', '05a671c66aefea124cc08b76ea6d30bb', 1), -- mdp : testtest
+(4, 4, 2, 3, 'membre', 'Demonchaux', 'Jerome', 'jerome.demonchaux@gmail.com', '08adfb6ad85c3a66b42f69139f3cec80', 1); -- jeyz1990
 
 -- --------------------------------------------------------
 
@@ -269,51 +294,46 @@ CREATE TABLE IF NOT EXISTS `tm_task_tsk` (
   `tsk_end_hour_real` datetime DEFAULT NULL,
   `tsk_state` tinyint(4) DEFAULT NULL COMMENT 'NULL : non commencée\n1 : en cours\n0 : terminée',
   `tsk_is_np` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `tm_task_tsk`
 --
 
 INSERT INTO `tm_task_tsk` (`pk_tsk`, `fk_usr`, `fk_itm`, `tsk_lib`, `tsk_comment`, `tsk_start_hour_plan`, `tsk_end_hour_plan`, `tsk_start_hour_real`, `tsk_end_hour_real`, `tsk_state`, `tsk_is_np`) VALUES
-(1, 7, 1, 'faire item 1', NULL, '2015-12-12 07:25:00', '2015-12-12 07:55:00', NULL, NULL, NULL, 0),
-(2, 7, 1, 'faire item 1 bis', NULL, '2015-12-12 08:25:00', '2015-12-12 08:55:00', NULL, NULL, NULL, 0),
-(3, 7, 2, 'faire item 2', NULL, '2015-12-12 07:00:00', '2015-12-12 07:25:00', '2015-12-12 07:00:00', '2015-12-12 07:30:00', NULL, 0),
-(4, 7, 3, 'faire item 3', NULL, '2015-12-12 07:00:00', '2015-12-12 07:25:00', '2015-12-12 07:00:00', NULL, NULL, 0);
+(1, 4, 1, 'faire item 1',         NULL, '2015-12-12 20:00:00', '2015-12-12 20:30:00', "2015-12-12 20:00:00", "2015-12-12 20:30:00", 0, 0),
+(2, 4, 1, 'faire item 1 bis',     NULL, '2015-12-12 20:30:00', '2015-12-12 21:00:00', "2015-12-12 20:30:00", "2015-12-12 21:00:00", 0, 0),
+(3, 4, 2, 'faire item 2 ',        NULL, '2015-12-12 21:00:00', '2015-12-12 21:30:00', "2015-12-12 21:00:00", "2015-12-12 21:30:00", 0, 0),
+(4, 4, 2, 'faire item 2 bis',     NULL, '2015-12-12 21:30:00', '2015-12-12 22:00:00', "2015-12-12 21:30:00'", NULL, 1, 0),
+
+(5, 4, 3, 'faire item 3',         NULL, '2015-12-12 20:00:00', '2015-12-12 20:30:00', NULL, NULL, NULL, 0),
+(6, 4, 3, 'faire item 3 bis',     NULL, '2015-12-12 20:30:00', '2015-12-12 21:00:00', NULL, NULL, NULL, 0),
+(7, 4, 4, 'faire item 4 ',        NULL, '2015-12-12 21:00:00', '2015-12-12 21:30:00', NULL, NULL, NULL, 0),
+(8, 4, 4, 'faire item 4 bis',     NULL, '2015-12-12 21:30:00', '2015-12-12 22:00:00', NULL, NULL, NULL, 0),
+
+(9, 4, 5, 'faire item 5',         NULL, '2015-12-12 22:00:00', '2015-12-12 23:30:00', "2015-12-12 22:00:00", "2015-12-12 23:30:00", 0, 0),
+(10, 4, 6, 'faire item 6 ',       NULL, '2015-12-12 23:00:00', '2015-12-12 23:30:00', "2015-12-12 23:00:00", "2015-12-12 23:30:00", 0, 0),
+
+(11, 4, 7, 'faire item 7',        NULL, '2015-12-12 22:00:00', '2015-12-12 22:30:00', "2015-12-12 22:00:00", "2015-12-12 22:30:00", 0, 0),
+(12, 4, 8, 'faire item 8 ',       NULL, '2015-12-12 23:00:00', '2015-12-12 23:30:00', "2015-12-12 23:00:00'", NULL, 1, 0),
+(13, 4, 9, 'faire item 9 ',       NULL, '2015-12-12 21:00:00', '2015-12-12 21:30:00', NULL, NULL, NULL, 1),
+
+(14, 4, 10, 'faire item 10',       NULL, '2015-12-13 00:00:00', '2015-12-13 00:30:00', NULL, NULL, NULL, 0),
+(15, 4, 10, 'faire item 10 bis',   NULL, '2015-12-13 00:30:00', '2015-12-13 01:00:00', NULL, NULL, NULL, 0),
+
+(16, 4, 10, 'faire item 11',       NULL, '2015-12-13 01:00:00', '2015-12-13 01:30:00', NULL, NULL, NULL, 0),
+(17, 4, 10, 'faire item 11 bis',   NULL, '2015-12-13 01:30:00', '2015-12-13 02:00:00', NULL, NULL, NULL, 0),
+
+(18, 4, 10, 'faire item 12',       NULL, '2015-12-13 02:00:00', '2015-12-13 02:30:00', NULL, NULL, NULL, 0),
+(19, 4, 10, 'faire item 12 bis',   NULL, '2015-12-13 02:30:00', '2015-12-13 03:00:00', NULL, NULL, NULL, 0),
+
+(20, 4, 10, 'faire item 13',       NULL, '2015-12-13 03:00:00', '2015-12-13 03:30:00', NULL, NULL, NULL, 1),
+(21, 4, 10, 'faire item 13 bis',   NULL, '2015-12-13 03:30:00', '2015-12-13 04:00:00', NULL, NULL, NULL, 1),
+
+(22, 4, 10, 'faire item 14',       NULL, '2015-12-13 04:00:00', '2015-12-13 04:30:00', NULL, NULL, NULL, 1),
+(23, 4, 10, 'faire item 15 bis',   NULL, '2015-12-13 04:30:00', '2015-12-13 05:30:00', NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
-
---
--- Structure de la table `tm_user_usr`
---
-
-CREATE TABLE IF NOT EXISTS `tm_user_usr` (
-  `pk_usr` int(3) NOT NULL,
-  `fk_grd` int(2) DEFAULT NULL,
-  `fk_schl` int(2) DEFAULT NULL,
-  `fk_grp` int(2) DEFAULT NULL,
-  `usr_role` varchar(10) NOT NULL,
-  `usr_name` varchar(25) NOT NULL,
-  `usr_firstname` varchar(25) NOT NULL,
-  `usr_email` varchar(50) NOT NULL,
-  `usr_pwd` varchar(32) NOT NULL,
-  `usr_account_valid` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-
---
--- Contenu de la table `tm_user_usr`
---
-
-INSERT INTO `tm_user_usr` (`pk_usr`, `fk_grd`, `fk_schl`, `fk_grp`, `usr_role`, `usr_name`, `usr_firstname`, `usr_email`, `usr_pwd`, `usr_account_valid`) VALUES
-(1, NULL, 1, NULL, 'admin', 'Dussert', 'Nicolas', 'nicolas.dussert@stjodijon.com', 'admin', 1),
-(2, NULL, 2, NULL, 'jury', 'Bailly', 'Olivier', 'o.bailly@glpmr.info', 'Oby', 1),
-(3, NULL, 1, NULL, 'jury', 'Barbier', 'Marie', 'mariebarbierwork@gmail.com', 'marie', 1),
-(4, 6, 2, 1, 'membre', 'Renard', 'Julien', 'j.renard@glpmr.info', 'j.renard', 1),
-(5, 4, 2, 1, 'membre', 'Quentin', 'Faivre', 'q.faivre@glpmr.info', 'q.faivre', 1),
-(6, 4, 2, 1, 'membre', 'Demonchaux', 'Jérome', 'j.demonchaux@glpmr.info', 'd41d8cd98f00b204e9800998ecf8427e', 1),
-(7, 4, 2, 1, 'membre', 'Bergerot', 'Marian', 'm.bergerot@glpmr.info', '05a671c66aefea124cc08b76ea6d30bb', 1),
-(8, 4, 2, 2, 'membre', 'Delpeaux', 'Cindy', 'c.delpeaux@glpmr.info', 'c.delpea', 1),
-(9, NULL, 1, NULL, 'jury', 'BARBIER', 'Marie', 'marie.barbier.work@gmail.com', '05a671c66aefea124cc08b76ea6d30bb', 1);
 
 --
 -- Index pour les tables exportées
@@ -417,7 +437,7 @@ ALTER TABLE `tm_user_usr`
 -- AUTO_INCREMENT pour la table `ref_category_cat`
 --
 ALTER TABLE `ref_category_cat`
-  MODIFY `pk_cat` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `pk_cat` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `ref_grade_grd`
 --
@@ -427,7 +447,7 @@ ALTER TABLE `ref_grade_grd`
 -- AUTO_INCREMENT pour la table `ref_item_itm`
 --
 ALTER TABLE `ref_item_itm`
-  MODIFY `pk_itm` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+  MODIFY `pk_itm` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT pour la table `ref_page_page`
 --
@@ -442,7 +462,7 @@ ALTER TABLE `ref_subject_sbj`
 -- AUTO_INCREMENT pour la table `tm_group_grp`
 --
 ALTER TABLE `tm_group_grp`
-  MODIFY `pk_grp` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `pk_grp` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT pour la table `tm_school_schl`
 --
@@ -457,12 +477,12 @@ ALTER TABLE `tm_score_grp_itm_scr`
 -- AUTO_INCREMENT pour la table `tm_task_tsk`
 --
 ALTER TABLE `tm_task_tsk`
-  MODIFY `pk_tsk` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `pk_tsk` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT pour la table `tm_user_usr`
 --
 ALTER TABLE `tm_user_usr`
-  MODIFY `pk_usr` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `pk_usr` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- Contraintes pour les tables exportées
 --
