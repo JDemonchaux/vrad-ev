@@ -161,7 +161,7 @@ $(document).ready(function () {
 
     colorGantt();
 
-    $("#formModifTask").on('submit', function() {
+    $("#formModifTask").on('submit', function () {
         $("#datetimepicker3").find("input").attr("disabled", false);
         $("#datetimepicker4").find("input").attr("disabled", false);
         return true
@@ -253,27 +253,28 @@ function colorGantt() {
         $(this).children("td").each(function () {
                 if (hd == hf) {
                     if ($(this).data("heure") == hd) {
-                        if ((mf - md) < 15 ) {
-                            if (($(this).data("minute") - parseInt(mf)) <= 7 ) {
-
-                            }
-                        }
-
-                        if ($(this).data("minute") < mf) {
+                        if ($(this).data("minute") < mf && $(this).data("minute") >= md) {
                             $(this).addClass("colored");
-                           $(this).html(progressBar());
+                            $(this).html(progressBar());
                         }
                     }
                 }
                 else if (hd < hf) {
                     if ($(this).data("heure") >= hd && $(this).data("heure") <= hf) {
-                        if ($(this).data("heure") < hf && $(this).data("minute") >= md) {
+                        if ($(this).data("heure") == hd) {
+                            if ($(this).data("minute") >= md) {
+                                $(this).addClass("colored");
+                                $(this).append(progressBar());
+                            }
+                        }
+                        else if ($(this).data("heure") < hf &&$(this).data("heure") > hd) {
                             $(this).addClass("colored");
-                           $(this).append(progressBar());
-                        } else if ($(this).data("heure") == hf) {
+                            $(this).append(progressBar());
+                        }
+                        else if ($(this).data("heure") == hf) {
                             if ($(this).data("minute") < mf) {
                                 $(this).addClass("colored");
-                               $(this).append(progressBar());
+                                $(this).append(progressBar());
                             }
                         }
                     }
@@ -282,22 +283,22 @@ function colorGantt() {
                     if ($(this).data("heure") == hd) {
                         if ($(this).data("minute") >= md) {
                             $(this).addClass("colored");
-                           $(this).append(progressBar());
+                            $(this).append(progressBar());
                         }
                     }
                     else if ($(this).data("heure") == hf) {
                         if ($(this).data("minute") < mf) {
                             $(this).addClass("colored");
-                           $(this).append(progressBar());
+                            $(this).append(progressBar());
                         }
                     }
                     else if ($(this).data("heure") <= hf) {
                         $(this).addClass("colored");
-                       $(this).append(progressBar());
+                        $(this).append(progressBar());
                     }
                     else if ($(this).data("heure") == parseInt(hd) + 1 || $(this).data("heure") == parseInt(hd) + 2 || $(this).data("heure") == parseInt(hd) + 3) {
                         $(this).addClass("colored");
-                       $(this).append(progressBar());
+                        $(this).append(progressBar());
                     }
                 }
             }
@@ -305,7 +306,6 @@ function colorGantt() {
         ;
     });
 }
-
 
 
 function progressBar() {

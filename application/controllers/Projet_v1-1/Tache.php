@@ -73,8 +73,8 @@ class Tache extends CI_Controller
 
     public function modifier_action($idTache)
     {
-        $ressource = $_POST['ressource'];
-        $item = $_POST["item"];
+        $ressource = new User('', '', $_POST['ressource']);
+        $item = new Item($_POST["item"]);
         $tache = new Task($idTache, "", "", $item, "", $ressource);
 
         $dd = $_POST["heure_debut"];

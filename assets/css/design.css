@@ -156,12 +156,14 @@ th.minute {
 
 .no2 {
     border: 1px solid black;
-    padding: 2rem 2rem 4rem 2rem;
-    margin-top:-2rem;
+    padding: 2rem 2rem 6rem 2rem;
+    margin-top:-4rem;
 }
 
 .no1 {
-
+    border: 1px solid black;
+    padding: 2rem 2rem 10rem 2rem;
+    margin-top:-8rem;
 }
 
 div.title {
@@ -171,7 +173,20 @@ div.title {
     font-weight:600;
 }
 
+div.score {
+    width: 100%;
+    text-align: center;
+    font-size:1.3rem;
+    font-weight:600;
+}
+
 span.avancement {
     padding-left:2rem;
     color:black;
+
+}
+
+.row .podium > .col-sm-4 {
+    padding-left: 0.5px;
+    padding-right: 0.5px;
 }

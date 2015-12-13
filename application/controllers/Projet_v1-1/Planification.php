@@ -49,7 +49,7 @@ class Planification extends CI_Controller
         }
         $data['ressources'] = $this->UserModel->getMembres($data['groupe']->getId());
         $data['items'] = $this->ItemModel->readAll();
-        $data['form_ajout_tache'] = new Link("ajouter_action", "Tache");
+        $data['form_ajout_tache'] = new Link("creer_action", "Tache");
         $data['form_modif_tache'] = new Link("modifier_action", "Tache");
         $data['form_suppr_tache'] = new Link("supprimer_action", "Tache");
         $data['taches'] = $this->TaskModel->readAllByGroup($data['groupe']->getId());

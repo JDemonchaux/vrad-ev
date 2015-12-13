@@ -10,82 +10,60 @@
             </div>
             <div class="col-sm-10">
                 <div class="row podium">
-                    <div class="col-sm-4">
-                        <?php if (isset($les_groupes[2])) { ?>
-                            <div class="no3">
-                                <div class="title"><?php echo $les_groupes[2]->getLibelle(); ?></div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar"
-                                         aria-valuenow="<?php echo $les_groupes[2]->getAvancement(); ?>"
-                                         aria-valuemin="0" aria-valuemax="100"
-                                         style="width: <?php echo $les_groupes[2]->getAvancement(); ?>%;">
+                    <?php $i = 0;
+                    foreach ($les_groupes as $groupe) {
+                    $i++;
+                    if ($i < 4) { ?>
+                    <?php if ($i == 1) {
+                        echo '<div class="col-sm-4 col-sm-push-4">';
+                    } else if ($i == 2) {
+                        echo '<div class="col-sm-4 col-sm-pull-4" >';
+                    } else {
+                        echo '<div class="col-sm-4">';
+                    } ?>
+                    <div class="no<?php echo $i; ?>">
+                        <div class="title"><?php echo $groupe->getLibelle(); ?></div>
+                        <div class="score"><?php echo $groupe->getScore(); ?>/200</div>
+                        <div class="progress ">
+                            <div class="progress-bar" role="progressbar"
+                                 aria-valuenow="<?php echo $groupe->getAvancement(); ?>"
+                                 aria-valuemin="0" aria-valuemax="100"
+                                 style="width: <?php echo $groupe->getAvancement(); ?>%;">
                                             <span class="avancement">
-                                                <?php echo $les_groupes[2]->getAvancement(); ?>%
+                                                <?php echo $groupe->getAvancement(); ?>%
                                             </span>
-                                    </div>
-                                </div>
                             </div>
-                        <?php } ?>
-                    </div>
-                    <div class="col-sm-4">
-                        <?php if (isset($les_groupes[0])) { ?>
-                            <div class="no1">
-                                <div class="title"><?php echo $les_groupes[0]->getLibelle(); ?></div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar"
-                                         aria-valuenow="<?php echo $les_groupes[0]->getAvancement(); ?>"
-                                         aria-valuemin="0" aria-valuemax="100"
-                                         style="width: <?php echo $les_groupes[0]->getAvancement(); ?>%;">
-                                            <span class="avancement">
-                                                <?php echo $les_groupes[0]->getAvancement(); ?>%
-                                            </span>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
-                    </div>
-                    <div class="col-sm-4 2eme">
-                        <?php if (isset($les_groupes[1])) { ?>
-                            <div class="no2">
-                                <div class="title"><?php echo $les_groupes[1]->getLibelle(); ?></div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar"
-                                         aria-valuenow="<?php echo $les_groupes[1]->getAvancement(); ?>"
-                                         aria-valuemin="0" aria-valuemax="100"
-                                         style="width: <?php echo $les_groupes[1]->getAvancement(); ?>%;">
-                                            <span class="avancement">
-                                                <?php echo $les_groupes[1]->getAvancement(); ?>%
-                                            </span>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
+                        </div>
                     </div>
                 </div>
-                <div class="row classement">
-                    &nbsp;
-                </div>
+                <?php }
+                } ?>
+
             </div>
-            <div class="col-sm-1">
+            <div class="row classement">
                 &nbsp;
             </div>
         </div>
-    </div>
-    <div class="col-sm-3">
-        <!-- slider -->
-        <div class="carousel_sponsor_vertical container"
-             data-slick='{"slidesToShow": 3, "slidesToScroll": 1, "autoplay": true, "vertical": true}'>
-            <?php
-            if (isset($images)) {
-                foreach ($images as $image) {
-                    echo '<div class="col-lg-4">';
-                    echo '<div class="vcenter_slider">';
-                    echo '<img src="' . base_url() . $image . '" class="imgItem"/>';
-                    echo '</div>';
-                    echo '</div>';
-                }
-            }
-            ?>
+        <div class="col-sm-1">
+            &nbsp;
         </div>
     </div>
+</div>
+<div class="col-sm-3">
+    <!-- slider -->
+    <div class="carousel_sponsor_vertical container"
+         data-slick='{"slidesToShow": 3, "slidesToScroll": 1, "autoplay": true, "vertical": true}'>
+        <?php
+        if (isset($images)) {
+            foreach ($images as $image) {
+                echo '<div class="col-lg-4">';
+                echo '<div class="vcenter_slider">';
+                echo '<img src="' . base_url() . $image . '" class="imgItem"/>';
+                echo '</div>';
+                echo '</div>';
+            }
+        }
+        ?>
+    </div>
+</div>
 </div>
