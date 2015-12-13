@@ -10,3 +10,5 @@ Orange : #FC831B
 Blanc
 
 6) tester avec limage de fond en reapeat
+
+7) Internationalisation, quand vraiment on saura plus quoi faire de notre temps
