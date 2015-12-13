@@ -21,7 +21,7 @@ class Classement
 		$this->CI = get_instance(); 
 		load_library("Group","User");
 		load_model("TaskModel","Projet");
-		load_model("ItemModel");
+		load_model("ItemModel","Notation");
 
 	}
 

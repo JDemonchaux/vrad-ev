@@ -29,7 +29,7 @@
                         <div class="title"><?php echo $groupe->getLibelle(); ?></div>
                         <div class="score"><?php echo $groupe->getScore(); ?>/200</div>
                         <div class="progress ">
-                            <div class="progress-bar" role="progressbar"
+                            <div class="progress-bar vert" role="progressbar"
                                  aria-valuenow="<?php echo $groupe->getAvancement(); ?>"
                                  aria-valuemin="0" aria-valuemax="100"
                                  style="width: <?php echo $groupe->getAvancement(); ?>%;">

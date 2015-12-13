@@ -17,6 +17,7 @@ class Planification extends CI_Controller
         load_library("Categorie", "Notation");
         load_library("Item", "Notation");
         load_library("Task", "Projet");
+        load_library("Classement", "Notation");
 
         load_model("UserModel", "User");
         load_model("GroupModel", "User");
@@ -47,6 +48,12 @@ class Planification extends CI_Controller
         } else {
             $data['groupe'] = $this->GroupModel->readOneGroup($id_group);
         }
+
+        $this->classement = new Classement( array($data['groupe']->getId() => $data['groupe']) );
+        $this->classement->calcul(Classement::$AVANCEMENT_ON,Classement::$SCORE_OFF,Classement::$DETAIL_OFF,Classement::$DETAIL_OFF);
+        $data['groupe'] = $this->classement->getLesGroupes()[$id_group];
+
+
         $data['ressources'] = $this->UserModel->getMembres($data['groupe']->getId());
         $data['items'] = $this->ItemModel->readAll();
         $data['form_ajout_tache'] = new Link("creer_action", "Tache");

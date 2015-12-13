@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $groupe->getAvancement() ;?>" aria-valuemin="0"
+                        <div class="progress-bar vert" role="progressbar" aria-valuenow="<?php echo $groupe->getAvancement() ;?>" aria-valuemin="0"
                              aria-valuemax="100" style="width: <?php echo $groupe->getAvancement(); ?>%;">
                         </div>
                     </div>

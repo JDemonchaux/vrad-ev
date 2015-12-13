@@ -17,9 +17,12 @@
         <span class="text-center"> <?php echo $groupe->getLibelle(); ?></span>
 
         <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $groupe->getAvancement(); ?>"
+            <div class="progress-bar vert" role="progressbar" aria-valuenow="<?php echo $groupe->getAvancement(); ?>"
                  aria-valuemin="0"
                  aria-valuemax="100" style="width: <?php echo $groupe->getAvancement(); ?>%;">
+                   <span class="avancement">
+                                                <?php echo $groupe->getAvancement(); ?>%
+                                            </span>
             </div>
         </div>
     </div>
