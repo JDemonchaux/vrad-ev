@@ -65,8 +65,10 @@ class Resultats extends CI_Controller
         $this->classement = new Classement($les_groupes);
         $this->classement->calcul(Classement::$AVANCEMENT_ON, Classement::$SCORE_ON);
         $this->classement->orderByScores();
+        $imageResizer = new imageResizer();
 
         $data = array(
+            'images' => $imageResizer->getSponsors(),
             'les_groupes' => $this->classement->getLesGroupes(),
         );
 
