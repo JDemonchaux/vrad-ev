@@ -1,5 +1,26 @@
 <?php
 
+$les_groupes_tries = array();
+
+$count = 0;
+foreach($les_groupes as $groupe) {
+    $les_groupes_tries[$count] = $groupe;
+    $count++;
+}
+$taille = count($les_groupes_tries) - 1;
+
+for ($i = 0; $i < $taille; $i++) {
+    for ($j = $taille-1; $j >= $i; $j--) {
+        if($les_groupes_tries[$j+1]->getScore() > $les_groupes_tries[$j]->getScore())
+        {
+            $temp = $les_groupes_tries[$j+1];
+            $les_groupes_tries[$j+1] = $les_groupes_tries[$j];
+            $les_groupes_tries[$j] = $temp;
+        }
+    }
+}
+
+$les_groupes = $les_groupes_tries;
 ?>
 
 <div class="row">
