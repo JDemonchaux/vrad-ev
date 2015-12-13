@@ -102,6 +102,28 @@ class GroupModel extends CI_Model
         
     }
 
+/**
+* ANNULE ET REMPLACE
+*/
+    public function saveNotes ($groupe){
+
+
+        foreach ($groupe->getResultats() as $idItem => $item) {
+            $array_delete = array(
+            "fk_grp" => $groupe->getId(),
+            "fk_itm" => $idItem
+            );
+            $array_insert = array_merge($array_delete, array(
+            "scr_score" => $item->getNotation()->getNote(),
+            "scr_comment" => $item->getNotation()->getCommentaire()
+            ));
+            
+            $this->db->delete('tm_score_grp_itm_scr', $array_delete);
+            $query = $this->db->insert("tm_score_grp_itm_scr", $array_insert);
+        }
+
+    }
+
     public function loadMenu() {
         
         return $this->readAllGroup();

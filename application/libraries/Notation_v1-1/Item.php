@@ -94,19 +94,19 @@ class Item
 	}
 
 	public function setPriority($priority){
-		 $this->priority = $priority;
+		$this->priority = $priority;
 	}
 
 	public function setCoef($coef){
-		 $this->coef = $coef;
+		$this->coef = $coef;
 	}
 
 	public function setType($type){
-		 $this->type = $type;
+		$this->type = $type;
 	}
 
 	public function setLivrable($livrable){
-		 $this->livrable = $livrable;
+		$this->livrable = $livrable;
 	}
 
 	public function setCategorie($categorie){
@@ -118,30 +118,30 @@ class Item
 	}
 
 
-    public function getAvancement(){
-        return $this->avancement ;
-    }
+	public function getAvancement(){
+		return $this->avancement ;
+	}
 
-    public function setAvancement($avancement){
-        $this->avancement = $avancement;
-    }
+	public function setAvancement($avancement){
+		$this->avancement = $avancement;
+	}
 
-public function displayAvancement(){
-         if($this->livrable==0){
-							 $avancement = "N/A";
-						}else{
-							$avancement = $this->avancement." %";
-						}
-        return $avancement ;
-    }
+	public function displayAvancement(){
+		if($this->livrable==0){
+			$avancement = "N/A";
+		}else{
+			$avancement = $this->avancement." %";
+		}
+		return $avancement ;
+	}
 
 	//si item planifiable et avancement à 0 on ne peut pas noter
-    public function isEvaluable(){
-if($this->avancement ==0 && $this->livrable==1){
-							return FALSE;
-						}
-    	return TRUE;
-    }
-   
+	public function isEvaluable(){
+		if($this->avancement ==0 && $this->livrable==1){
+			return FALSE;
+		}
+		return TRUE;
+	}
+
 
 }

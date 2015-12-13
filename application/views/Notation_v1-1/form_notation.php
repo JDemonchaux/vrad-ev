@@ -14,6 +14,12 @@
 }
 </style>
 
+	<?php
+	$URL = $action->getURL();
+	//id_groupe
+	?>
+<form action='<?php echo $URL;?>' method='post'>
+
 
 <div class="row-fluid">
 	<h1 class="hcenter">
@@ -22,6 +28,7 @@
 			$groupe = $les_groupes[$id_groupe];
 			//echo $group->getLibelle()." - ".$group->getAvancement()."% - ".$group->getScore()."/200";
 			?>
+			<input type='hidden'  name='id_groupe'  value='<?php echo $groupe->getId();?>' />
 			<div class="row vertical-center">
                 <div class="col-sm-2">
                     <img src="<?php echo base_url(); ?>assets/img/empty.jpg" class="img-responsive"/>
@@ -54,16 +61,14 @@
 </div>
 
 <div class="container-fluid container">
-	<?php
-//début du formulaire
-	echo "<form action='$action' method='post'>";
-	echo "<input type='submit' value='Valider'/>";
-	?>
+
+<input type='submit' value='Valider'/>
 
 	<!-- entete -->
 	<div class="row"> 
 		
 		<?php	if($only_one){ ?>
+		
 		<div class="col-xs-4"></div>
 		<div class="col-xs-2"><h4 class="hcenter">VA %</h4></div>
 		<div class="col-xs-2"><h4 class="hcenter">note</h4></div>
@@ -154,14 +159,14 @@
 
 			//si item planifiable et avancement à 0 on ne peut pas noter
 			$disable = "";
-			if($item_group->isEvaluable()){
+			if(!$item_group->isEvaluable()){
 				$disable = "DISABLED";
 			}
 
 			//Construction du formulaire avec les saisies précédentes
 			$val = $item_group->getNotation()->getNote();
 			$valcom = $item_group->getNotation()->getCommentaire();
-			$name = "g_".$group->getId()."|i_".$id_item."";
+			$name = "g".$group->getId()."-i".$id_item."";
 			$note_name = "N_".$name;
 			$com_name = "C_".$name;
 
@@ -187,9 +192,7 @@
 
 		if($only_one){ ?>
 			<div class="col-xs-4">
-				<textarea class='form-control' size ='20' name='<?php echo $com_name;?>'  <?php echo $disable;?> />
-					<?php echo $valcom;?>
-				</textarea>
+				<textarea class='form-control' size ='20' name='<?php echo $com_name;?>'  <?php echo $disable;?> /><?php echo $valcom;?></textarea>
 			</div>
 		<?php
 		}// fin if only_one

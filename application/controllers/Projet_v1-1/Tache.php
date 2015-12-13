@@ -159,9 +159,6 @@
       public function start($idTache)
       {
             $task = $this->TaskModel->readOneTask($idTache);
-            echo "<pre>";
-            var_dump($task);
-            echo "</pre>";
             $task->start();
             $this->TaskModel->update($task);
 
