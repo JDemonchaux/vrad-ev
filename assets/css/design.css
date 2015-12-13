@@ -7,6 +7,10 @@ body {
     background-repeat: repeat;
 }
 
+.navbar-header {
+    /*width: 100%;*/
+}
+
 .block-noir {
     width: 100%;
     height: 15px;
@@ -22,7 +26,7 @@ body {
 }
 
 .vcenter {
-    margin-top:1rem;
+    margin-top: 1rem;
 }
 
 .formHome {
@@ -138,11 +142,11 @@ th.minute {
     height: 50%;
     margin-top: 50%;
     background: rgba(154, 205, 252, 1);
-    background: -moz-linear-gradient(top, rgba(154, 205, 252, 1) 0%, rgba(0, 112, 232, 1) 100%);
-    background: -webkit-linear-gradient(top, rgba(154, 205, 252, 1) 0%, rgba(0, 112, 232, 1) 100%);
-    background: -o-linear-gradient(top, rgba(154, 205, 252, 1) 0%, rgba(0, 112, 232, 1) 100%);
-    background: -ms-linear-gradient(top, rgba(154, 205, 252, 1) 0%, rgba(0, 112, 232, 1) 100%);
-    background: linear-gradient(to bottom, rgba(154, 205, 252, 1) 0%, rgba(0, 112, 232, 1) 100%);
+    background: -moz-linear-gradient(top, rgba(169, 211, 116, 1) 0%, rgba(131, 190, 59, 1) 100%);
+    background: -webkit-linear-gradient(top, rgba(169, 211, 116, 1) 0%, rgba(131, 190, 59, 1) 100%);
+    background: -o-linear-gradient(top, rgba(169, 211, 116, 1) 0%, rgba(131, 190, 59, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(169, 211, 116, 1) 0%, rgba(131, 190, 59, 1) 100%);
+    background: linear-gradient(to bottom, rgba(169, 211, 116, 1) 0%, rgba(131, 190, 59, 1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#9acdfc', endColorstr='#0070e8', GradientType=0);
 
 }
@@ -160,69 +164,69 @@ th.minute {
 
 .no3 {
     border: 1px solid black;
-    padding:4rem 2rem 2rem;
+    padding: 4rem 2rem 2rem;
 }
 
 .no2 {
     border: 1px solid black;
     padding: 4rem 2rem 6rem 2rem;
-    margin-top:-4rem;
+    margin-top: -4rem;
 }
 
 .no1 {
     border: 1px solid black;
     padding: 4rem 2rem 10rem 2rem;
-    margin-top:-8rem;
+    margin-top: -8rem;
 }
 
 .podium {
-    margin-top:15%;
+    margin-top: 15%;
 }
 
 div.logo {
-    width:100%;
+    width: 100%;
     text-align: center;
-    min-height:60px;
+    min-height: 60px;
 }
 
 img.logoEcole {
-    margin-top:-10rem;
-    margin-bottom:2rem;
+    margin-top: -10rem;
+    margin-bottom: 2rem;
 }
 
 div.title {
     width: 100%;
     text-align: center;
-    font-size:2rem;
-    font-weight:600;
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 div.score {
     width: 100%;
     text-align: center;
-    font-size:1.3rem;
-    font-weight:600;
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 
 span.avancement {
-    padding-left:2rem;
-    color:black;
+    padding-left: 2rem;
+    color: black;
 
 }
 
 div.podiumFooter {
 
-    width:100%;
-    min-height:10px;
-    text-align:center;
-    margin-bottom:2rem;
+    width: 100%;
+    min-height: 10px;
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 .place {
-    padding-top:1rem;
-    padding-bottom:1rem;
-    font-size:1.5rem;
-    font-weight:500;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
     font-style: italic;
     font-family: "Segoe Marker", "Roboto", sans-serif;
 }
@@ -234,7 +238,7 @@ div.podiumFooter {
 
 .classement {
     margin-top: 10rem;
-    display:table;
+    display: table;
 }
 
 .classement > .logo {
@@ -243,27 +247,24 @@ div.podiumFooter {
 
 .classement > .title {
     min-height: 85px;
-    text-align:justify
-    margin:0 auto;
+    text-align: justify margin : 0 auto;
     width: 100%;
     display: inline-block;
     vertical-align: middle;
 }
-
-
 
 /**
 ** Medaille premier, deuxieme et troisieme
 **/
 
 .medal {
-    width:50px;
-    height:50px;
+    width: 50px;
+    height: 50px;
     -webkit-border-radius: 35px;
-    -moz-border-radius: 35px ;
-    border-radius: 35px ;
-    text-align:center;
-    padding-top:1rem;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    text-align: center;
+    padding-top: 1rem;
     margin-top: -3.5rem;
     margin-right: auto;
     margin-left: auto;
@@ -273,37 +274,33 @@ div.podiumFooter {
 
 .medal.n1 {
     background-color: rgb(255, 216, 85);
-    border:3px solid rgb(224, 176, 18);
-    color:rgb(224, 176, 18);
+    border: 3px solid rgb(224, 176, 18);
+    color: rgb(224, 176, 18);
 }
 
 .medal.n2 {
     background-color: rgb(227, 227, 227);
-    border:3px solid rgb(172, 172, 172);
-    color:rgb(172, 172, 172);
+    border: 3px solid rgb(172, 172, 172);
+    color: rgb(172, 172, 172);
 }
 
 .medal.n3 {
     background-color: rgb(232, 171, 106);
-    border:3px solid rgb(193, 99, 45);
-    color:rgb(193, 99, 45);
+    border: 3px solid rgb(193, 99, 45);
+    color: rgb(193, 99, 45);
 }
-
-
-
 
 /**
 * Correction
 **/
 .carousel_sponsor_vertical.container {
-    width:auto !important;
+    width: auto !important;
 }
 
-
 .tableToDoList th {
-    text-align:center;
-    font-size:16px;
-    font-weight:bold;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .finish {
@@ -314,10 +311,51 @@ div.podiumFooter {
     vertical-align: middle;
 }
 
-
 .image {
     text-align: center;
 }
+
 .image > img {
-    margin:0 auto;
+    margin: 0 auto;
+}
+
+.btn .btn-default, .btn-default, .btn-primary {
+    background-color: #E50525 !important;
+    color: white !important;
+    background-image: none !important;
+}
+
+.rouge {
+    background-color: #E50525 !important;
+}
+
+.rouge-text {
+    color: #E50525 !important;
+}
+
+.vert {
+    background-color: #83BE3B !important;
+    background-image: none !important;
+}
+
+.vert-text {
+    color: #83BE3B !important;
+}
+
+.white-text {
+    color: #FFF !important;
+}
+
+.black-border {
+    border-color: #070707 !important;
+}
+
+h1.titre {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: #E50525;
+    color: white;
+    border: 6px solid white;
+    margin-left: 25%;
+    margin-right: 25%;
 }

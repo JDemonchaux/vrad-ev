@@ -1,5 +1,10 @@
 $(document).ready(function () {
 
+    if (window.location.href.indexOf("Connexion") > -1 ||
+        window.location.href.indexOf("Inscription") > -1) {
+        $("body").css("background", "url('../../assets/img/fond_repetable_2.png') repeat");
+    }
+
     $('#datetimepicker1').datetimepicker({
         locale: 'fr',
         format: 'LT'
