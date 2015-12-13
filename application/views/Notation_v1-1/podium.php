@@ -22,6 +22,8 @@
                         echo '<div class="col-sm-4">';
                     } ?>
                     <div class="no<?php echo $i; ?>">
+                        <div
+                            class="logo"><?php echo img_url("ecoles/" . $groupe->getEcole()->getId() . ".png", "Logo de l'école", "logoEcole"); ?></div>
                         <div class="title"><?php echo $groupe->getLibelle(); ?></div>
                         <div class="score"><?php echo $groupe->getScore(); ?>/200</div>
                         <div class="progress ">
@@ -33,6 +35,23 @@
                                                 <?php echo $groupe->getAvancement(); ?>%
                                             </span>
                             </div>
+                        </div>
+
+                    </div>
+                    <div class="podiumFooter">
+                        <div class="place">
+                            <?php
+                            if ($i == 1) {
+                                echo "1er";
+                            }
+                            elseif ($i == 2) {
+                                echo "2ème";
+                            }
+                            elseif ($i == 3) {
+                                echo "3ème";
+                            }
+
+                            ?>
                         </div>
                     </div>
                 </div>

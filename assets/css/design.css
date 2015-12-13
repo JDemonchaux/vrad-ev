@@ -146,24 +146,35 @@ th.minute {
 ** PODIUM
 */
 .row .main {
-    margin-top: 10%;
+    margin-top: 15%;
 }
 
 .no3 {
     border: 1px solid black;
-    padding:2rem;
+    padding:4rem 2rem 2rem;
 }
 
 .no2 {
     border: 1px solid black;
-    padding: 2rem 2rem 6rem 2rem;
+    padding: 4rem 2rem 6rem 2rem;
     margin-top:-4rem;
 }
 
 .no1 {
     border: 1px solid black;
-    padding: 2rem 2rem 10rem 2rem;
+    padding: 4rem 2rem 10rem 2rem;
     margin-top:-8rem;
+}
+
+div.logo {
+    width:100%;
+    text-align: center;
+    min-height:60px;
+}
+
+img.logoEcole {
+    margin-top:-10rem;
+    margin-bottom:2rem;
 }
 
 div.title {
@@ -184,6 +195,22 @@ span.avancement {
     padding-left:2rem;
     color:black;
 
+}
+
+div.podiumFooter {
+
+    width:100%;
+    min-height:10px;
+    text-align:center;
+}
+
+.place {
+    padding-top:1rem;
+    padding-bottom:1rem;
+    font-size:1.5rem;
+    font-weight:500;
+    font-style: italic;
+    font-family: "Segoe Marker", "Roboto", sans-serif;
 }
 
 .row .podium > .col-sm-4 {

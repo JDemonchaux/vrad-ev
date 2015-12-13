@@ -61,7 +61,7 @@ class Resultats extends CI_Controller
      */
     public function podium()
     {
-        $les_groupes = $this->GroupModel->readAllGroup();
+        $les_groupes = $this->GroupModel->readAllGroupSchool();
         $this->classement = new Classement($les_groupes);
         $this->classement->calcul(Classement::$AVANCEMENT_ON, Classement::$SCORE_ON);
         $this->classement->orderByScores();
