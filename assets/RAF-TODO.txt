@@ -6,7 +6,9 @@
 
 3) revoir le style des boutons valider du form_notation
 
-4) bootstraper avec les couleurs :
+4) mettre la photo de l'école sur toutes les pages ou il y a le logo pour le groupe
+
+5) bootstraper avec les couleurs :
 Rouge : #E50525
 Vert : #83BE3B
 Noir : #070707
@@ -14,4 +16,4 @@ Bleu : #1AA1EA
 Orange : #FC831B
 Blanc
 
-5) tester avec limage de fond en reapeat
+6) tester avec limage de fond en reapeat
