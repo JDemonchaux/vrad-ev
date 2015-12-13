@@ -83,7 +83,7 @@ class Resultats extends CI_Controller
      */
     public function scores()
     {
-        $les_groupes = $this->GroupModel->readAllGroup();
+        $les_groupes = $this->GroupModel->readAllGroupSchool();
         $this->classement = new Classement($les_groupes);
         $this->classement->calcul(Classement::$AVANCEMENT_OFF, Classement::$SCORE_ON, Classement::$DETAIL_OFF, Classement::$DETAIL_ON);
         $this->classement->orderByScores();

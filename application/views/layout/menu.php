@@ -3,7 +3,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#!">Home</a></li>
+                <li class="active"><a href="<?php echo base_url(); ?>">Home</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Mon projet <span class="caret"></span></a>
@@ -32,7 +32,6 @@
                             $ci = get_instance();
                             $user = $ci->session->current_user;
                             echo $user->getNom();
-
                             ?>
                         </li>
                     </ul>

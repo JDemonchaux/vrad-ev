@@ -1,12 +1,5 @@
-1) mettre la couleur de la categ :
-		- dans form_notation
-		- dans todoliste
-		- scores
-2) todoliste : séparer les lignes et centrer verticalement
-
-3) revoir le style des boutons valider du form_notation
-
-4) mettre la photo de l'école sur toutes les pages ou il y a le logo pour le groupe
+1) Menu "MonProjet" daubé en user (ctrl task)
+-- Virer script.js ligne 175 pour rafficher le bug
 
 5) bootstraper avec les couleurs :
 Rouge : #E50525
@@ -17,5 +10,3 @@ Orange : #FC831B
 Blanc
 
 6) tester avec limage de fond en reapeat
-
-7) corriger le calcul d'ordre par score  au bon endroit

@@ -34,19 +34,58 @@ class Classement
 	}
 
 	public function orderByScores(){
-		$groupes_by_scores = array();
-		foreach ($this->les_groupes as $key => $groupe) {
-			$groupes_by_scores[$groupe->getScore()] = $groupe; //et si deux scores ex-equos???
-		}
+//		$groupes_by_scores = array();
+//		foreach ($this->les_groupes as $key => $groupe) {
+//			$groupes_by_scores[$groupe->getScore()] = $groupe; //et si deux scores ex-equos???
+//		}
 		//$this->les_groupes = array_multisort($groupes_by_scores);//TODO a verif
+
+		$les_groupes_tries = array();
+
+		$count = 0;
+		foreach($this->les_groupes as $groupe) {
+			$les_groupes_tries[$count] = $groupe;
+			$count++;
+		}
+		$taille = count($les_groupes_tries) - 1;
+
+		for ($i = 0; $i < $taille; $i++) {
+			for ($j = $taille-1; $j >= $i; $j--) {
+				if($les_groupes_tries[$j+1]->getScore() > $les_groupes_tries[$j]->getScore())
+				{
+					$temp = $les_groupes_tries[$j+1];
+					$les_groupes_tries[$j+1] = $les_groupes_tries[$j];
+					$les_groupes_tries[$j] = $temp;
+				}
+			}
+		}
+
+		$this->les_groupes = $les_groupes_tries;
+
 	}
 
 	public function orderByAvancement(){
-		$groupes_by_avancement = array();
-		foreach ($this->les_groupes as $key => $groupe) {
-			$groupes_by_avancement[$groupe->getAvancement()] = $groupe; //et si deux av ex-equos???
+		$les_groupes_tries = array();
+
+		$count = 0;
+		foreach($this->les_groupes as $groupe) {
+			$les_groupes_tries[$count] = $groupe;
+			$count++;
 		}
-		//$this->les_groupes = array_multisort($groupes_by_avancement);//TODO a verif
+		$taille = count($les_groupes_tries) - 1;
+
+		for ($i = 0; $i < $taille; $i++) {
+			for ($j = $taille-1; $j >= $i; $j--) {
+				if($les_groupes_tries[$j+1]->getAvancement() > $les_groupes_tries[$j]->getAvancement())
+				{
+					$temp = $les_groupes_tries[$j+1];
+					$les_groupes_tries[$j+1] = $les_groupes_tries[$j];
+					$les_groupes_tries[$j] = $temp;
+				}
+			}
+		}
+
+		$this->les_groupes = $les_groupes_tries;
 	}
 
 	public function orderByGroupesNames(){

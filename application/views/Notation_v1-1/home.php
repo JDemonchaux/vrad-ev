@@ -10,8 +10,8 @@
     <div class="container-fluid container">
         <?php foreach ($les_groupes as $groupe) { ?>
             <div class="row vertical-center">
-                <div class="col-sm-2">
-                    <img src="<?php echo base_url(); ?>assets/img/empty.jpg" class="img-responsive"/>
+                <div class="col-sm-2 image">
+                    <?php echo img_url("ecoles/".$groupe->getEcole()->getId().".png", "Logo de l'école", "img-responsive");?>
                 </div>
                 <div class="col-sm-2">
                     <?php echo $groupe->getLibelle(); ?>

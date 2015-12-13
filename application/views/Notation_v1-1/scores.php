@@ -7,7 +7,9 @@
 		<div class="col-xs-3"></div>
 		<?php foreach ($les_groupes as $id_group => $group) {			 ?>
 		<div class="col-xs-1"> 
-			<div class="row"><img src='<?php echo base_url();?>assets/img/empty.jpg' class='img-responsive'/></div>
+			<div class="row">
+				<?php echo img_url("ecoles/".$group->getEcole()->getId().".png", "Logo de l'école", "img-responsive");?>
+			</div>
 			<div class="row">
 				<h6 class="hcenter"><?php echo $group->getLibelle()?><br/><span><?php echo $group->getScore();?> / 200</span></h6>
 			</div>			
@@ -40,7 +42,7 @@
 			?>
 
 		
-				<div class="col-xs-1 hcenter"> 
+				<div class="col-xs-1 hcenter vcenter">
 					<?php echo $item_group->getCategorie()->getScore();?> / <?php echo $item_group->getCategorie()->getCoef();?>
 				</div>		
 	

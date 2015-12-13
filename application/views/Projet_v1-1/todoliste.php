@@ -31,15 +31,15 @@
                 <tbody>
                 <?php foreach ($les_taches as $tache) { ?>
                     <tr class="text-center">
-                        <td><?php echo $tache->displayIconeEtat(); ?></td>
-                        <td <?php echo 'style="background-color: ' . $tache->getItem()->getCategorie()->gethexaColor() . '"'; ?>>
+                        <td class="valign"><?php echo $tache->displayIconeEtat(); ?></td>
+                        <td class="valign" <?php echo 'style="background-color: ' . $tache->getItem()->getCategorie()->gethexaColor() . '"'; ?>>
                             <?php echo $tache->getItem()->getLibelle(); ?>
                         </td>
-                        <td><?php echo $tache->getItem()->getPriority(); ?></td>
-                        <td><?php echo $tache->getLibelle(); ?></td>
-                        <td><?php echo $tache->getPlanning()->displayStartHourPlan("H:i"); ?></td>
-                        <td><?php echo $tache->getPlanning()->displayEndHourPlan("H:i"); ?></td>
-                        <td>
+                        <td class="valign"><?php echo $tache->getItem()->getPriority(); ?></td>
+                        <td class="valign"><?php echo $tache->getLibelle(); ?></td>
+                        <td class="valign"><?php echo $tache->getPlanning()->displayStartHourPlan("H:i"); ?></td>
+                        <td class="valign"><?php echo $tache->getPlanning()->displayEndHourPlan("H:i"); ?></td>
+                        <td class="valign">
                             <?php if (is_null($tache->getEtat())) { //pas commencée ?>
                                 <?php $URL = $URL_start->getURL() . "/" . $tache->getIdTask(); ?>
                                 <form action="<?php echo $URL; ?>" method="POST"
@@ -50,7 +50,7 @@
                                 echo $tache->getPlanning()->displayStartHourReal("H:i");
                             } ?>
                         </td>
-                        <td> <?php
+                        <td class="valign"> <?php
                             if ($tache->getEtat() == 1) { //pas commencée
                                 $URL = $URL_stop->getURL() . "/" . $tache->getIdTask();
                                 ?>

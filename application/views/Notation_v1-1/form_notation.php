@@ -30,8 +30,8 @@ $URL = $action->getURL();
                 ?>
                 <input type='hidden' name='id_groupe' value='<?php echo $groupe->getId(); ?>'/>
                 <div class="row vertical-center">
-                    <div class="col-sm-2">
-                        <img src="<?php echo base_url(); ?>assets/img/empty.jpg" class="img-responsive"/>
+                    <div class="col-sm-2 image">
+                        <?php echo img_url("ecoles/".$groupe->getEcole()->getId().".png", "Logo de l'école", "img-responsive");?>
                     </div>
                     <div class="col-sm-2">
                         <?php echo $groupe->getLibelle(); ?>
@@ -63,10 +63,10 @@ $URL = $action->getURL();
 
     <div class="container-fluid container">
 
-        <input type='submit' value='Valider'/>
+        <input type='submit' value='Valider' class="btn btn-default"/>
 
         <!-- entete -->
-        <div class="row">
+        <div class="row ">
 
             <?php if ($only_one) { ?>
 
@@ -81,8 +81,9 @@ $URL = $action->getURL();
                 foreach ($les_groupes as $id_group => $group) {
                     ?>
                     <div class="col-xs-1">
-                        <div class="row"><img src='<?php echo base_url(); ?>assets/img/empty.jpg'
-                                              class='img-responsive'/></div>
+                        <div class="row">
+                            <?php echo img_url("ecoles/".$group->getEcole()->getId().".png", "Logo de l'école", "img-responsive");?>
+                        </div>
                         <div class="row">
                             <h6 class="hcenter"><?php echo $group->getLibelle() ?>
                                 <br/><span><?php echo $group->getScore(); ?> / 200</span></h6>
@@ -115,7 +116,7 @@ $URL = $action->getURL();
 
             ?>
 
-            <div class="row">
+            <div class="row " style="margin-bottom: 1rem; margin-top:1rem; background-color: <?php echo $item->getCategorie()->getHexaColor();?>;">
                 <div class="col-xs-4">
                     <h3>
                         <?php echo $item->getCategorie()->getLibelle(); ?>
@@ -216,7 +217,7 @@ $URL = $action->getURL();
                 }//fin for items
 
                 //fin du formulaire
-                echo "<input type='submit' value='Valider'/>";
+                echo "<input type='submit' value='Valider' class='btn btn-default'/>";
                 echo "</form >";
                 ?>
             </div>

@@ -168,6 +168,12 @@ $(document).ready(function () {
     });
 
 
+    /**
+     * correction merdouille
+     * @TODO : virer ça quand le menu sera ok
+     */
+    $("a:empty").hide();
+
 });
 
 function modalConfirmDelete(el) {

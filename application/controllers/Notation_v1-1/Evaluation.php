@@ -31,7 +31,7 @@ class Evaluation extends CI_Controller {
     public function harmonisation()
     {
       		//charger les notes par groupes pour pré-remplir le formulaire
-     $les_groupes = $this->GroupModel->readAllGroup();
+     $les_groupes = $this->GroupModel->readAllGroupSchool();
      $this->classement = new Classement($les_groupes);
      $this->classement->calcul(Classement::$AVANCEMENT_ON,Classement::$SCORE_ON,Classement::$DETAIL_ON);
      $this->classement->orderByGroupesNames();
@@ -56,7 +56,7 @@ class Evaluation extends CI_Controller {
     public function harmonisation_action()
     {
       $list_item = $this->ItemModel->readAll();
-      $les_groupes = $this->GroupModel->readAllGroup();
+      $les_groupes = $this->GroupModel->readAllGroupSchool();
       foreach ($les_groupes as $id_groupe => $groupe) {
        $this->saveResultOneGroup($id_groupe,$list_item,TRUE);
      }
@@ -72,7 +72,7 @@ class Evaluation extends CI_Controller {
     public function noterGroupe($id_groupe)
     {
       	//charger les notes du groupe pour pré-remplir le formulaire
-     $groupe = $this->GroupModel->readOneGroup($id_groupe);
+     $groupe = $this->GroupModel->readOneGroupSchool($id_groupe);
      $les_groupes = array($id_groupe => $groupe);
      $this->classement = new Classement($les_groupes);
      $this->classement->calcul(Classement::$AVANCEMENT_ON,Classement::$SCORE_ON,Classement::$DETAIL_ON,Classement::$DETAIL_ON);

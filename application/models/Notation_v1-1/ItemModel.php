@@ -67,7 +67,7 @@ class ItemModel extends CI_Model
 private function fillItem($rows){
     $result = array();
     foreach ($rows as $key => $data) {
-        $categorie = new Categorie($data->pk_cat, $data->cat_lib,$data->cat_hexa_color);
+        $categorie = new Categorie($data->pk_cat, $data->cat_lib, '', $data->cat_hexa_color);
         
         if(isset($data->scr_score)){
             $notation = new Notation($data->scr_score, $data->scr_comment);
