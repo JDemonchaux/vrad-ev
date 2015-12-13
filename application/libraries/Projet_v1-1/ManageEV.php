@@ -20,29 +20,27 @@ class ManageEV
      *    $listItemHDoHDone["idItem"]["idTask"]["raf"] = 0;
      * @return $avancementItem["idItem"] = av%;
      */
-    public function avancementItems(array $listItemHDoHDone)
+    public function avancementItems(array $listItemHDoHDone, $item_full_list)
     {
-        //$avancementItems = new array();
-        /*
-
-        */
-        $avancementItems = array();
+        foreach ($item_full_list as $idItem => $item) {
+            if($item->getLivrable()==1){
+                $avancementItems[$idItem] = 0;
+            }
+        }
         foreach ($listItemHDoHDone as $idItem => $tasks) {
             $sumDo = 0;
             $sumDone = 0;
             foreach ($tasks as $idTask => $data) {
+
                 $sumDo = $sumDo + $data["hDo"];
-                // règle d'avancemen 0-100% : on ne prend en compte l'avancement que quand le raf vaux zéro
-                if ($data["raf"] == 0) {
+                    // règle d'avancemen 0-100% : on ne prend en compte l'avancement que quand le raf vaux zéro
+                if (!is_null($data["raf"]) && $data["raf"] === 0) {
                     $sumDone = $sumDone + $data["hDo"];
                 }
             }
             if ($sumDo > 0) {
-                $av = round((($sumDone / $sumDo) * 100));
-            } else {
-                $av = 0;
-            }
-            $avancementItems[$idItem] = $av;
+                $avancementItems[$idItem]= round((($sumDone / $sumDo) * 100));
+            } 
         }
         return $avancementItems;
     }
@@ -60,7 +58,12 @@ class ManageEV
             $avancement = $avancement + $value;
             $total = $total + 100;
         }
+
         if ($total > 0) {
+            /*var_dump($avancement);
+            var_dump($total);
+            var_dump(($avancement / $total) * 100);
+            die;*/
             return round(($avancement / $total) * 100);
         } else {
             return 0;
@@ -80,12 +83,12 @@ class ManageEV
     public function getHDoHDoneFromListItem(array $listTask)
     {
         $listItemHDoHDone = array();
-        load_library('Task');
+        load_library('Task','Projet');
 
         foreach ($listTask as $idTask => $objTask) {
            //var_dump($objTask);
             if (isset($objTask)) {
-                if (!$objTask->getIsNp()) {
+                if (!$objTask->getIsNp() && $objTask->getItem()->getLivrable()==1) {
                     $id = $objTask->getItem()->getIdItem();
                     $listItemHDoHDone[$id][$idTask]['hDo'] = $objTask->getPlanning()->getHoursToDo();
                     $listItemHDoHDone[$id][$idTask]['hDone'] = $objTask->getPlanning()->getHoursDone();

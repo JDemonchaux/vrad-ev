@@ -114,7 +114,7 @@ class TaskModel extends CI_Model
     private function selectFullTask()
     {
         $startQuery = $this->db->select('pk_tsk, tsk_lib, tsk_comment, tsk_start_hour_plan, tsk_end_hour_plan, tsk_start_hour_real, tsk_end_hour_real,
-         tsk_state, tsk_is_np ,pk_itm, itm_lib, itm_weight, itm_priority, pk_cat, cat_lib, cat_hexa_color, scr_score, scr_comment, pk_usr, usr_firstname, usr_name');
+         tsk_state, tsk_is_np ,pk_itm, itm_lib, itm_weight, itm_priority, itm_type, itm_livrable, itm_desc , pk_cat, cat_lib, cat_hexa_color, scr_score, scr_comment, pk_usr, usr_firstname, usr_name');
         $startQuery = $this->db->from('tm_task_tsk');
         $startQuery = $this->db->join('ref_item_itm', 'tm_task_tsk.fk_itm = ref_item_itm.pk_itm');
         $startQuery = $this->db->join('tm_user_usr', 'tm_task_tsk.fk_usr = tm_user_usr.pk_usr');
@@ -138,7 +138,7 @@ class TaskModel extends CI_Model
             } else {
                 $notation = NULL;
             }
-            $item = new Item($data->pk_itm, $data->itm_lib, $data->itm_priority, $data->itm_weight, '', '', '', $categorie, $notation);
+            $item = new Item($data->pk_itm, $data->itm_lib, $data->itm_priority, $data->itm_weight, $data->itm_type, $data->itm_livrable, $data->itm_desc, $categorie, $notation);
             $planification = new Schedule($data->tsk_start_hour_plan, $data->tsk_end_hour_plan, $data->tsk_start_hour_real, $data->tsk_end_hour_real);
             $task = new Task($data->pk_tsk, $data->tsk_lib, $data->tsk_comment, $item, $planification, $user);
             $task->setIsNp($data->tsk_is_np);

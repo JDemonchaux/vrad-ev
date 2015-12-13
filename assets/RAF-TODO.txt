@@ -17,3 +17,5 @@ Orange : #FC831B
 Blanc
 
 6) tester avec limage de fond en reapeat
+
+7) corriger le calcul d'ordre par score  au bon endroit
