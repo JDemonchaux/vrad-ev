@@ -178,7 +178,7 @@ $URL = $action->getURL();
                 if ($only_one){
                 $style = "";
                 ?>
-                <div class="col-xs-2 hcenter"><?php echo $item->displayAvancement(); ?></div>
+                <div class="col-xs-2 hcenter"><?php echo $item_group->displayAvancement(); ?></div>
                 <div class="col-xs-2 hcenter">
                     <?php }else{ ?>
                     <div class="col-xs-1">
