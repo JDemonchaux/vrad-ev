@@ -289,3 +289,14 @@ div.podiumFooter {
 .carousel_sponsor_vertical.container {
     width:auto !important;
 }
+
+
+.tableToDoList th {
+    text-align:center;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.finish {
+    background-color: lightgrey;
+}
