@@ -65,7 +65,7 @@
             <?php if (isset($taches)) {
                 foreach ($taches as $tache) { ?>
                     <tr class="<?php echo $tache->getUser()->getId(); ?>">
-                        <td class="cursor-help" title="Item <?php echo $tache->getItem()->getIdItem();?> : <?php echo $tache->getItem()->getLibelle(); ?>"><?php echo $tache->getLibelle(); ?></td>
+                        <td class="cursor-help"  style="background-color: <?php echo $tache->getItem()->getCategorie()->getHexaColor();?>;" title="Item <?php echo $tache->getItem()->getIdItem();?> : <?php echo $tache->getItem()->getLibelle(); ?>"><?php echo $tache->getLibelle(); ?></td>
                         <td class="text-center dd"><?php echo $tache->getPlanning()->displayStartHourPlan("H:i"); ?></td>
                         <td class="text-center df"><?php echo $tache->getPlanning()->displayEndHourPlan("H:i"); ?></td>
                         <?php for ($i = 20; $i < 24; $i++) { ?>

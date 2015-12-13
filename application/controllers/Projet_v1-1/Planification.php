@@ -53,7 +53,6 @@ class Planification extends CI_Controller
         $data['form_modif_tache'] = new Link("modifier_action", "Tache");
         $data['form_suppr_tache'] = new Link("supprimer_action", "Tache");
         $data['taches'] = $this->TaskModel->readAllByGroup($data['groupe']->getId());
-
         load_view("gantt", $data);
     }
 
