@@ -80,8 +80,8 @@ class Schedule
         //verification du format DateTime
         $this->startTimePlan = $this->checkDate($startTimePlan);
         $this->endTimePlan = $this->checkDate($endTimePlan);
-        $this->startTimeReal = $this->checkDate($startTimeReal);
-        $this->endTimeReal = $this->checkDate($endTimeReal);
+        $this->startHourReal = $this->checkDate($startTimeReal);
+        $this->endHourReal = $this->checkDate($endTimeReal);
 
         //détermination des autres attributs calculés
         $this->sethoursPlan();
@@ -280,7 +280,7 @@ class Schedule
         } elseif (!$dateToCheck instanceof DateTime) {
             return new DateTime($dateToCheck);
         } else {
-            return = $dateToCheck;
+            return $dateToCheck;
         }
     }
 

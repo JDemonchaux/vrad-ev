@@ -12,13 +12,7 @@
                         <h4>Vous n'etes pas encore inscrit ?</h4>
                     </div>
                     <div class="panel-body">
-                        <p class="block-noir"></p>
-
-                        <p class="block-noir"></p>
-
-                        <p class="block-noir"></p>
-
-                        <p class="block-noir"></p>
+                        <p class="">Inscrivez-vous vite pour créer votre groupe <br>et demandez aux autres membres de le rejoindre !</p>
                         <br/>
 
                         <p class="hcenter">

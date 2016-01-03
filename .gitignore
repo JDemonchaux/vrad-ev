@@ -59,3 +59,5 @@ application/config/development/application_environement.php
 assets/css
 assets/img/sponsors/*
 application/config/database.php
+
+assets/img/sponsors/Focale Info-RESIZE.png

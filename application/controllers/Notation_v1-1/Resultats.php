@@ -6,6 +6,12 @@ class Resultats extends CI_Controller
     public $module = "Notation";
     public $classement;
 
+    /**
+    * Gestion des droits :
+    * notation pas active pour les membres : 0000000001
+    * notation     active pour les membres : 0000000111
+    */
+
     public function __construct()
     {
         parent::__construct();

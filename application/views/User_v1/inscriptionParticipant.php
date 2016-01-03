@@ -1,6 +1,6 @@
-<div class="row">
-    <h1 class="hcenter">Bienvenue &agrave; la Nuit de l'Informatique</h1>
-</div>
+    <div class="row-fluid">
+        <h1 class="hcenter titre">Bienvenue</h1>
+    </div>
 <br />
 <div class="container">
     <div class="col-lg-8">

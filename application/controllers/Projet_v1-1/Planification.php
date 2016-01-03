@@ -41,10 +41,11 @@ class Planification extends CI_Controller
      */
     public function gantt($id_group = 1)
     {
-        // On récupère le groupe de l'utilisateur connecté  si c'est un member, si c'est un jury...
+        // On récupère le groupe de l'utilisateur connecté  si c'est un member, si c'est un jury c'est l'url qui le donne
         $user = $_SESSION['current_user'];
         if ($user->getRole() == "membre") {
             $data['groupe'] = $user->getGroupe();
+            $id_group = $user->getGroupe()->getId();
         } else {
             $data['groupe'] = $this->GroupModel->readOneGroup($id_group);
         }

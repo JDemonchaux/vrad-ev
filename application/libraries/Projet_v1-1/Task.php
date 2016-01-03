@@ -121,7 +121,7 @@ class Task
     *
     */
 	public function getEtat(){
-		if(!$this->planning->getRaf()){
+        if(!$this->planning->getRaf()){
 			return 0; //Terminé
 		}else if (!is_null($this->planning->getStartHourReal())){
 			return 1; // En cours

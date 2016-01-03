@@ -147,7 +147,7 @@ INSERT INTO `tj_rights_rgt` (`fk_usr_role`, `rgt_model`, `rgt_controller`, `rgt_
 ('jury', 'Notation', 'Ressouces', '00000000001'),
 ('jury', 'Notation', 'Resultats', '00000000111'),
 ('jury', 'Projet', 'Planification', '00000000001'),
-('membre', 'Notation', 'Resultats', '00000000111'),
+('membre', 'Notation', 'Resultats', '00000000001'),
 ('membre', 'Projet', 'Planification', '00000000011'),
 ('membre', 'Projet', 'Tache', '11111111111');
 
@@ -238,8 +238,8 @@ CREATE TABLE IF NOT EXISTS `tm_user_usr` (
 
 INSERT INTO `tm_user_usr` (`pk_usr`, `fk_grd`, `fk_schl`, `fk_grp`, `usr_role`, `usr_name`, `usr_firstname`, `usr_email`, `usr_pwd`, `usr_account_valid`) VALUES
 (1, NULL, 1, NULL, 'admin', 'Dussert', 'Nicolas', 'nicolas.dussert@stjodijon.com', '05a671c66aefea124cc08b76ea6d30bb', 1), -- mdp : testtest
-(2, NULL, 2, NULL, 'jury', 'Bailly', 'Olivier', 'o.bailly@glpmr.info', '05a671c66aefea124cc08b76ea6d30bb', 1), -- mdp : testtest
-(3, NULL, 1, NULL, 'jury', 'Barbier', 'Marie', 'mariebarbierwork@gmail.com', '05a671c66aefea124cc08b76ea6d30bb', 1), -- mdp : testtest
+(2, NULL, 2, NULL, 'admin', 'Bailly', 'Olivier', 'o.bailly@glpmr.info', '05a671c66aefea124cc08b76ea6d30bb', 1), -- mdp : testtest
+(3, NULL, 1, NULL, 'admin', 'Barbier', 'Marie', 'mariebarbierwork@gmail.com', '05a671c66aefea124cc08b76ea6d30bb', 1), -- mdp : testtest
 
 -- --------------------------------------------------------
 

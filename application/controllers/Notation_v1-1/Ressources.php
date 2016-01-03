@@ -20,4 +20,12 @@
       {
             
       }
+
+      public function diffuserResultats(){
+
+      }
+
+      public function validerInscriptions(){
+            
+      }
 }
