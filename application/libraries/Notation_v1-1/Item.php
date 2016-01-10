@@ -26,8 +26,9 @@ class Item
 	private  $type; //String : EF | ENF
 	private  $livrable; // int : 0 ou 1 : BOOLEAN
 	private  $notation; // Notation Object
+	private  $niveau; //pour quels équipes
 
-	public function __construct($idItem='',  $libelle='', $priority='', $coef='', $type='', $livrable='',  $description='', $categorie=NULL, $notation=NULL, $avancement=0) {
+	public function __construct($idItem='',  $libelle='', $priority='', $coef='', $niveau='', $type='', $livrable='',  $description='', $categorie=NULL, $notation=NULL, $avancement=0) {
 		load_library('Categorie','Notation');
 		load_library('Notation','Notation');
 		$this->idItem = $idItem;
@@ -37,6 +38,7 @@ class Item
 		$this->coef = $coef;
 		$this->type = $type;
 		$this->livrable = $livrable;
+		$this->niveau = $niveau;
 
 
 		if(!isset($categorie)){
@@ -74,6 +76,14 @@ class Item
 	public function getCoef(){
 		return $this->coef;
 	}
+
+
+	public function getNiveau() {
+        return $this->niveau;
+    }
+    public function setNiveau($niveau) {
+        $this->niveau = $niveau;
+    }
 
 	public function getType(){
 		return $this->type;
@@ -137,7 +147,7 @@ class Item
 		$this->avancement = $avancement;
 	}
 
-	// seule les EF et les ENF livrables peuvent commpter dans l'avancement
+	// seule les EF et les ENF livrables peuvent compter dans l'avancement
 	public function displayAvancement(){
 		if($this->livrable==0){
 			$avancement = "N/A";

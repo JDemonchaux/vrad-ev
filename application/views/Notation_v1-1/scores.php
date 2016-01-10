@@ -11,7 +11,7 @@
 				<?php echo img_url("ecoles/".$group->getEcole()->getId().".png", "Logo de l'école", "img-responsive");?>
 			</div>
 			<div class="row">
-				<h6 class="hcenter"><?php echo $group->getLibelle()?><br/><span><?php echo $group->getScore();?> / 200</span></h6>
+				<h6 class="hcenter"><?php echo $group->getLibelle()?><br/><span><?php echo $group->getScore();?>pt (<?php echo $group->getMoyenne();?>/20)</span></h6>
 			</div>			
 		</div>
 		<?php	}// fin for group ?>

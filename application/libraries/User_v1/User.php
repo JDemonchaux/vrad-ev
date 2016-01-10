@@ -155,9 +155,9 @@ class User
                                     $config_sub_item = $config_menu;
                                 }  
                             }
-
                             //On initialise un item
                             $item = new ItemRubrique($name_action, $link, $config_sub_item);
+
                             if ($contolleur_name == $controller_current && $action_name == $action_current) {
                                 $item->setCurrent();
                             }

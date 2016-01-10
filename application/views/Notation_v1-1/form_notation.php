@@ -147,7 +147,9 @@ $URL = $action->getURL();
                     <div class="row">
                         <div class="col-xs-1"></div>
                         <div class="col-xs-11">
+                            <?php if($item->getNiveau()>1){echo '<b>';} ?>
                             <?php echo $item->getLibelle(); ?>
+                            <?php if($item->getNiveau()>1){echo '</b>';} ?>
                         </div>
                     </div>
                 </div>
@@ -162,11 +164,17 @@ $URL = $action->getURL();
                         $item_group = $item;
                     }
 
-                //si item planifiable et avancement à 0 on ne peut pas noter
+                
                     $disable = "";
-                    if (!$item_group->isEvaluable()) {
+                    //si pas du niveau on ne peut pas noter
+                    if ($item->getNiveau()>$group->getNiveau() ) {
                         $disable = "DISABLED";
                     }
+                    //si item planifiable et avancement à 0 on ne peut pas noter
+                    elseif (!$item_group->isEvaluable()) {
+                        $disable = "DISABLED";
+                    }
+
 
                 //Construction du formulaire avec les saisies précédentes
                     $val = $item_group->getNotation()->getNote();

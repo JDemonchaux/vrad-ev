@@ -88,7 +88,88 @@ CREATE TABLE IF NOT EXISTS `ref_item_itm` (
 -- Contenu de la table `ref_item_itm`
 --
 
--- NOTHING AT START !!!
+-- V 15/01/2016
+
+--delete from ref_item_itm;
+
+INSERT INTO `ref_item_itm` (`pk_itm`, `fk_cat`, `itm_lib`,`itm_niv`,  `itm_weight`, `itm_priority`, `itm_type`, `itm_livrable`, `itm_desc`) VALUES
+(1,1,'Prises d\'initiatives',1,3,'WOULD','ENF',0,'Gestion de projet > réalisation (fonctionnalité/service) > Prises d\'initiatives'),
+(2,1,'Planification (dont respect des priorités)',1,6,'MUST','ENF',1,'Gestion de projet > réalisation (fonctionnalité/service) > Planification (dont respect des priorités)'),
+(3,1,'MAJ régulière de l\'avancement',1,6,'SHOULD','ENF',0,'Gestion de projet > réalisation (fonctionnalité/service) > MAJ régulière de l\'avancement'),
+(4,1,'respect des priorités (réel)',1,6,'SHOULD','ENF',0,'Gestion de projet > réalisation (fonctionnalité/service) > respect des priorités (réel)'),
+(5,1,'pas de bug / réseau Opérationnel',1,2,'COULD','ENF',0,'Qualité > robustesse > pas de bug / réseau Opérationnel'),
+(6,2,'document règles de filtrage FW',1,5,'COULD','ENF',1,'Qualité > maintenabilité > Système & réseau > document règles de filtrage FW'),
+(7,2,'Document ressource avec mots de passe',1,2,'COULD','ENF',1,'Qualité > maintenabilité > Système & réseau > Document ressource avec mots de passe'),
+(8,2,'Schéma de principe des machines VM',1,4,'COULD','ENF',1,'Qualité > maintenabilité > Système & réseau > Schéma de principe des machines VM'),
+(9,2,'Schéma réseau',1,4,'MUST','ENF',1,'Qualité > maintenabilité > Système & réseau > Schéma réseau'),
+(10,2,'évolutions et intervention en production facilité',1,5,'COULD','ENF',0,'Qualité > maintenabilité > développement > évolutions et intervention en production facilité'),
+(11,2,'respect maquettes',1,5,'SHOULD','ENF',0,'Qualité > ergonomie > développement > respect maquettes'),
+(12,2,'respect responsive',2,5,'SHOULD','ENF',0,'Qualité > ergonomie > développement > respect responsive'),
+(13,2,'formulaire CMS page d\'accueil en One-page',2,5,'COULD','ENF',0,'Qualité > ergonomie > développement > formulaire CMS page d\'accueil en One-page'),
+(14,3,'injections SQL/XSS impossibles',1,4,'WOULD','ENF',0,'Qualité > Sécurité > développement > injections SQL/XSS impossibles'),
+(15,3,'configuration PFSENSE (NAT,DMZ,FW,LAN…)',1,10,'SHOULD','ENF',1,'Qualité > Sécurité > Système & réseau > configuration PFSENSE (NAT,DMZ,FW,LAN…)'),
+(16,3,'HTTPS sur WEB',1,2,'COULD','ENF',0,'Qualité > Sécurité > Système & réseau > HTTPS sur WEB'),
+(17,3,'Base de données sécurisées (mot de passe, accès réseau)',1,2,'COULD','ENF',0,'Qualité > Sécurité > Système & réseau > Base de données sécurisées (mot de passe, accès réseau)'),
+(18,4,'Installation Hyperviseur',1,2,'MUST','EF',1,'Système & réseau > Matériel > Installation Hyperviseur'),
+(19,4,'Installation PFSENSE',1,2,'MUST','EF',1,'Système & réseau > Matériel > Installation PFSENSE'),
+(20,4,'installation serveur WEB',1,2,'SHOULD','EF',1,'Système & réseau > Matériel > installation serveur WEB'),
+(21,4,'Installation serveur Base de Données',1,2,'SHOULD','EF',1,'Système & réseau > Matériel > Installation serveur Base de Données'),
+(22,4,'Installation serveur windows',1,2,'SHOULD','EF',1,'Système & réseau > Matériel > Installation serveur windows'),
+(23,4,'définition RAID5 ou RAID1',1,2,'COULD','EF',1,'Système & réseau > Matériel > définition RAID5 ou RAID1'),
+(24,4,'Installation owncloud',1,2,'COULD','EF',1,'Système & réseau > Matériel > Installation owncloud'),
+(25,4,'Configuration Hyperviseur',1,4,'MUST','EF',1,'Système & réseau > Logiciel > Configuration Hyperviseur'),
+(26,4,'configuration service WEB',1,4,'SHOULD','EF',1,'Système & réseau > Logiciel > configuration service WEB'),
+(27,4,'configuration BDD',1,4,'SHOULD','EF',1,'Système & réseau > Logiciel > configuration BDD'),
+(28,4,'Configuration Proxy',1,3,'COULD','EF',1,'Système & réseau > Logiciel > Configuration Proxy'),
+(29,4,'installation tournament director',1,1,'COULD','EF',1,'Système & réseau > Logiciel > installation tournament director'),
+(30,4,'Configuration DHCP',1,4,'WOULD','EF',1,'Système & réseau > Logiciel > Configuration DHCP'),
+(31,4,'Configuration AD',1,2,'WOULD','EF',1,'Système & réseau > Logiciel > Configuration AD'),
+(32,4,'Création compte Groupe et OU dans AD',1,3,'WOULD','EF',1,'Système & réseau > Logiciel > Création compte Groupe et OU dans AD'),
+(33,4,'portail captif',1,3,'WOULD','EF',1,'Système & réseau > Logiciel > portail captif'),
+(34,4,'installation AD',1,3,'WOULD','EF',1,'Système & réseau > Logiciel > installation AD'),
+(35,4,'Configuration owncloud avec lien AD',1,3,'WOULD','EF',1,'Système & réseau > Logiciel > Configuration owncloud avec lien AD'),
+(36,4,'VNC',1,2,'WOULD','EF',1,'Système & réseau > Logiciel > VNC'),
+(37,4,'authentification portail captif AD',2,10,'WOULD','EF',1,'Système & réseau > Logiciel > authentification portail captif AD'),
+(38,5,'front office : affichage : photo magic day et logo',1,1,'MUST','EF',1,'Développement > front office > affichage > photo magic day et logo'),
+(39,5,'front office : affichage : association',1,2,'MUST','EF',1,'Développement > front office > affichage > association'),
+(40,5,'front office : affichage : lots',1,2,'MUST','EF',1,'Développement > front office > affichage > lots'),
+(41,5,'front office : formulaire : inscription dont génération TOKEN',1,4,'MUST','EF',1,'Développement > front office > formulaire > inscription dont génération TOKEN'),
+(42,5,'front office : affichage : presentation',1,1,'MUST','EF',1,'Développement > front office > affichage > presentation'),
+(43,5,'front office : affichage : album',1,3,'MUST','EF',1,'Développement > front office > affichage > album'),
+(44,5,'front office : affichage : menu',1,2,'SHOULD','EF',1,'Développement > front office > affichage > menu'),
+(45,5,'front office : affichage : pied de page',1,1,'SHOULD','EF',1,'Développement > front office > affichage > pied de page'),
+(46,5,'back office : affichage : menu',1,1,'COULD','EF',1,'Développement > back office > affichage > menu'),
+(47,5,'back office : contenu : modifier',1,1,'COULD','EF',1,'Développement > back office > contenu > modifier'),
+(48,5,'back office : contenu : mettre en forme',1,1,'WOULD','EF',1,'Développement > back office > contenu > mettre en forme'),
+(49,5,'back office : photos  : lister',1,1,'SHOULD','EF',1,'Développement > back office > photos  > lister'),
+(50,5,'back office : photos  : ajouter',1,1,'SHOULD','EF',1,'Développement > back office > photos  > ajouter'),
+(51,5,'back office : photos  : supprimer',1,1,'COULD','EF',1,'Développement > back office > photos  > supprimer'),
+(52,5,'back office : photos  : activer',1,1,'WOULD','EF',1,'Développement > back office > photos  > activer'),
+(53,5,'back office : album : lister',1,1,'COULD','EF',1,'Développement > back office > album > lister'),
+(54,5,'back office : album : ajouter',1,1,'COULD','EF',1,'Développement > back office > album > ajouter'),
+(55,5,'back office : album : supprimer',1,1,'WOULD','EF',1,'Développement > back office > album > supprimer'),
+(56,5,'back office : album : activer',1,1,'WOULD','EF',1,'Développement > back office > album > activer'),
+(57,5,'back office : ateliers  liste : lister',1,1,'COULD','EF',1,'Développement > back office > ateliers  liste > lister'),
+(58,5,'back office : ateliers  liste : ajouter',1,1,'COULD','EF',1,'Développement > back office > ateliers  liste > ajouter'),
+(59,5,'back office : ateliers  liste : supprimer',1,1,'WOULD','EF',1,'Développement > back office > ateliers  liste > supprimer'),
+(60,5,'back office : ateliers score : lister avec filtre par ateliers',1,2,'WOULD','EF',1,'Développement > back office > ateliers score > lister avec filtre par ateliers'),
+(61,5,'back office : joueurs : lister',1,1,'SHOULD','EF',1,'Développement > back office > joueurs > lister'),
+(62,5,'back office : joueurs : ajouter',1,1,'SHOULD','EF',1,'Développement > back office > joueurs > ajouter'),
+(63,5,'back office : joueurs : supprimer',1,1,'COULD','EF',1,'Développement > back office > joueurs > supprimer'),
+(64,5,'back office : joueurs : export',2,1,'WOULD','EF',1,'Développement > back office > joueurs > export'),
+(65,5,'back office : joueurs : import',2,2,'WOULD','EF',1,'Développement > back office > joueurs > import'),
+(66,5,'back office : joueurs : etiquette',2,3,'WOULD','EF',1,'Développement > back office > joueurs > etiquette'),
+(67,5,'back office : association : lister',1,1,'SHOULD','EF',1,'Développement > back office > association > lister'),
+(68,5,'back office : association : ajouter',1,1,'SHOULD','EF',1,'Développement > back office > association > ajouter'),
+(69,5,'back office : association : supprimer',1,1,'COULD','EF',1,'Développement > back office > association > supprimer'),
+(70,5,'back office : lots : lister',1,1,'SHOULD','EF',1,'Développement > back office > lots > lister'),
+(71,5,'back office : lots : ajouter',1,1,'SHOULD','EF',1,'Développement > back office > lots > ajouter'),
+(72,5,'back office : lots : supprimer',1,1,'COULD','EF',1,'Développement > back office > lots > supprimer'),
+(73,5,'Appli Mobile : jetons : classement',2,2,'WOULD','EF',1,'Développement > Appli Mobile > jetons > classement'),
+(74,5,'Appli Mobile : jetons : saisie',2,2,'WOULD','EF',1,'Développement > Appli Mobile > jetons > saisie'),
+(75,5,'Appli Mobile : atelier : lister pour tous les ateliers',1,3,'WOULD','EF',1,'Développement > Appli Mobile > atelier > lister pour tous les ateliers'),
+(76,5,'Appli Mobile : atelier : Lister par ateliers',1,3,'WOULD','EF',1,'Développement > Appli Mobile > atelier > Lister par ateliers'),
+(77,5,'Appli Mobile : atelier : ajouter score',1,3,'WOULD','EF',1,'Développement > Appli Mobile > atelier > ajouter score');
 
 -- --------------------------------------------------------
 
@@ -202,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `tm_school_schl` (
   `pk_schl` int(2) NOT NULL,
   `schl_lib` varchar(50) NOT NULL,
   `schl_city` varchar(25) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `tm_school_schl`
@@ -211,6 +292,7 @@ CREATE TABLE IF NOT EXISTS `tm_school_schl` (
 INSERT INTO `tm_school_schl` (`pk_schl`, `schl_lib`, `schl_city`) VALUES
 (1, 'ESAIP - Saint Joseph', 'Dijon'),
 (2, 'ES Pasteur Mont Roland', 'Dole');
+(3, 'Lycée le Castel', 'Dijon');
 
 
 -- --------------------------------------------------------
@@ -235,12 +317,12 @@ CREATE TABLE IF NOT EXISTS `tm_user_usr` (
 --
 -- Contenu de la table `tm_user_usr`
 --
-
+/*
 INSERT INTO `tm_user_usr` (`pk_usr`, `fk_grd`, `fk_schl`, `fk_grp`, `usr_role`, `usr_name`, `usr_firstname`, `usr_email`, `usr_pwd`, `usr_account_valid`) VALUES
 (1, NULL, 1, NULL, 'admin', 'Dussert', 'Nicolas', 'nicolas.dussert@stjodijon.com', '05a671c66aefea124cc08b76ea6d30bb', 1), -- mdp : testtest
 (2, NULL, 2, NULL, 'admin', 'Bailly', 'Olivier', 'o.bailly@glpmr.info', '05a671c66aefea124cc08b76ea6d30bb', 1), -- mdp : testtest
-(3, NULL, 1, NULL, 'admin', 'Barbier', 'Marie', 'mariebarbierwork@gmail.com', '05a671c66aefea124cc08b76ea6d30bb', 1), -- mdp : testtest
-
+(3, NULL, 1, NULL, 'admin', 'Barbier', 'Marie', 'marie.barbier.work@gmail.com', '05a671c66aefea124cc08b76ea6d30bb', 1), -- mdp : testtest
+*/
 -- --------------------------------------------------------
 
 --

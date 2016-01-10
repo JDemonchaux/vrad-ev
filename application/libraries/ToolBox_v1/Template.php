@@ -23,9 +23,11 @@ class Template
 
     function load($template = '', $view = '', $view_data = array(), $return = FALSE)
     {
+        
         $this->CI = &get_instance();
         if (isset($_SESSION['current_user'])) {
             $user = $_SESSION['current_user'];
+            $user->unSerialize();
         }
         if (!empty($user)) {
             $menu = $user->getMenu();
@@ -33,6 +35,7 @@ class Template
             $menu = "";
         }
         $this->set('menu', $menu, TRUE);
+
         $this->set('contents', $this->CI->load->view($view, $view_data, TRUE));
         return $this->CI->load->view($template, $this->template_data, $return);
     }

@@ -15,11 +15,13 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 // $config['menu']["Module"]['Controller']['action'] = array(  )
 												
 $config['menu']["Projet"]['Planification']["gantt"] = array(	"model_name" => "Group",
+																"model_module" => "User",
 																"role" => array("jury")
 													);				
 
 												
 $config['menu']["Notation"]['Evaluation']["noterGroupe"] = array(	"model_name" => "Group",
+																	"model_module" => "User",
 																	"role" => array("jury")
 															);	
 

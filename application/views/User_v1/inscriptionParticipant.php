@@ -129,7 +129,7 @@
     </div>
     <div class="col-lg-4">
         <!-- slider -->
-        <div class="carousel_sponsor_vertical container" data-slick='{"slidesToShow": 3, "slidesToScroll": 1, "autoplay": true, "vertical": true}'>
+        <div class="carousel_sponsor_vertical container" data-slick='{"slidesToShow": 3, "slidesToScroll": 1, "autoplay": false, "vertical": true}'>
             <?php        
             if (isset($images)) {
                 foreach ($images as $image)

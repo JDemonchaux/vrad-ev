@@ -71,6 +71,35 @@ class Classement
 	/**
 	* @author Jerome.Demonchaux@gmail.com
 	*/
+	public function orderByMoyenne(){
+
+		$les_groupes_tries = array();
+
+		$count = 0;
+		foreach($this->les_groupes as $groupe) {
+			$les_groupes_tries[$count] = $groupe;
+			$count++;
+		}
+		$taille = count($les_groupes_tries) - 1;
+
+		for ($i = 0; $i < $taille; $i++) {
+			for ($j = $taille-1; $j >= $i; $j--) {
+				if($les_groupes_tries[$j+1]->getMoyenne() > $les_groupes_tries[$j]->getMoyenne())
+				{
+					$temp = $les_groupes_tries[$j+1];
+					$les_groupes_tries[$j+1] = $les_groupes_tries[$j];
+					$les_groupes_tries[$j] = $temp;
+				}
+			}
+		}
+
+		$this->les_groupes = $les_groupes_tries;
+
+	}
+
+	/**
+	* @author Jerome.Demonchaux@gmail.com
+	*/
 	public function orderByAvancement(){
 		$les_groupes_tries = array();
 
@@ -123,6 +152,7 @@ class Classement
 			$categ_lib='';
 			$categs = array();
 			$somme = 0;
+			$totalMoyenne = 0;
 			load_library("ManageEv","Projet");
 			$manageEv = new ManageEv();
 
@@ -166,7 +196,10 @@ class Classement
 					
 					//note totale
 					if ($with_total_note){
-						$somme = $somme + $item->getNotation()->getNote();
+						if($groupe->getNiveau() >= $item->getNiveau()){
+							$totalMoyenne = $totalMoyenne + $item->getCoef();
+							$somme = $somme + $item->getNotation()->getNote();
+						}
 					}
 
 					//MAJ avancement item
@@ -177,17 +210,20 @@ class Classement
 						}
 					}
 
-					//calcul des points obtenus pas categ
+					//calcul des points obtenus par categ
 					if($with_detail_note){
 						if($item->getCategorie()->getLibelle()!=$categ_lib){
 							$categ_lib=$item->getCategorie()->getLibelle();
 							$total = 0;
 							$score = 0;
 						}
+						if($groupe->getNiveau() >= $item->getNiveau()){
 						$total = $total + $item->getCoef();
 						$score = $score + $item->getNotation()->getNote();
+						}
 						$item->getCategorie()->setScore($score);
 						$item->getCategorie()->setCoef($total);
+
 						//pour utilisation dans boucle 2
 						$categs[$item->getCategorie()->getId()] = $item->getCategorie();
 					}
@@ -207,6 +243,12 @@ class Classement
 			
 			
 			$groupe->setScore($somme);
+				if($totalMoyenne>0){
+					$groupe->setMoyenne(round(($somme/$totalMoyenne)*20,2));
+				}else{
+					$groupe->setMoyenne(0);
+				}
+
 			$groupe->setAvancement($avancement);
 			//MAJ de la liste
 			if (isset($item_list)){

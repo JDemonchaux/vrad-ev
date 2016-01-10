@@ -1,3 +1,11 @@
+1) activer les inscriptions des membres
+
+2) activer / desactiver la diffusion des résultats
+
+
+0) le time picker est trop précis : passer de toutes les minutes à toutes les 5 minutes
+
+
 1) Menu "MonProjet" daubé en user (ctrl task)
 -- Virer script.js ligne 175 pour rafficher le bug
 

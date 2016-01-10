@@ -27,7 +27,8 @@
                             <?php echo img_url("ecoles/" . $groupe->getEcole()->getId() . ".png", "Logo de l'école", "logoEcole"); ?>
                         </div>
                         <div class="title"><?php echo $groupe->getLibelle(); ?></div>
-                        <div class="score"><?php echo $groupe->getScore(); ?>/200</div>
+                        <div class="score"><?php echo $groupe->getMoyenne(); ?>/20</div>
+                        <div class="score">(<?php echo $groupe->getScore(); ?>pt)</div>
                         <div class="progress ">
                             <div class="progress-bar vert" role="progressbar"
                                  aria-valuenow="<?php echo $groupe->getAvancement(); ?>"
@@ -56,12 +57,13 @@
                     </div>
                 </div>
                 <?php } else { ?>
-                    <div class="col-sm-2 classement">
-                        <div class="logo">
+                    <div class="col-xs-2 classement">
+                        <div class="logo" style="max-width: 8.3rem !important">
                             <?php echo img_url("ecoles/" . $groupe->getEcole()->getId() . ".png", "Logo de l'école", "logoEcole"); ?>
                         </div>
                         <div class="title"><?php echo $groupe->getLibelle(); ?></div>
-                        <div class="score"><?php echo $groupe->getScore(); ?>/200</div>
+                        <div class="score"><?php echo $groupe->getMoyenne(); ?>/20</div>
+                        <div class="score">(<?php echo $groupe->getScore(); ?>pt)</div>
                         <div class="progress ">
                             <div class="progress-bar" role="progressbar"
                                  aria-valuenow="<?php echo $groupe->getAvancement(); ?>"

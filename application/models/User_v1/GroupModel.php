@@ -33,7 +33,7 @@ class GroupModel extends CI_Model
         $query = $this->db->where("grp_lib", $libelle);
         $query = $this->db->get("tm_group_grp");
         $resultat = $this->fullFillGroup($query->result());
-        var_dump($query->result());
+        //var_dump($query->result());
         return $resultat;
     }
     
@@ -77,7 +77,7 @@ class GroupModel extends CI_Model
         $result = array();
         foreach ($rows as $key => $data) {
             $ecole = "";
-            $groupe = new Group($data->pk_grp, $data->grp_lib, $ecole);
+            $groupe = new Group($data->pk_grp, $data->grp_lib, $ecole, $data->grp_niv);
             $arr["groupe"] = $groupe;
             $result[$data->pk_grp] = $arr["groupe"];
             //array_push($result, $arr["groupe"]);
@@ -92,7 +92,7 @@ class GroupModel extends CI_Model
         $result = array();
         foreach ($rows as $key => $data) {
             $ecole = new School($data->pk_schl, $data->schl_lib, $data->schl_city);
-            $groupe = new Group($data->pk_grp, $data->grp_lib, $ecole);
+            $groupe = new Group($data->pk_grp, $data->grp_lib, $ecole, $data->grp_niv);
             $arr["groupe"] = $groupe;
             //array_push($result, $arr["groupe"]);
             $result[$data->pk_grp] = $arr["groupe"];

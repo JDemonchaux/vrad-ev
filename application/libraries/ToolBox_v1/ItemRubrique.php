@@ -29,10 +29,11 @@ class ItemRubrique {
 		$this->URL = $URL;
 		$this->current = false;
 
+		//gestion des menus dinamique en fonction de la BDD, var cherche les infos du modèle a charger dans config/menu.php
 		//si config_sub_item == config[menu ] de qqch, alors charger ce qqch dans sub_item;
 		if(isset($config_sub_item["model_name"])){
 			$model_name = $config_sub_item["model_name"]."Model";
-			load_model($model_name);
+			load_model($model_name,$config_sub_item["model_module"]);
 			$CI = get_instance();
 			$this->sub_item = $CI->$model_name->loadMenu();
 			

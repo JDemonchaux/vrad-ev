@@ -13,17 +13,20 @@ class Group
     private $id;
     private $libelle;
     private $ecole;
+    private $niveau;
     private $avancement;
     private $score; //note totale
     private $resultats; //liste d'Items avec leur notation
     
-    public function __construct($id = '', $libelle = '', $ecole = '',$avancement = '',$score = "", $resultats = "") {
+    public function __construct($id = '', $libelle = '', $ecole = '', $niveau = '', $avancement = '',$score = "", $resultats = "") {
         $this->id = $id;
         $this->libelle = $libelle;
         $this->ecole = $ecole;
         $this->avancement = $avancement;
         $this->score = $score;
+        $this->moyenne = 0;
         $this->resultats = $resultats;
+        $this->niveau = $niveau;
     }
     
     public function getId() {
@@ -47,6 +50,13 @@ class Group
         $this->ecole = $ecole;
     }
 
+    public function getNiveau() {
+        return $this->niveau;
+    }
+    public function setNiveau($niveau) {
+        $this->niveau = $niveau;
+    }
+
     public function getAvancement(){
         return $this->avancement ;
     }
@@ -61,6 +71,15 @@ class Group
 
     public function setScore($score){
          $this->score = $score;
+    }
+
+    //score rammené sur 20 en fonction du niveau
+    public function getMoyenne(){
+        return $this->moyenne;
+    }
+
+    public function setMoyenne($moyenne){
+         $this->moyenne = $moyenne;
     }
 
     public function getResultats(){
