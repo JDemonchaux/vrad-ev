@@ -1,0 +1,42 @@
+/******************************************************
+*
+*				Style des notifications
+*
+*******************************************************/
+
+/* Définit la notification en fullscreen
+Avec une marge du "top" */
+#toast-container {
+	width:100%;
+	top: 64px !important;
+	left:0px !important;
+}
+
+
+.toast {
+	z-index: 9;
+	position:absolute;
+	left:0px;
+	width:100%;
+	text-align: center;
+
+}
+
+
+#toast-container.toast-bottom-full-width > div, #toast-container.toast-top-full-width > div {
+	width:100%;
+}
+
+.toast-close-button {
+	float:none;
+	top:0;
+	right:0;
+}
+
+.toast-message {
+	width:100%;
+}
+
+#toast-container > div {
+	opacity: 1;
+}

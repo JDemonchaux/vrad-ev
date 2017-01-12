@@ -1,0 +1,26 @@
+
+0) le time picker est trop précis : passer de toutes les minutes à toutes les 5 minutes
+
+
+1) Menu "MonProjet" daubé en user (ctrl task)
+-- Virer script.js ligne 175 pour rafficher le bug
+
+3) fonctionalité de partage facebook de l'avancement et du podium final pour l'admin !!
+
+7) Internationalisation, quand vraiment on saura plus quoi faire de notre temps
+
+-- graphiquement (obselete : la charte gaphique a changer en ndi#4)
+5) bootstraper avec les couleurs : (non ca a changer !!)
+Rouge : #E50525
+Vert : #83BE3B
+Noir : #070707
+Bleu : #1AA1EA
+Orange : #FC831B
+Blanc
+
+6) tester avec limage de fond en reapeat
+
+
+
+
+
