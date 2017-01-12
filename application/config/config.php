@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //$config['base_url'] = 'https://192.168.168.145/';
-$config['base_url'] = 'http://www.vrad-ev.com';
+$config['base_url'] = 'http://localhost/vradev/';
 
 
 /*
