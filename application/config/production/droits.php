@@ -89,8 +89,10 @@ $config['droits']["Notation"]['Evaluation'] = array(	"harmonisation" 		=> 1, 	//
 												//definition droits COS
 $config['droits']["Notation"]['Ressources'] = array(	"listeItem" 	=> 1, 	//A
 														"importerItem"	=>2, 	//B
-												 		"ValiderInscription" => 4, 	//C
-												 		"ActiverResultats" 		=> 8 	//D
+												 		"validerInscriptions" => 4, 	//C
+												 		"validerInscriptions_action" => 4, 	//C
+												 		"diffuserResultats" => 8 ,	//D
+												 		"diffuserResultats_action" => 8 	//D
 													);	
 
 												//definition droits COS

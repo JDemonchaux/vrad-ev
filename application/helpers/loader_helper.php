@@ -138,6 +138,7 @@ if (!function_exists('load_view'))
     if($module===""){
       $module = $CI->module; 
     }
+
         //definition du template par defaut
     $default_template = $CI->config->item("default_template");
         //la vue est toujours stock�e dans un dossier comporant la version du module
@@ -149,9 +150,9 @@ if (!function_exists('load_view'))
     foreach ($CI->layout_data as $key => $value) {
       $CI->template->set($key,$value);
     }
-
         //puis appel � la m�thode chargeant la vue dans un template
     $CI->template->load($default_template, $module_full_name."/".$filename, $data);
+
   }
 }
 

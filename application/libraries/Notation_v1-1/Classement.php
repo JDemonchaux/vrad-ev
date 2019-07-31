@@ -42,7 +42,7 @@ class Classement
 //		foreach ($this->les_groupes as $key => $groupe) {
 //			$groupes_by_scores[$groupe->getScore()] = $groupe; //et si deux scores ex-equos???
 //		}
-		//$this->les_groupes = array_multisort($groupes_by_scores);//TODO a verif
+		//$this->les_groupes = array_multisort($groupes_by_scores);//TODO à verif
 
 		$les_groupes_tries = array();
 

@@ -107,6 +107,7 @@
                                             }
                                             ?>
                                         </select>
+                                        <!--
                                         <div class="input-group-btn">
                                             <div class="input-group-btn">
                                                 <button type="button" class="btn btn-default" id="ajouterGroupe" data-toogle="modal" data-target="#modalAjouterGroupe">
@@ -114,6 +115,7 @@
                                                 </button>
                                             </div>
                                         </div>
+                                    -->
                                     </div>
                                 </div>
                             </div>

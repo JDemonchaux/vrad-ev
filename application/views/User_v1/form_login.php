@@ -12,7 +12,8 @@
                         <h4>Vous n'etes pas encore inscrit ?</h4>
                     </div>
                     <div class="panel-body">
-                        <p class="">Inscrivez-vous vite pour créer votre groupe <br>et demandez aux autres membres de le rejoindre !</p>
+                       <!-- <p class="">Inscrivez-vous vite pour créer votre groupe <br>et demandez aux autres membres de le rejoindre !</p> -->
+                       <p class="">Inscrivez-vous vite et rejoignez votre groupe pour pouvoir accéder à la getion de votre projet!</p> 
                         <br/>
 
                         <p class="hcenter">

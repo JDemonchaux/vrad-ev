@@ -25,6 +25,7 @@ class ManageEV
      *    $listItemHDoHDone["idItem"]["idTask"]["hDo"]
      *    $listItemHDoHDone["idItem"]["idTask"]["hDone"]
      *    $listItemHDoHDone["idItem"]["idTask"]["raf"] = 0;
+     * @param $item_full_list : tous les items même pas encore traité
      * @return $avancementItem["idItem"] = av%;
      */
     public function avancementItems(array $listItemHDoHDone, $item_full_list)

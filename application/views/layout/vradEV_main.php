@@ -19,7 +19,15 @@
 <body>
 <?php echo $menu; ?>
 <?php echo show_notification() ?>
-<?php echo $contents; ?>
+<div class="maincontent">
+    <?php echo $contents; ?>
+</div>
+
+<?php // Logo NDI #3 ?>
+<div class="ndifooter">
+    <?php echo img_url("logorond.png", "Logo de la NDI", "chouetteLogo"); ?>
+    <p>D&eacute;velopp&eacute; par Devloop & MBW</p>
+</div>
 </body>
 
 <!-- INSERT JS HERE -->

@@ -4,7 +4,15 @@
 
 body {
     /*background-image: url('../img/fond_repetable_2.png');*/
-    background-repeat: repeat;
+    /*background-repeat: repeat;*/
+    height:100vh;
+    margin-bottom: 150px;
+    flex-direction: column;
+
+}
+
+.maincontent {
+    flex: 1;
 }
 
 .navbar-header {
@@ -91,7 +99,7 @@ body {
 
 /* GANTT */
 
-#datetimepicker1, #datetimepicker2, {
+#datetimepicker1, #datetimepicker2 {
     margin-left: 1rem;
     margin-right: 1rem;
 }
@@ -118,7 +126,7 @@ th.minute {
 }
 
 .green-text {
-    color: green;
+    color: #28426E;
 }
 
 .orange-text {
@@ -163,18 +171,21 @@ th.minute {
 }
 
 .no3 {
-    border: 1px solid black;
-    padding: 4rem 2rem 2rem;
+    border: 1px solid #070707;
+    padding: 4rem 2rem 0.7rem;
+    margin-bottom:15px;
+    /* modif du 04/01/2017 : */
+    /*padding: 4rem 2rem 0.7rem;*/
 }
 
 .no2 {
-    border: 1px solid black;
+    border: 1px solid #070707;
     padding: 4rem 2rem 6rem 2rem;
     margin-top: -4rem;
 }
 
 .no1 {
-    border: 1px solid black;
+    border: 1px solid #070707;
     padding: 4rem 2rem 10rem 2rem;
     margin-top: -8rem;
 }
@@ -210,7 +221,7 @@ div.score {
 
 span.avancement {
     padding-left: 2rem;
-    color: black;
+    color: #070707;
 
 }
 
@@ -247,7 +258,8 @@ div.podiumFooter {
 
 .classement > .title {
     min-height: 85px;
-    text-align: justify margin : 0 auto;
+    text-align: justify;
+    margin: 0 auto;
     width: 100%;
     display: inline-block;
     vertical-align: middle;
@@ -320,26 +332,26 @@ div.podiumFooter {
 }
 
 .btn .btn-default, .btn-default, .btn-primary {
-    background-color: #E50525 !important;
+    background-color: #6CA2DB !important;
     color: white !important;
     background-image: none !important;
 }
 
 .rouge {
-    background-color: #E50525 !important;
+    background-color: #6CA2DB !important;
 }
 
 .rouge-text {
-    color: #E50525 !important;
+    color: #6CA2DB !important;
 }
 
 .vert {
-    background-color: #83BE3B !important;
+    background-color: #28426E !important;
     background-image: none !important;
 }
 
 .vert-text {
-    color: #83BE3B !important;
+    color: #28426E !important;
 }
 
 .white-text {
@@ -353,14 +365,63 @@ div.podiumFooter {
 h1.titre {
     padding-top: 1rem;
     padding-bottom: 1rem;
-    background-color: #E50525;
+    background-color: #28426E;
     color: white;
     border: 6px solid white;
     margin-left: 25%;
     margin-right: 25%;
 }
 
-.espace{
+.espace {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+/* Personnalisation de la barre de menu */
+
+nav.navbar {
+    background-color: #28426E !important;
+    border-color: #28426E;
+}
+
+.navbar-default, .navbar-inverse {
+    background-image: none !important;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+    color: white !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.navbar-inverse .navbar-nav > li > a, p.navbar-text {
+    color: white !important;
+}
+
+.btn-default {
+    text-shadow: none;
+}
+.panel-default, .panel-default>.panel-heading {
+    border-color: #28426E;
+}
+
+
+
+img.chouetteLogo {
+    width:100px;
+    display: block;
+    margin:0 auto;
+}
+div.ndifooter {
+    width:100%;
+    margin-top:25px;
+    text-align: center;
+}
+
+div.ndifooter > p {
+    color:white;
+    font-size:smaller;
 }

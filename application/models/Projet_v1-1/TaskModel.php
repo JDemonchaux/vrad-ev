@@ -34,7 +34,7 @@ class TaskModel extends CI_Model
         }
 
         $tache = array(
-            "pk_tsk" => $task->getIdTask(),
+           // "pk_tsk" => $task->getIdTask(),
             "fk_usr" => $task->getUser(),
             "fk_itm" => $task->getItem(),
             "tsk_lib" => $task->getLibelle(),

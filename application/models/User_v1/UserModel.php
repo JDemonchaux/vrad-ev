@@ -110,6 +110,7 @@ class UserModel extends CI_Model
         return $enfant;
     }
 
+//todo : utiliser getDroitsByRole dans RightModèle...
     public function getDroits($role) {
         $this->db->select('*');
         $this->db->where('fk_usr_role', $role);
@@ -128,21 +129,48 @@ class UserModel extends CI_Model
         $this->db->where("fk_grp", $idGroupe);
         $query = $this->db->get("TM_USER_USR");
 
-        $resultats = $this->fullFillUser($query->result());
+        $resultats = $this->fullFillMember($query->result());
 
         return $resultats;
     }
 
-
-    public function fullFillUser($rows) {
+    public function fullFillMember($rows) {
         $result = array();
         foreach ($rows as $key => $data) {
             $user = new Member($data->pk_usr, $data->usr_firstname, $data->usr_name, $data->usr_email);
             $arr["membre"] = $user;
-            array_push($result, $arr["membre"]);
+            array_push($result,$arr["membre"]);
         }
-
         return $result;
     }
+
+    public function fullFillUser($rows) {
+        $result = array();
+        foreach ($rows as $key => $data) {
+            $user = new User($data->usr_email,"",$data->pk_usr, $data->usr_firstname, $data->usr_name);
+            $user->setAccountValid($data->usr_account_valid);
+            $result[$data->pk_usr]= $user;
+        }
+        return $result;
+    }
+
+    public function readAll() {
+        $query = $this->db->get("TM_USER_USR");
+        $resultat = $this->fullFillUser($query->result());
+        return $resultat;
+    }
+
+    public function update($user) {
+         $array = array(
+            "pk_usr" => $user->getId(),
+            "usr_account_valid" => $user->getAccountValid()
+            );
+        $this->db->where("pk_usr", $array["pk_usr"]);
+        $this->db->update("TM_USER_USR", $array);
+        
+    }
+
+   
+
 
 }

@@ -15,7 +15,7 @@ class Member extends User
     private $serrialized_groupe;
     private $serrialized_classe;
     
-    public function __construct($id = '', $prenom = '', $nom = '', $email = '', $password = '', Group $groupe = NULL, Grade $classe = NULL, $accountValid = FALSE) {
+    public function __construct($id = '', $prenom = '', $nom = '', $email = '', $password = '', $groupe = NULL, $classe = NULL, $accountValid = FALSE) {
         $this->role="membre";
         parent::__construct($email, $password,$id, $prenom, $nom,$accountValid);
         $this->groupe = $groupe;
@@ -69,4 +69,5 @@ class Member extends User
     public function setClasse($classe) {
         $this->classe = $classe;
     }
+
 }

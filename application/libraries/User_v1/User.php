@@ -58,6 +58,7 @@ class User
         //Mise en session
        // $_SESSION['current_user'] = 
         $user->serialize();
+        
         $CI->session->set_userdata("current_user", $user);
 
     }
@@ -131,6 +132,7 @@ class User
                 while ($droit = current($action)) {
                     $action_name = key($action);
                     $acces = $this->demander_acces($module_name, $contolleur_name, $les_droits[$module_name][$contolleur_name][$action_name]);
+
                     if ($acces) {
                         if ($droit_current == $droit) {
                             //Menu deja initialisé

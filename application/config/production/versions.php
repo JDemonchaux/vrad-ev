@@ -34,10 +34,27 @@
 | mais dans tous les cas il faut privilegier les Modules avec un seul MOT
 |
 */
-$config['versions']['show_in_URL']=TRUE; //!IMPORTANT LAISSER FALSE EN PROD (mais TRUE en dev)
-//cet exemple ne marchera pas dans cet environement car le dossier Module_Dev n'exsite pas
-$config['versions']["Module_Dev"]['v']= '1-1';
-$config['versions']["Module_Dev"]['DefaultRoute'] = "Controller1"."/"."action1";
-//cet exemple  marchera  dans cet environement
-$config['versions']["Module_Prod"]['v']= '1-0';
-$config['versions']["Module_Prod"]['DefaultRoute'] = "Controller1"."/"."action1";
+$config['versions']['show_in_URL']=TRUE; //!IMPORTANT LAISSER TRUE EN DEV (mais FLASE en prod)
+//attention problème avec les default route du module qui sont initialisé selonle show à FALSE
+
+//$config['versions']["Error"]['DefaultRoute'] = "Controller1"."/"."action1";
+
+//Modules Transverseaux
+$config['versions']["Error"]['v']= '1';
+$config['versions']["ToolBox"]['v']= '1';
+$config['versions']["Tests"]['v']= '1';
+
+//Modules livrés
+$config['versions']["User"]['v']= '1';
+$config['versions']["User"]['DefaultRoute']["module"] = "Connexion"."/"."login";
+
+$config['versions']["Projet"]['v'] = '1-1';
+$config['versions']["Projet"]['DefaultRoute']["module"] = "Planification"."/"."gantt";
+$config['versions']["Projet"]['DefaultRoute']['Tache'] = "lister";
+$config['versions']["Projet"]['DefaultRoute']['Planification'] = "gantt";			
+
+$config['versions']["Notation"]['v']= '1-1';
+$config['versions']["Notation"]['DefaultRoute']["module"] = "Jury"."/"."harmonisation";
+$config['versions']["Notation"]['DefaultRoute']["Jury"] = "harmonisation";
+$config['versions']["Notation"]['DefaultRoute']["Ressources"] = "listeItem";
+$config['versions']["Notation"]['DefaultRoute']["Resultat"] = "home";

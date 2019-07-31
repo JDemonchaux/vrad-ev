@@ -59,7 +59,7 @@
                 <?php } else { ?>
                     <div class="col-xs-2 classement">
                         <div class="logo" style="max-width: 8.3rem !important">
-                            <?php echo img_url("ecoles/" . $groupe->getEcole()->getId() . ".png", "Logo de l'école", "logoEcole"); ?>
+                            <?php echo img_url("ecoles/" . $groupe->getEcole()->getId() . ".png", "Logo de l'école", "img-responsive"); ?>
                         </div>
                         <div class="title"><?php echo $groupe->getLibelle(); ?></div>
                         <div class="score"><?php echo $groupe->getMoyenne(); ?>/20</div>

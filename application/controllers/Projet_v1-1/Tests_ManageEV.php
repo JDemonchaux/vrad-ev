@@ -2,20 +2,22 @@
 
   class Tests_ManageEV extends CI_Controller {
 
-      public $module = "Planning";
+      public $module = "Projet";
 
       public function index()
       {
       	$this->load->library('unit_test');
+            load_library("Item", "Notation");
+
 
       	$this->testPlanification();
     	
-      	//$this->testManageEVavancementItems();
+      	$this->testManageEVavancementItems();
 
-      	//$this->testManageAvancementProjects();
+      	$this->testManageAvancementProjects();
 
             $data = array("report"=>$this->unit->report());
-            load_view("report",$data,"Tests");
+            load_simple_view("report",$data,"Tests");
       }
 
       private function testPlanification(){
@@ -83,9 +85,11 @@
       	Dans tous les cas, la charge utilisée pour le calcul est la charge planifiée et non la charge utilisée. Que la tache 1 est pris en réalité 1h et demie ou 2h et demie, on utilisera sa charge planifiée de 2h pour le calcul de l’avancement. De plus les taches identifiées comme « non planifiées en initiale » (NP) ne doivent pas être prises en compte dans le calcul.
       	*/
 
-		//$listItemHDoHDone[] = new array();
-
-
+		
+            $list_item = array(new Item(2,"item 2",1,1,1,"EF",1));
+                 
+            
+            //$listItemHDoHDone[] = new array();
 		$listItemHDoHDone[2][1]["hDo"] = 2;
 		$listItemHDoHDone[2][1]["hDone"] = 2.5;
 		$listItemHDoHDone[2][1]["raf"] = 0;
@@ -102,7 +106,7 @@
       	//$avancementItemsOracle = new  array();
       	$avancementItemsOracle[2] = 40;
 
-      	$result = $mangeEV->avancementItems($listItemHDoHDone) ;
+      	$result = $mangeEV->avancementItems($listItemHDoHDone,$list_item) ;
       	$this->unit->run( $result , $avancementItemsOracle , "avancementItems - 1" , "1 item");
 
       }

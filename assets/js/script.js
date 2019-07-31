@@ -1,8 +1,12 @@
 $(document).ready(function () {
 
-    if (window.location.href.indexOf("Connexion") > -1 ||
+    /*if (window.location.href.indexOf("Connexion") > -1 ||
         window.location.href.indexOf("Inscription") > -1) {
         $("body").css("background", "url('../../assets/img/fond_repetable_2.png') repeat");
+    }*/
+    if (window.location.href.indexOf("User") > -1) {
+        //$("body").css("background", "url('../../assets/img/fond_repetable_2.png') repeat");
+        $("body").css("background", "linear-gradient( 45deg, #28426E, #6CA2DB)");
     }
 
     $('#datetimepicker1').datetimepicker({
